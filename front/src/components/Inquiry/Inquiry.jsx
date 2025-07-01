@@ -5,12 +5,6 @@ import "./Inquiry.css";
 // Railway API URL 설정
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 
-console.log('Current API Base URL:', API_BASE_URL);
-console.log('Environment:', import.meta.env.MODE);
-
-console.log('Current API Base URL:', API_BASE_URL);
-console.log('Environment:', import.meta.env.MODE);
-
 const Inquiry = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -25,28 +19,7 @@ const Inquiry = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [apiStatus, setApiStatus] = useState('checking'); // checking, online, offline
 
-  // Railway API 연결 상태 확인
-  const checkApiStatus = async () => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/api/inquiry/health`, {
-        timeout: 5000,
-      });
-      // console.log('API Health Check:', response.data);
-      setApiStatus('online');
-      return true;
-    } catch (error) {
-      // console.error('API Health Check Failed:', error);
-      setApiStatus('offline');
-      return false;
-    }
-  };
-
-  // 컴포넌트 마운트 시 API 상태 확인
-  React.useEffect(() => {
-    checkApiStatus();
-  }, []);
 
   // 지역 데이터
   const regionData = {
@@ -365,8 +338,7 @@ const Inquiry = () => {
       agreed: formData.agreed
     };
 
-    console.log('Sending inquiry data:', inquiryData);
-    console.log('API URL:', `${API_BASE_URL}/api/inquiry`);
+
 
     try {
       // Railway 백엔드 API 호출
@@ -378,7 +350,7 @@ const Inquiry = () => {
         withCredentials: false, // CORS 이슈 방지
       });
       
-      console.log('문의 접수 성공:', response.data);
+
       setSuccess(true);
       
       // 폼 초기화
@@ -398,10 +370,7 @@ const Inquiry = () => {
       }, 5000);
       
     } catch (error) {
-      console.error('문의 접수 실패:', error);
-      console.error('Error response:', error.response?.data);
-      console.error('Error status:', error.response?.status);
-      console.error('Error config:', error.config);
+
 
       // 에러 메시지 설정
       if (error.response) {
@@ -409,7 +378,7 @@ const Inquiry = () => {
         const errorData = error.response.data;
         const status = error.response.status;
 
-        console.log('Server error data:', errorData);
+
 
         if (status === 500) {
           setError('서버 내부 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
@@ -442,24 +411,7 @@ const Inquiry = () => {
 
   return (
     <div className="inquiry-container">
-      {/* API 상태 표시 */}
-      {/*<div className={`api-status ${apiStatus}`} style={{*/}
-      {/*  padding: '8px 12px',*/}
-      {/*  marginBottom: '10px',*/}
-      {/*  borderRadius: '4px',*/}
-      {/*  fontSize: '12px',*/}
-      {/*  textAlign: 'center',*/}
-      {/*  backgroundColor: apiStatus === 'online' ? '#d4edda' :*/}
-      {/*                  apiStatus === 'offline' ? '#f8d7da' : '#fff3cd',*/}
-      {/*  color: apiStatus === 'online' ? '#155724' :*/}
-      {/*         apiStatus === 'offline' ? '#721c24' : '#856404',*/}
-      {/*  border: `1px solid ${apiStatus === 'online' ? '#c3e6cb' :*/}
-      {/*                       apiStatus === 'offline' ? '#f5c6cb' : '#ffeaa7'}`*/}
-      {/*}}>*/}
-      {/*  {apiStatus === 'checking' && '🔄 서버 연결 상태 확인 중...'}*/}
-      {/*  {apiStatus === 'online' && '✅ Railway 서버 연결됨'}*/}
-      {/*  {apiStatus === 'offline' && '❌ Railway 서버 연결 실패'}*/}
-      {/*</div>*/}
+
 
       {error && (
         <div className="custom-alert error">
@@ -586,11 +538,9 @@ const Inquiry = () => {
         <button
           type="submit"
           className="submit-btn"
-          disabled={loading || apiStatus === 'offline'}
+          disabled={loading}
         >
-          {loading ? "처리 중..." :
-           apiStatus === 'offline' ? "서버 연결 실패" :
-           "문의접수 ⭕"}
+          {loading ? "처리 중..." : "문의접수 ⭕"}
         </button>
       </form>
     </div>
