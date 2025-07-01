@@ -1,0 +1,369 @@
+.inquiry-container {
+  position: fixed;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 10px;
+  background-color: #008970;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  bottom: 0;
+  z-index: 10;
+  min-height: auto;
+}
+
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999;
+  animation: slideDown 0.3s ease-out;
+  pointer-events: auto;
+}
+
+.alert-content {
+  background-color: #fff;
+  color: #333;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 300px;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-close:hover {
+  color: #333;
+}
+
+.custom-alert.error .alert-content {
+  border-left: 4px solid #ff6b6b;
+}
+
+.custom-alert.success .alert-content {
+  border-left: 4px solid #51cf66;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.inquiry-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  min-height: auto;
+}
+
+.form-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-height: auto;
+}
+
+.input-group {
+  flex: 1;
+  min-width: 150px;
+  position: relative;
+}
+
+.field-error {
+  background-color: #ff4444;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 5px;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(255, 68, 68, 0.3);
+}
+
+.field-error::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ff4444;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  font-size: 13px;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-input:focus {
+  border-color: #ffe066;
+  box-shadow: 0 0 10px rgba(255, 224, 102, 0.3);
+}
+
+.form-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  font-size: 13px;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.form-select option {
+  background-color: #006400;
+  color: #fff;
+  padding: 5px;
+}
+
+.form-select:focus {
+  border-color: #ffe066;
+  box-shadow: 0 0 10px rgba(255, 224, 102, 0.3);
+}
+
+.submit-btn {
+  padding: 8px 20px;
+  background-color: #ffe066;
+  color: #006400;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: 100px;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.submit-btn:hover {
+  background-color: #ffd700;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 224, 102, 0.4);
+}
+
+.inquiry-count {
+  padding: 12px 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.privacy-agreement {
+  margin-top: 10px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  background-color: transparent;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+  background-color: #ffe066;
+  border-color: #ffe066;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #006400;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 1050px 이하 - 태블릿 */
+@media (max-width: 1050px) {
+  .inquiry-container {
+    padding: 6px 8px;
+  }
+
+  .inquiry-form {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-row {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 4px;
+  }
+
+  .form-input,
+  .form-select {
+    flex: 1;
+    min-width: 120px;
+    height: 32px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .submit-btn {
+    align-self: center;
+    min-width: 120px;
+    height: 32px;
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+}
+
+/* 768px 이하 - 모바일 */
+@media (max-width: 768px) {
+  .inquiry-container {
+    padding: 5px 7px;
+  }
+
+  .inquiry-form {
+    gap: 4px;
+  }
+
+  .form-row {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .form-input,
+  .form-select {
+    height: 30px;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border-width: 1px;
+  }
+
+  .submit-btn {
+    height: 24px;
+    padding: 2px 8px;
+    font-size: 10px;
+    border-radius: 12px;
+  }
+
+  .privacy-agreement {
+    margin-top: 5px;
+  }
+
+  .checkbox-label {
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .checkbox-custom {
+    width: 15px;
+    height: 15px;
+    border-width: 1px;
+  }
+
+  .checkbox-input:checked + .checkbox-custom::after {
+    font-size: 8px;
+  }
+}
+
+/* 480px 이하 - 작은 모바일 */
+@media (max-width: 480px) {
+  .inquiry-form {
+    gap: 5px;
+  }
+
+  .form-row {
+    gap: 5px;
+    margin-bottom: 1px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    height: 22px;
+    padding: 1px 6px;
+    font-size: 12px;
+    border-radius: 11px;
+  }
+
+  .checkbox-label {
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .checkbox-custom {
+    width: 10px;
+    height: 10px;
+  }
+
+  .checkbox-input:checked + .checkbox-custom::after {
+    font-size: 6px;
+  }
+
+  .privacy-agreement {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+}

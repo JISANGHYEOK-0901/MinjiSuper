@@ -1,0 +1,228 @@
+.flip-cards-container {
+  width: 100%;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #ffe066 0%, #ffed4e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 600px;
+  position: relative;
+}
+
+.flip-cards-wrapper {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-card {
+  width: 280px;
+  height: 350px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  border: 4px solid #00a86b;
+}
+
+.flip-card-front {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-card-back {
+  background: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 앞면 플레이스홀더 스타일 */
+.card-placeholder {
+  width: 80%;
+  height: 80%;
+  background: #f0f0f0;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+}
+
+.placeholder-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.placeholder-circle {
+  width: 80px;
+  height: 80px;
+  background: #ddd;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.placeholder-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 120px;
+}
+
+.placeholder-line {
+  height: 12px;
+  background: #ddd;
+  border-radius: 6px;
+  animation: pulse 2s infinite;
+}
+
+.placeholder-line.short {
+  width: 70%;
+  animation-delay: 0.5s;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 뒷면 이미지 스타일 */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.3s ease;
+}
+
+/* 호버 효과 제거 */
+
+.card-overlay {
+  width: 100%;
+  background: #00a86b;
+  color: white;
+  padding: 12px 15px;
+  text-align: center;
+  border-radius: 0 0 21px 21px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 60px;
+}
+
+/* 호버 효과 제거하고 항상 표시 */
+
+.card-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.card-description {
+  font-size: 11px;
+  margin: 3px 0 0 0;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .flip-cards-wrapper {
+    gap: 30px;
+  }
+
+  .flip-card {
+    width: 260px;
+    height: 330px;
+  }
+}
+
+@media (max-width: 768px) {
+  .flip-cards-container {
+    padding: 60px 15px;
+  }
+
+  .flip-cards-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .flip-card {
+    width: 300px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .flip-cards-container {
+    padding: 40px 10px;
+  }
+
+  .flip-card {
+    width: 260px;
+    height: 320px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-description {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 290px) {
+  .flip-card {
+    width: 220px;
+    height: 280px;
+  }
+}
