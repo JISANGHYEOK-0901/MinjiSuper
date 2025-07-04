@@ -889,11 +889,11 @@
   }
 }
 
-/*@media (max-width: 420px) {*/
-/*  .con12-content {*/
-/*    height: 75vh;*/
-/*  }*/
-/*}*/
+@media (max-width: 420px) {
+  .con12-content {
+    height: 75vh;
+  }
+}
 
 /* #endregion container 12 */
 
