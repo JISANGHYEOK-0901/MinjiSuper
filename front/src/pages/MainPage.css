@@ -898,6 +898,7 @@
 @media (max-width: 420px) {
   .con12-content {
     height: 75vh;
+    min-height: 75vh;
   }
 }
 @media (max-width: 380px) {
