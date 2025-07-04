@@ -900,7 +900,7 @@
     height: 75vh;
   }
 }
-@media (max-width: 340px) {
+@media (max-width: 380px) {
   .con12-content {
     min-height: 60vh;
     height: 60vh;
