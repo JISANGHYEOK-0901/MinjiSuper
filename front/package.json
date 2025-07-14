@@ -8,9 +8,12 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:railway": "node test-railway-api.js"
+    "test:railway": "node test-railway-api.js",
+    "optimize-images": "node optimize-images.js",
+    "build:optimized": "npm run optimize-images && npm run build"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.10.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -28,6 +31,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "sharp": "^0.33.0",
     "vite": "^6.3.5"
   }
 }
