@@ -83,7 +83,7 @@ const MainPage = () => {
           </div>
           <div className="container5-right">
             <img
-              src="/images/con4-right.png"
+              src="/images/optimized/con4-right.webp"
               alt="민지슈퍼 외관"
               className="store-image"
             />

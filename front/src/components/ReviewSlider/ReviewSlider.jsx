@@ -42,18 +42,25 @@ const ReviewSlider = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 800, // 더 부드러운 전환
     autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: true,
+    autoplaySpeed: 3000, // 더 빠른 자동 재생
+    pauseOnHover: false, // 호버해도 멈추지 않음
+    pauseOnFocus: false, // 포커스해도 멈추지 않음
     slidesToShow: 5,
     slidesToScroll: 1,
+    draggable: true,
+    swipe: true,
+    touchMove: true,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
+          autoplaySpeed: 3000,
+          pauseOnHover: false,
+          pauseOnFocus: false,
         },
       },
       {
@@ -61,6 +68,9 @@ const ReviewSlider = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          autoplaySpeed: 3000,
+          pauseOnHover: false,
+          pauseOnFocus: false,
         },
       },
       {
@@ -68,6 +78,9 @@ const ReviewSlider = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          autoplaySpeed: 3000,
+          pauseOnHover: false,
+          pauseOnFocus: false,
         },
       },
     ],

@@ -67,36 +67,3 @@ export const preloadCriticalImages = async () => {
     console.warn("⚠️ 이미지 프리로딩 실패:", error);
   }
 };
-
-// 이미지 로딩 상태 관리
-export class ImageLoader {
-  constructor() {
-    this.loadedImages = new Set();
-    this.loadingPromises = new Map();
-  }
-
-  async loadImage(src) {
-    if (this.loadedImages.has(src)) {
-      return Promise.resolve();
-    }
-
-    if (this.loadingPromises.has(src)) {
-      return this.loadingPromises.get(src);
-    }
-
-    const promise = preloadImage(src).then(() => {
-      this.loadedImages.add(src);
-      this.loadingPromises.delete(src);
-    });
-
-    this.loadingPromises.set(src, promise);
-    return promise;
-  }
-
-  isLoaded(src) {
-    return this.loadedImages.has(src);
-  }
-}
-
-// 전역 이미지 로더 인스턴스
-export const imageLoader = new ImageLoader();

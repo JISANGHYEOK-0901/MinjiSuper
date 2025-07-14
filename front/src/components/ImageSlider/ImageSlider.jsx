@@ -5,11 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import "./ImageSlider.css";
 
 const images = [
-  "/images/slide1.png", // 첫 번째 음식
-  "/images/slide2.png", // 두 번째 음식
-  "/images/slide3.png", // 메뉴판
-  "/images/slide4.png", // 세 번째 음식
-  "/images/slide5.png", // 네 번째 음식
+  "/images/optimized/slide1.webp", // 첫 번째 음식
+  "/images/optimized/slide2.webp", // 두 번째 음식
+  "/images/optimized/slide3.webp", // 메뉴판
+  "/images/optimized/slide4.webp", // 세 번째 음식
+  "/images/optimized/slide5.webp", // 네 번째 음식
 ];
 
 const ImageSlider = () => {

@@ -3,7 +3,8 @@ import axios from "axios";
 import "./Inquiry.css";
 
 // Railway API URL 설정
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
 
 const Inquiry = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,6 @@ const Inquiry = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-
 
   // 지역 데이터
   const regionData = {
@@ -268,7 +268,7 @@ const Inquiry = () => {
 
     // 전화번호 입력 시 숫자만 허용
     if (name === "phone") {
-      const numericValue = value.replace(/\D/g, '');
+      const numericValue = value.replace(/\D/g, "");
       setFormData((prev) => ({
         ...prev,
         [name]: numericValue,
@@ -314,7 +314,9 @@ const Inquiry = () => {
     // 전화번호 형식 검증 (010으로 시작하는 11자리)
     const phonePattern = /^010\d{8}$/;
     if (!phonePattern.test(formData.phone)) {
-      setError("연락처는 010으로 시작하는 11자리 숫자로 입력해주세요. (예: 01012345678)");
+      setError(
+        "연락처는 010으로 시작하는 11자리 숫자로 입력해주세요. (예: 01012345678)"
+      );
       setLoading(false);
       return;
     }
@@ -335,24 +337,25 @@ const Inquiry = () => {
       businessType: formData.businessType,
       province: formData.province,
       city: formData.city,
-      agreed: formData.agreed
+      agreed: formData.agreed,
     };
-
-
 
     try {
       // Railway 백엔드 API 호출
-      const response = await axios.post(`${API_BASE_URL}/api/inquiry`, inquiryData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        timeout: 15000, // 15초 타임아웃 (Railway 응답 시간 고려)
-        withCredentials: false, // CORS 이슈 방지
-      });
-      
+      const response = await axios.post(
+        `${API_BASE_URL}/api/inquiry`,
+        inquiryData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          timeout: 15000, // 15초 타임아웃 (Railway 응답 시간 고려)
+          withCredentials: false, // CORS 이슈 방지
+        }
+      );
 
       setSuccess(true);
-      
+
       // 폼 초기화
       setFormData({
         name: "",
@@ -363,46 +366,45 @@ const Inquiry = () => {
         city: "",
         agreed: false,
       });
-      
+
       // 5초 후 성공 메시지 숨기기
       setTimeout(() => {
         setSuccess(false);
       }, 5000);
-      
     } catch (error) {
-
-
       // 에러 메시지 설정
       if (error.response) {
         // 서버가 응답을 반환한 경우
         const errorData = error.response.data;
         const status = error.response.status;
 
-
-
         if (status === 500) {
-          setError('서버 내부 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+          setError("서버 내부 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
         } else if (status === 404) {
-          setError('API 엔드포인트를 찾을 수 없습니다. 관리자에게 문의하세요.');
+          setError("API 엔드포인트를 찾을 수 없습니다. 관리자에게 문의하세요.");
         } else if (errorData.message) {
           setError(errorData.message);
         } else if (errorData.errors) {
           // 필드 오류가 있는 경우
-          const errorMessages = Object.values(errorData.errors).join(', ');
+          const errorMessages = Object.values(errorData.errors).join(", ");
           setError(errorMessages);
         } else {
           setError(`문의 접수 중 오류가 발생했습니다. (상태코드: ${status})`);
         }
       } else if (error.request) {
         // 요청이 전송되었지만 응답이 없는 경우 (네트워크 오류, CORS 등)
-        if (error.code === 'ECONNABORTED') {
-          setError('요청 시간이 초과되었습니다. 네트워크 상태를 확인하고 다시 시도해주세요.');
+        if (error.code === "ECONNABORTED") {
+          setError(
+            "요청 시간이 초과되었습니다. 네트워크 상태를 확인하고 다시 시도해주세요."
+          );
         } else {
-          setError('서버에 연결할 수 없습니다. Railway 서버 상태를 확인해주세요.');
+          setError(
+            "서버에 연결할 수 없습니다. Railway 서버 상태를 확인해주세요."
+          );
         }
       } else {
         // 요청 설정 중 오류가 발생한 경우
-        setError('요청 설정 중 오류가 발생했습니다.');
+        setError("요청 설정 중 오류가 발생했습니다.");
       }
     } finally {
       setLoading(false);
@@ -411,36 +413,28 @@ const Inquiry = () => {
 
   return (
     <div className="inquiry-container">
-
-
       {error && (
         <div className="custom-alert error">
           <div className="alert-content">
             <span>{error}</span>
-            <button
-              className="alert-close"
-              onClick={() => setError(null)}
-            >
+            <button className="alert-close" onClick={() => setError(null)}>
               ×
             </button>
           </div>
         </div>
       )}
-      
+
       {success && (
         <div className="custom-alert success">
           <div className="alert-content">
             <span>문의가 성공적으로 접수되었습니다.</span>
-            <button 
-              className="alert-close" 
-              onClick={() => setSuccess(false)}
-            >
+            <button className="alert-close" onClick={() => setSuccess(false)}>
               ×
             </button>
           </div>
         </div>
       )}
-      
+
       <form className="inquiry-form" onSubmit={handleSubmit}>
         <div className="form-row">
           <input
@@ -532,14 +526,10 @@ const Inquiry = () => {
               className="checkbox-input"
             />
             <span className="checkbox-custom"></span>
-            개인정보처리방침 약관동의 [전문보기]
+            개인정보처리방침 약관동의
           </label>
         </div>
-        <button
-          type="submit"
-          className="submit-btn"
-          disabled={loading}
-        >
+        <button type="submit" className="submit-btn" disabled={loading}>
           {loading ? "처리 중..." : "문의접수 ⭕"}
         </button>
       </form>

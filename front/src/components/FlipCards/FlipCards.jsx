@@ -8,21 +8,21 @@ const FlipCards = () => {
   const cards = [
     {
       id: 1,
-      frontImage: "/images/flipcard1.png",
+      frontImage: "/images/optimized/flipcard1.webp",
       title: "민지네 국물 떡볶이",
       // description: "따뜻한 국물과 함께하는 분식의 진수",
       bgColor: "linear-gradient(135deg, #ff6b6b, #ffa500)",
     },
     {
       id: 2,
-      frontImage: "/images/flipcard2.png",
+      frontImage: "/images/optimized/flipcard2.webp",
       title: "민지네 겉바속촉 치킨",
       // description: "바삭한 치킨과 갈비의 만남",
       bgColor: "linear-gradient(135deg, #ff8a80, #ff5722)",
     },
     {
       id: 3,
-      frontImage: "/images/flipcard3.png",
+      frontImage: "/images/optimized/flipcard3.webp",
       title: "민지네 취향저격 안주",
       // description: "술과 완벽한 조화를 이루는 안주",
       bgColor: "linear-gradient(135deg, #ffb74d, #ff9800)",

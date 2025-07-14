@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,22 +8,22 @@ const shorts = [
   {
     video: "/videos/shorts1.mp4",
     alt: "",
-    poster: "/images/shorts1-thumb.png",
+    poster: "/images/optimized/shorts1-thumb.webp",
   },
   {
     video: "/videos/shorts2.mp4",
     alt: "",
-    poster: "/images/shorts2-thumb.png",
+    poster: "/images/optimized/shorts2-thumb.webp",
   },
   {
     video: "/videos/shorts3.mp4",
     alt: "",
-    poster: "/images/shorts3-thumb.png",
+    poster: "/images/optimized/shorts3-thumb.webp",
   },
   {
     video: "/videos/shorts4.mp4",
     alt: "",
-    poster: "/images/shorts4-thumb.png",
+    poster: "/images/optimized/shorts4-thumb.webp",
   },
 ];
 
@@ -40,10 +40,11 @@ const ShortsSlider = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    pauseOnHover: false,
+    pauseOnHover: true, // PC에서 클릭 가능하도록 변경
     arrows: false,
     draggable: true,
     swipe: true,
+    touchMove: true,
     responsive: [
       {
         breakpoint: 900,
@@ -65,8 +66,16 @@ const ShortsSlider = () => {
   };
 
   // 동영상 클릭 시 처리
-  const handleVideoClick = (e, video) => {
+  const handleVideoClick = async (e, video) => {
+    e.preventDefault();
     e.stopPropagation(); // 이벤트 버블링 방지
+
+    // 클릭 지연 방지
+    if (e.target.classList.contains("clicked")) {
+      return;
+    }
+    e.target.classList.add("clicked");
+    setTimeout(() => e.target.classList.remove("clicked"), 300);
 
     if (activeVideo === video) {
       // 이미 활성화된 동영상이면 재생 중지
@@ -89,9 +98,18 @@ const ShortsSlider = () => {
       setActiveVideo(video);
       setIsPlaying(true);
       video.controls = true;
-      video.play();
-      // 슬라이더 일시정지
-      if (sliderRef.current) sliderRef.current.slickPause();
+
+      try {
+        await video.play();
+        // 슬라이더 일시정지
+        if (sliderRef.current) sliderRef.current.slickPause();
+      } catch (error) {
+        console.warn("비디오 재생 실패:", error);
+        // 재생 실패 시 상태 초기화
+        setActiveVideo(null);
+        setIsPlaying(false);
+        video.controls = false;
+      }
     }
   };
 
@@ -110,7 +128,7 @@ const ShortsSlider = () => {
       setActiveVideo(null);
       setIsPlaying(false);
       video.controls = false;
-      if (sliderRef.current) sliderRef.current.slickPlay();
+      // 슬라이더 재개는 하지 않음 - 사용자가 직접 클릭할 때만
     }
   };
 
@@ -120,11 +138,48 @@ const ShortsSlider = () => {
     setActiveVideo(null);
     setIsPlaying(false);
     video.controls = false;
-    if (sliderRef.current) sliderRef.current.slickPlay();
+    // 슬라이더 재개는 하지 않음 - 사용자가 직접 클릭할 때만
   };
 
+  // 슬라이더 재개 핸들러
+  const handleSliderResume = () => {
+    if (sliderRef.current && !isPlaying) {
+      sliderRef.current.slickPlay();
+    }
+  };
+
+  // 전역 클릭 핸들러 - 숏츠 슬라이더 외부 클릭 시 영상 정지 및 슬라이더 재개
+  const handleGlobalClick = (e) => {
+    // 숏츠 슬라이더 내부 클릭은 무시
+    if (e.target.closest(".minji-slider")) {
+      return;
+    }
+
+    // 활성화된 비디오가 있으면 정지
+    if (activeVideo) {
+      activeVideo.pause();
+      activeVideo.controls = false;
+      setActiveVideo(null);
+      setIsPlaying(false);
+
+      // 슬라이더 재개
+      if (sliderRef.current) {
+        sliderRef.current.slickPlay();
+      }
+    }
+  };
+
+  // 전역 클릭 이벤트 등록
+  useEffect(() => {
+    document.addEventListener("click", handleGlobalClick);
+
+    return () => {
+      document.removeEventListener("click", handleGlobalClick);
+    };
+  }, [activeVideo]); // activeVideo가 변경될 때마다 이벤트 리스너 업데이트
+
   return (
-    <div className="minji-slider">
+    <div className="minji-slider" onClick={handleSliderResume}>
       <Slider ref={sliderRef} {...settings}>
         {shorts.map((item, idx) => (
           <div key={idx} className="shorts-slide">
@@ -147,6 +202,7 @@ const ShortsSlider = () => {
                 muted
                 controls={false}
                 onClick={(e) => handleVideoClick(e, e.currentTarget)}
+                onDoubleClick={(e) => e.preventDefault()} // 더블클릭 방지
                 onPlay={handleVideoPlay}
                 onPause={handleVideoPause}
                 onEnded={handleVideoEnded}
