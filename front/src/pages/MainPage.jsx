@@ -21,7 +21,7 @@ const MainPage = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -224,38 +224,42 @@ const MainPage = () => {
           <div className="youtube-videos-container">
             <div className="youtube-video-item">
               <iframe
-                src="https://www.youtube.com/embed/hkZnTuqwk2I"
+                src="https://www.youtube.com/embed/hkZnTuqwk2I?rel=0&modestbranding=1&disablekb=1"
                 title="민지슈퍼 유튜브 영상 1"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="youtube-iframe"></iframe>
             </div>
             <div className="youtube-video-item">
               <iframe
-                src="https://www.youtube.com/embed/2kp4n43OTpY"
+                src="https://www.youtube.com/embed/2kp4n43OTpY?rel=0&modestbranding=1&disablekb=1"
                 title="민지슈퍼 유튜브 영상 2"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="youtube-iframe"></iframe>
             </div>
             <div className="youtube-video-item">
               <iframe
-                src="https://www.youtube.com/embed/DL9fKWP8LlI"
+                src="https://www.youtube.com/embed/DL9fKWP8LlI?rel=0&modestbranding=1&disablekb=1"
                 title="민지슈퍼 유튜브 영상 3"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="youtube-iframe"></iframe>
             </div>
             <div className="youtube-video-item">
               <iframe
-                src="https://www.youtube.com/embed/YnnzRr_KyGY?start=702"
+                src="https://www.youtube.com/embed/YnnzRr_KyGY?start=702&rel=0&modestbranding=1&disablekb=1"
                 title="민지슈퍼 유튜브 영상 4"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="youtube-iframe"></iframe>
             </div>
           </div>

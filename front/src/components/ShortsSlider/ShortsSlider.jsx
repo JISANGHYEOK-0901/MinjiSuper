@@ -171,7 +171,7 @@ const ShortsSlider = () => {
 
   // 전역 클릭 이벤트 등록
   useEffect(() => {
-    document.addEventListener("click", handleGlobalClick);
+    document.addEventListener("click", handleGlobalClick, { passive: true });
 
     return () => {
       document.removeEventListener("click", handleGlobalClick);

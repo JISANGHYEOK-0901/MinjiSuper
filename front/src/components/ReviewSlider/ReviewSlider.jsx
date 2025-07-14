@@ -8,10 +8,10 @@ const ReviewSlider = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
 
-  // 리뷰 이미지 데이터 (review1.png ~ review10.png)
+  // 리뷰 이미지 데이터 (review1.webp ~ review10.webp)
   const reviewImages = Array.from({ length: 10 }, (_, index) => ({
     id: index + 1,
-    src: `/reviews/review${index + 1}.png`,
+    src: `/reviews/optimized/review${index + 1}.webp`,
     alt: `고객 리뷰 ${index + 1}`,
   }));
 
