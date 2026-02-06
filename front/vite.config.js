@@ -24,7 +24,4 @@ export default defineConfig({
     },
     assetsInlineLimit: 4096, // 4KB 이하 이미지는 인라인
   },
-  optimizeDeps: {
-    include: ["react-slick", "slick-carousel"],
-  },
 });
