@@ -7,12 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "test:railway": "node test-railway-api.js",
-    "optimize-images": "node optimize-images.js",
-    "optimize-all-images": "node optimize-all-images.js",
-    "update-css-paths": "node update-css-paths.js",
-    "build:optimized": "npm run optimize-all-images && npm run update-css-paths && npm run build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",

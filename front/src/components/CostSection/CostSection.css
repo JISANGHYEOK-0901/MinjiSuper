@@ -1,0 +1,180 @@
+.cost-container {
+  width: 100%;
+  padding: 100px 20px;
+  background-color: #004d40; /* 신뢰감을 주는 짙은 녹색 */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cost-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.cost-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.highlight-line {
+  color: #ffe066; /* 시그니처 옐로우 */
+  border-bottom: 3px solid #ffe066;
+}
+
+.cost-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* 견적서 카드 스타일 (영수증 느낌) */
+.cost-card {
+  background-color: white;
+  color: #333;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  /* 상단 펀치 구멍 효과 */
+  background-image: radial-gradient(
+    circle at 10px -5px,
+    transparent 12px,
+    white 13px
+  );
+  background-size: 20px 20px;
+  background-position: top center;
+  background-repeat: repeat-x;
+  border-top: 10px solid #004d40; /* 상단 마감 처리 */
+}
+
+.cost-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cost-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.cost-item:last-child {
+  border-bottom: none;
+}
+
+.cost-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.item-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.item-desc {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+.cost-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #008b6f;
+  white-space: nowrap;
+}
+
+.unit {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #666;
+}
+
+/* 총계 영역 */
+.cost-divider {
+  height: 2px;
+  background-color: #333;
+  margin: 25px 0;
+}
+
+.cost-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.total-label {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #333;
+}
+
+.total-price {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #d32f2f; /* 강조 레드 */
+}
+
+.total-unit {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.vat-info {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 10px;
+}
+
+.mobile-break {
+  display: none;
+}
+
+/* 📱 반응형 미디어 쿼리 */
+@media (max-width: 600px) {
+  .cost-container {
+    padding: 60px 20px;
+  }
+
+  .cost-title {
+    font-size: 1.8rem;
+  }
+
+  .cost-card {
+    padding: 30px 20px;
+  }
+
+  .item-name {
+    font-size: 1rem;
+  }
+
+  .cost-price {
+    font-size: 1.1rem;
+  }
+
+  .total-label {
+    font-size: 1.2rem;
+  }
+
+  .total-price {
+    font-size: 1.6rem;
+  }
+
+  .mobile-break {
+    display: block; /* 모바일에서 줄바꿈 */
+  }
+}

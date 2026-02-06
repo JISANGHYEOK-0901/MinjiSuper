@@ -185,7 +185,8 @@ const ShortsSlider = () => {
           <div key={idx} className="shorts-slide">
             <div
               className="shorts-thumbnail"
-              style={{ cursor: "pointer", position: "relative" }}>
+              style={{ cursor: "pointer", position: "relative" }}
+            >
               <video
                 src={item.video}
                 className="shorts-video"

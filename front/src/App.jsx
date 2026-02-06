@@ -10,7 +10,6 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
       </Routes>
-      <Analytics mode="production" debug={false} />
     </Router>
   );
 }
