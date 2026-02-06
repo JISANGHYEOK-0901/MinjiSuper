@@ -190,6 +190,7 @@
     -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
     margin: 0 -20px; /* 좌우 여백 무시하고 꽉 차게 */
     padding: 0 20px 20px 20px; /* 내부 패딩 */
+    touch-action: pan-y;
   }
 
   .shorts-grid {

@@ -8,14 +8,30 @@ const ShortsGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   const shorts = [
-    { id: 1, src: "/videos/shorts1.mp4", title: "🔥 오픈런 웨이팅 실화?" },
-    { id: 2, src: "/videos/shorts2.mp4", title: "🍗 안주 퀄리티 폼 미쳤다" },
+    {
+      id: 1,
+      src: "/videos/shorts1.mp4",
+      poster: "/images/optimized/shorts1-thumb.webp",
+      title: "🔥 오픈런 웨이팅 실화?",
+    },
+    {
+      id: 2,
+      src: "/videos/shorts2.mp4",
+      poster: "/images/optimized/shorts2-thumb.webp",
+      title: "🍗 안주 퀄리티 폼 미쳤다",
+    },
     {
       id: 3,
       src: "/videos/shorts3.mp4",
+      poster: "/images/optimized/shorts3-thumb.webp",
       title: "🍺 술이 술술 들어가는 분위기",
     },
-    { id: 4, src: "/videos/shorts4.mp4", title: "🥘 민지슈퍼 시그니처 메뉴" },
+    {
+      id: 4,
+      src: "/videos/shorts4.mp4",
+      poster: "/images/optimized/shorts4-thumb.webp",
+      title: "🥘 민지슈퍼 시그니처 메뉴",
+    },
   ];
 
   const handleMouseEnter = (e) => {
@@ -76,12 +92,10 @@ const ShortsGallery = () => {
               <div className="video-wrapper">
                 <video
                   src={video.src}
-                  // ✅ 중요: loop 속성 제거 (수동 제어를 위해)
-                  // loop
+                  poster={video.poster}
                   muted
                   playsInline
                   className="shorts-video"
-                  // ✅ 이벤트 핸들러에 video.id를 함께 전달합니다.
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={(e) => handleMouseLeave(e, video.id)}
                   onLoadedMetadata={(e) => handleLoadedMetadata(e, video.id)}
