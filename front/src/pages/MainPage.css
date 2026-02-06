@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  overscroll-behavior-y: none; /* 최상단/최하단에서 튕김 방지 (선택사항) */
+  -webkit-text-size-adjust: 100%; /* 글자 크기 자동 변경 방지 */
+}
+
 body {
   /* 폰트는 index.css에서 가져오지만 안전을 위해 명시 */
   font-family: "Cafe24Ssurround", sans-serif;

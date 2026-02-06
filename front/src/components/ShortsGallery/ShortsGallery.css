@@ -183,14 +183,23 @@
 
 /* 📱 반응형 (핵심 변화!) */
 @media (max-width: 1024px) {
-  /* 태블릿/모바일에서는 가로 스크롤(Snap) 적용 */
   .shorts-scroll-wrapper {
+    /* 1. 스크롤 설정 */
     overflow-x: auto;
+    overflow-y: hidden; /* 세로 스크롤은 차단하여 페이지 스크롤로 넘김 */
+
+    /* 2. 레이아웃 및 여백 */
     padding-bottom: 20px;
-    -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
-    margin: 0 -20px; /* 좌우 여백 무시하고 꽉 차게 */
-    padding: 0 20px 20px 20px; /* 내부 패딩 */
-    touch-action: pan-y;
+    margin: 0 -20px; /* 화면 꽉 차게 */
+    padding-left: 20px; /* 첫 번째 카드 여백 */
+    padding-right: 20px; /* 마지막 카드 여백 */
+
+    /* 3. 부드러운 스크롤 */
+    -webkit-overflow-scrolling: touch;
+
+    /* ❌ 삭제: touch-action: pan-y; (이게 문제였습니다!) */
+    /* ✅ 추가: 스크롤 스냅 (선택사항, 카드가 딱딱 멈추게 하려면 추가) */
+    scroll-snap-type: x mandatory;
   }
 
   .shorts-grid {
