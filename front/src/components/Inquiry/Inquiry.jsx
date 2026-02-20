@@ -1,9 +1,20 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion"; // 애니메이션 추가
+import { motion } from "framer-motion";
 import "./Inquiry.css";
 
+// 💡 안전망: 환경변수가 없더라도 운영/개발 환경을 자동 감지하여 API 주소를 설정합니다.
+const getApiBaseUrl = () => {
+  if (
+    window.location.hostname === "www.minjisuper.co.kr" ||
+    window.location.hostname === "minjisuper.co.kr" ||
+    window.location.hostname.includes("vercel.app")
+  ) {
+    return "https://be-production-32e8.up.railway.app";
+  }
+  return import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+};
+
 const Inquiry = () => {
-  // --- 기존 로직 유지 ---
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -12,24 +23,14 @@ const Inquiry = () => {
   const [city, setCity] = useState("");
   const [agreed, setAgreed] = useState(false);
 
+  // 💡 추가된 상태: 중복 제출 방지를 위한 로딩 상태
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const provinces = [
-    "서울특별시",
-    "부산광역시",
-    "대구광역시",
-    "인천광역시",
-    "광주광역시",
-    "대전광역시",
-    "울산광역시",
-    "세종특별자치시",
-    "경기도",
-    "강원도",
-    "충청북도",
-    "충청남도",
-    "전라북도",
-    "전라남도",
-    "경상북도",
-    "경상남도",
-    "제주특별자치도",
+    "서울특별시", "부산광역시", "대구광역시", "인천광역시",
+    "광주광역시", "대전광역시", "울산광역시", "세종특별자치시",
+    "경기도", "강원도", "충청북도", "충청남도",
+    "전라북도", "전라남도", "경상북도", "경상남도", "제주특별자치도",
   ];
 
   // 연락처 하이픈 자동 추가 및 숫자만 입력
@@ -40,9 +41,15 @@ const Inquiry = () => {
     }
   };
 
-  // 폼 제출 핸들러
+  // 💡 실제 서버 통신이 적용된 폼 제출 핸들러
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 이미 전송 중이라면 중복 클릭 방지
+    if (isSubmitting) return;
+
+    setIsSubmitting(true); // 로딩 시작
+
     const inquiryData = {
       name,
       phone: phone.replace(/-/g, ""), // 서버 전송 시 하이픈 제거
@@ -53,16 +60,43 @@ const Inquiry = () => {
       agreed,
     };
 
-    console.log("전송할 데이터:", inquiryData);
-    // 여기에 실제 서버 전송 로직 (fetch 등)이 들어갑니다.
-    alert("상담 신청이 완료되었습니다. (UI 테스트)");
-    // 폼 초기화 로직 등 추가 가능
-  };
-  // --- 기존 로직 끝 ---
+    try {
+      const API_BASE_URL = getApiBaseUrl();
+      
+      const response = await fetch(`${API_BASE_URL}/api/inquiry`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inquiryData),
+      });
 
-  // --- 새로운 디자인 적용 ---
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert("상담 신청이 완료되었습니다. 확인 후 빠르게 연락드리겠습니다!");
+        
+        // 💡 폼 초기화: 전송 성공 후 입력창을 비워줍니다.
+        setName("");
+        setPhone("");
+        setEmail("");
+        setBusinessType("창업");
+        setProvince("");
+        setCity("");
+        setAgreed(false);
+      } else {
+        // 서버에서 유효성 검사 실패 등의 응답이 올 경우
+        alert(result.message || "입력하신 정보를 다시 확인해 주세요.");
+      }
+    } catch (error) {
+      console.error("전송 오류:", error);
+      alert("서버 통신 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setIsSubmitting(false); // 통신이 끝나면 로딩 상태 해제
+    }
+  };
+
   return (
-    // ID를 주어 스크롤 이동의 타겟이 되게 함
     <div className="inquiry-container" id="inquiry-section">
       <motion.div
         className="inquiry-wrapper"
@@ -94,6 +128,7 @@ const Inquiry = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -110,10 +145,11 @@ const Inquiry = () => {
               value={phone}
               onChange={handlePhoneNumber}
               required
+              disabled={isSubmitting}
             />
           </div>
 
-          {/* 이메일 (신규 추가 제안 - 필요 없다면 주석 처리) */}
+          {/* 이메일 */}
           <div className="form-group">
             <label htmlFor="email" className="form-label">
               이메일<span className="required">*</span>
@@ -126,6 +162,7 @@ const Inquiry = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -139,13 +176,14 @@ const Inquiry = () => {
               className="form-input"
               value={businessType}
               onChange={(e) => setBusinessType(e.target.value)}
+              disabled={isSubmitting}
             >
               <option value="창업">신규 창업</option>
               <option value="업종변경">업종 변경</option>
             </select>
           </div>
 
-          {/* 지역 선택 (가로 배치 Row) */}
+          {/* 지역 선택 */}
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="province" className="form-label">
@@ -157,6 +195,7 @@ const Inquiry = () => {
                 value={province}
                 onChange={(e) => setProvince(e.target.value)}
                 required
+                disabled={isSubmitting}
               >
                 <option value="">선택해주세요</option>
                 {provinces.map((prov, index) => (
@@ -179,22 +218,23 @@ const Inquiry = () => {
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 required
+                disabled={isSubmitting}
               />
             </div>
           </div>
 
           {/* 약관 동의 */}
-          <label className="checkbox-group">
+          <label className="checkbox-group" style={{ opacity: isSubmitting ? 0.6 : 1 }}>
             <input
               type="checkbox"
               className="form-checkbox"
               checked={agreed}
               onChange={(e) => setAgreed(e.target.checked)}
               required
+              disabled={isSubmitting}
             />
             <span className="checkbox-label">
-              <span className="privacy-link">개인정보 처리방침</span>에
-              동의합니다. (필수)
+              <span className="privacy-link">개인정보 처리방침</span>에 동의합니다. (필수)
             </span>
           </label>
 
@@ -202,10 +242,15 @@ const Inquiry = () => {
           <motion.button
             type="submit"
             className="submit-btn"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            disabled={isSubmitting}
+            style={{ 
+              opacity: isSubmitting ? 0.7 : 1, 
+              cursor: isSubmitting ? "not-allowed" : "pointer" 
+            }}
+            whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+            whileTap={!isSubmitting ? { scale: 0.98 } : {}}
           >
-            상담 신청하기
+            {isSubmitting ? "접수 중입니다..." : "상담 신청하기"}
           </motion.button>
         </form>
       </motion.div>
