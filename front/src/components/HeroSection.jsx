@@ -126,11 +126,25 @@ const HeroSection = () => {
 
         {/* 하단 버튼 */}
         <div className="flex flex-col gap-4 w-full px-5 pc:px-0 pc:w-auto">
-          <button className="bg-point-yellow text-[#151515] font-extrabold text-[18px] pc:text-[20px] py-[16px] pc:py-[20px] rounded-[50px] w-full pc:w-[400px] hover:bg-yellow-400 transition-colors flex justify-center items-center">
+          <button
+            className="bg-point-yellow text-[#151515] font-extrabold text-[18px] pc:text-[20px] py-[16px] pc:py-[20px] rounded-[50px] w-full pc:w-[400px] hover:bg-yellow-400 transition-colors flex justify-center items-center"
+            onClick={() =>
+              document
+                .getElementById("contact-form")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
             무료 업변 상담 받기{" "}
             <span className="ml-2 font-normal text-sm">&gt;</span>
           </button>
-          <button className="bg-point-yellow text-[#151515] font-extrabold text-[18px] pc:text-[20px] py-[16px] pc:py-[20px] rounded-[50px] w-full pc:w-[400px] hover:bg-yellow-400 transition-colors flex justify-center items-center">
+          <button
+            className="bg-point-yellow text-[#151515] font-extrabold text-[18px] pc:text-[20px] py-[16px] pc:py-[20px] rounded-[50px] w-full pc:w-[400px] hover:bg-yellow-400 transition-colors flex justify-center items-center"
+            onClick={() =>
+              document
+                .getElementById("contact-form")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
             내 가게 손익 계산받기{" "}
             <span className="ml-2 font-normal text-sm">&gt;</span>
           </button>

@@ -430,53 +430,60 @@ const BusinessSystemSection = () => {
             </div>
           </div>
 
-          {/* 2. 모바일 강사 소개 영역 (배경 컬러 화면 꽉 채우기) */}
-          <div className="w-full bg-[#EAEAEA] pt-10 pb-12 px-5 flex flex-row items-center justify-center gap-4">
-            {/* 텍스트 영역 (우측 정렬) */}
-            <div className="flex flex-col items-end text-right flex-1">
-              <p className="font-bold text-[13px] text-[#151515] mb-2 tracking-tight">
+          {/* 2. 모바일 강사 소개 영역 (중앙 정렬 및 세로 배치로 세련되게 개편) */}
+          <div className="w-full bg-[#EAEAEA] pt-12 pb-14 px-5 flex flex-col items-center justify-center gap-8">
+            {/* 상단 텍스트 (소개 및 타이틀) */}
+            <div className="flex flex-col items-center text-center w-full break-keep">
+              <p className="font-bold text-[14px] text-[#555] mb-2 tracking-tight">
                 마케팅 전문가 김경문 강사의
               </p>
 
-              {/* "실전 마케팅" 글자 바로 위에 5개의 붉은 점 정밀 배치 */}
-              <p className="font-black text-[15px] text-[#151515] tracking-tight flex flex-row items-end justify-end gap-1 mb-8">
-                <span className="relative inline-block mt-3">
-                  <span className="absolute -top-[14px] left-0 w-full flex justify-between px-[2px]">
+              {/* "실전 마케팅 그대로 전수" - 중앙 정렬 */}
+              <div className="flex flex-col items-center">
+                <span className="relative inline-block mt-3 mb-1">
+                  {/* 5개의 붉은 점 중앙 정렬 배치 */}
+                  <span className="absolute -top-[12px] left-0 w-full flex justify-between px-[4px]">
                     {[...Array(5)].map((_, i) => (
                       <span
                         key={i}
-                        className="w-1 h-1 bg-point-red rounded-full"
+                        className="w-[5px] h-[5px] bg-point-red rounded-full"
                       ></span>
                     ))}
                   </span>
-                  <span className="bg-point-yellow px-1 py-0.5 relative z-10">
+                  <span className="bg-point-yellow px-2 py-0.5 font-black text-[18px] text-[#151515] relative z-10">
                     실전 마케팅
                   </span>
                 </span>
-                <span>그대로 전수</span>
-              </p>
+                <span className="font-black text-[18px] text-[#151515] tracking-tight mt-1">
+                  그대로 전수
+                </span>
+              </div>
+            </div>
 
-              <p className="font-black text-[14px] text-[#151515] leading-[1.6] tracking-tight">
+            {/* 이미지 영역 (가운데 정렬, 크기 확대) */}
+            <div className="w-[160px] shrink-0">
+              <img
+                src="/images/step-photo-lecture-02.jpg"
+                alt="김경문 강사"
+                className="w-full h-auto shadow-lg rounded-[8px]"
+              />
+            </div>
+
+            {/* 하단 강조 문구 */}
+            <div className="flex flex-col items-center text-center w-full break-keep">
+              <p className="font-black text-[15px] text-[#151515] leading-[1.8] tracking-tight">
                 “사장님을
                 <br />
-                <span className="bg-point-yellow px-1 py-0.5">
+                <span className="bg-point-yellow px-1.5 py-0.5 inline-block my-1">
                   운영 전문가
                 </span>{" "}
                 +{" "}
-                <span className="bg-point-yellow px-1 py-0.5">
+                <span className="bg-point-yellow px-1.5 py-0.5 inline-block mb-1">
+                  {" "}
                   마케팅 전문가
                 </span>
                 <br />로 만들어드립니다.”
               </p>
-            </div>
-
-            {/* 이미지 영역 (사각 사진 적용) */}
-            <div className="w-[140px] shrink-0">
-              <img
-                src="/images/step-photo-lecture-02.jpg"
-                alt="김경문 강사"
-                className="w-full h-auto shadow-md"
-              />
             </div>
           </div>
         </div>

@@ -134,13 +134,34 @@ const CostAnalysisSection = () => {
           </div>
 
           <div className="flex flex-col gap-4 w-full max-w-[450px] mb-12">
-            <button className="bg-point-yellow text-[#151515] font-black text-[18px] pc:text-[20px] py-[18px] rounded-full shadow-lg hover:brightness-105 transition-all">
+            <button
+              className="bg-point-yellow text-[#151515] font-black text-[18px] pc:text-[20px] py-[18px] rounded-full shadow-lg hover:brightness-105 transition-all"
+              onClick={() =>
+                document
+                  .getElementById("contact-form")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               무료 업변 가능성 진단받기 &gt;
             </button>
-            <button className="bg-white border-2 border-[#E5E5E5] text-[#151515] font-black text-[18px] pc:text-[20px] py-[18px] rounded-full shadow-sm hover:bg-gray-50 transition-all">
+            <button
+              className="bg-white border-2 border-[#E5E5E5] text-[#151515] font-black text-[18px] pc:text-[20px] py-[18px] rounded-full shadow-sm hover:bg-gray-50 transition-all"
+              onClick={() =>
+                document
+                  .getElementById("contact-form")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               내 상권 기준 손익분석 받기 &gt;
             </button>
-            <button className="bg-point-red text-white font-black text-[18px] pc:text-[20px] py-[18px] rounded-full shadow-lg hover:brightness-105 transition-all">
+            <button
+              className="bg-point-red text-white font-black text-[18px] pc:text-[20px] py-[18px] rounded-full shadow-lg hover:brightness-105 transition-all"
+              onClick={() =>
+                document
+                  .getElementById("contact-form")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               김창훈 대표 1:1 상담 신청하기 &gt;
             </button>
           </div>
