@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
+import "./index.css";
 
 // 프로덕션 환경에서 콘솔 로그 필터링
 if (import.meta.env.PROD) {

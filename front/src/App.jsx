@@ -1,18 +1,29 @@
-// src/App.jsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react";
-import MainPage from "./pages/MainPage";
-import AdminPage from "./pages/AdminPage";
+import HeroSection from "./components/HeroSection";
+import ExpertSection from "./components/ExpertSection";
+import StructureSection from "./components/StructureSection";
+import BusinessSystemSection from "./components/BusinessSystemSection"; // 추가
+import SuccessCaseSection from "./components/SuccessCaseSection";
+import TargetSection from "./components/TargetSection";
+import FinalSummarySection from "./components/FinalSummarySection";
+import ReceiptSection from "./components/ReceiptSection";
+import CostAnalysisSection from "./components/CostAnalysisSection";
+import ContactFormSection from "./components/ContactFormSection";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/minji_Admin" element={<AdminPage />} />
-      </Routes>
-    </Router>
+    <div className="w-full overflow-hidden">
+      <HeroSection />
+      <ExpertSection />
+      <StructureSection />
+      <SuccessCaseSection />
+      <TargetSection />
+      <FinalSummarySection />
+      <BusinessSystemSection />
+      <ReceiptSection />
+      <CostAnalysisSection />
+      <ContactFormSection />
+    </div>
   );
 }
 
