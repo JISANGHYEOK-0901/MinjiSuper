@@ -45,12 +45,13 @@ const ExpertSection = () => {
         <h2 className="text-[28px] pc:text-[46px] font-extrabold text-[#151515] tracking-tight mb-4">
           <span className="text-point-red">업변 전문가</span>는 다릅니다.
         </h2>
-        <p className="text-[15px] pc:text-[18px] font-medium text-[#444444] mb-12 pc:mb-16">
-          11년 동안 저는 '
+        <p className="text-[15px] pc:text-[18px] font-bold text-[#444444] mb-12 pc:mb-16">
+          <span className="text-point-red font-bold ">11년 동안</span> 저는 '
           <span className="text-point-red font-bold underline decoration-point-red underline-offset-4 decoration-2">
             살리는 법
           </span>
-          ' 만 연구했습니다.
+          ' 만 <span className="text-point-red font-bold ">연구</span>
+          했습니다.
         </p>
 
         {/* 2. 카드 리스트 영역 (밝은 회색 영역 안으로 완전히 편입) */}

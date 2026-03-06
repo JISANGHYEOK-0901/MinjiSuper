@@ -11,21 +11,6 @@ const TargetSection = () => {
     {
       id: 1,
       icon: (
-        <IoMdRefresh className="text-[#4FD1C5] text-[32px] pc:text-[40px]" />
-      ),
-      // "결과가 없었던 분" 강조 적용
-      text: (
-        <>
-          리뉴얼을 해도{"\n"}
-          <span className="text-point-red text-[18px] pc:text-[20px] font-extrabold">
-            결과가 없었던 분
-          </span>
-        </>
-      ),
-    },
-    {
-      id: 2,
-      icon: (
         <HiOutlineBuildingStorefront className="text-[#F6AD55] text-[32px] pc:text-[40px]" />
       ),
       // "매출이 안 나오는 분" 강조 적용
@@ -34,6 +19,21 @@ const TargetSection = () => {
           상권은 나쁘지 않은데{"\n"}
           <span className="text-point-red text-[18px] pc:text-[20px] font-extrabold">
             매출이 안 나오는 분
+          </span>
+        </>
+      ),
+    },
+    {
+      id: 2,
+      icon: (
+        <IoMdRefresh className="text-[#4FD1C5] text-[32px] pc:text-[40px]" />
+      ),
+      // "결과가 없었던 분" 강조 적용
+      text: (
+        <>
+          리뉴얼을 해도{"\n"}
+          <span className="text-point-red text-[18px] pc:text-[20px] font-extrabold">
+            결과가 없었던 분
           </span>
         </>
       ),

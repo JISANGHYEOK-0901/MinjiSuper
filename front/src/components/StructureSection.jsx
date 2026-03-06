@@ -15,6 +15,9 @@ const StructureSection = () => {
 
         {/* 중앙 흰색 박스 (소프트 쉐도우 및 연노랑 박스 적용) */}
         <div className="w-full max-w-[440px] bg-white rounded-[16px] p-6 pc:p-8 flex flex-col gap-3 pc:gap-4 shadow-[0_10px_40px_rgba(0,0,0,0.06)] mb-8">
+          <span className="text-point-red text-[20px] py-4 font-bold">
+            과거 <span className="text-[#151515]">김창훈 주막 시절</span>
+          </span>
           <div className="bg-[#FFF9EA] text-[#151515] font-bold py-4 rounded-[8px] text-[15px] pc:text-[16px] tracking-tight">
             '노동형 장사의 한계' 체감
           </div>
@@ -48,10 +51,10 @@ const StructureSection = () => {
         {/* 하단 검은색 박스 (흰색 박스보다 넓게 비율 조정) */}
         <div className="w-full max-w-[580px] bg-[#151515] rounded-[12px] py-6 pc:py-8 px-4 flex flex-col items-center justify-center shadow-lg">
           <p className="text-white font-bold text-[16px] pc:text-[18px] leading-relaxed">
-            점주 중심 + 오토 시스템 결합의
+            업종 변경 + 운영 시스템 재설계
             <br />
-            단순, 간편, 고수익 창출{" "}
-            <span className="text-point-red">생존 구조 구축</span>
+            감성, 경험, 동선을 결합한{" "}
+            <span className="text-point-red">새로운 구조 기획</span>
           </p>
         </div>
       </div>
@@ -66,7 +69,7 @@ const StructureSection = () => {
         <div className="absolute inset-0 bg-black/65"></div>
         {/* 그 결과, [민지슈퍼(빨간배경)] [탄생(빨간글씨)] */}
         <h2 className="relative z-10 text-[26px] pc:text-[42px] font-extrabold text-white flex items-center justify-center flex-wrap gap-2 pc:gap-3">
-          그 결과,
+          그 결과...
           <span className="bg-[#D33535] text-white px-2 py-1 pc:px-3 pc:py-1 leading-none rounded-[4px] shadow-md">
             민지슈퍼
           </span>

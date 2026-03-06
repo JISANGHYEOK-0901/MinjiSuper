@@ -9,7 +9,7 @@ const HeroSection = () => {
     <section className="w-full bg-primary-dark pt-[60px] pb-[80px] pc:pt-[100px] pc:pb-[120px]">
       <div className="section-container flex flex-col items-center text-center">
         <h2 className="text-[26px] pc:text-[42px] font-extrabold text-font-light leading-snug tracking-tight mb-8">
-          살아남으려다 보니···
+          살아남으려다 보니
           <br />
           어느새 <span className="text-point-yellow">업변 11년차</span>가
           되었습니다.
@@ -73,12 +73,13 @@ const HeroSection = () => {
               )}
             </div>
             <h3 className="text-white font-bold text-[16px] pc:text-[18px] leading-tight mb-2">
-              "재산 10억 다 날렸습니다"
+              "재산 10억 다 날렸습니다" 이혼 후 폐업까지 해 딸과 홀로 남겨진
+              여사장님을 위해 술집 자리 드렸습니다
             </h3>
-            <p className="text-[#AAAAAA] text-[13px] leading-snug mb-2 line-clamp-2">
+            {/* <p className="text-[#AAAAAA] text-[13px] leading-snug mb-2 line-clamp-2">
               이혼 후 폐업까지 해 딸과 홀로 남겨진 여사장님을 위해 술집 자리
               드렸습니다
-            </p>
+            </p> */}
             <p className="text-[#666666] text-[12px]">
               조회수: 3.2만회 · 2024.02.17
             </p>
@@ -117,7 +118,7 @@ const HeroSection = () => {
             <h3 className="text-white font-bold text-[16px] pc:text-[18px] leading-tight mb-2">
               술집 다 개폭망하는데, 이 집은 왜 멀쩡할까?
             </h3>
-            <p className="text-[#666666] text-[12px] mt-8">
+            <p className="text-[#666666] text-[12px]">
               조회수: 4.9천회 · 2024.02.20
             </p>
           </div>

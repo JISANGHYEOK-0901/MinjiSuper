@@ -13,8 +13,10 @@ const FinalSummarySection = () => {
             <br />
             <span className="text-point-yellow">그게 김창훈식 업변입니다.</span>
           </h2>
-          <p className="text-[#AAAAAA] text-[14px] pc:text-[16px] font-medium">
-            지금 바로 무료 상담을 받아보세요. 당신의 가게를 살릴 방법을
+          <p className="text-white text-[14px] pc:text-[16px] font-medium">
+            지금 바로 <span className="text-point-yellow">무료 상담</span>을
+            받아보세요. <br />
+            당신의 <span className="text-point-yellow">가게를 살릴 방법</span>을
             찾아드립니다.
           </p>
         </div>
