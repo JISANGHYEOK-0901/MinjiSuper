@@ -53,18 +53,13 @@ const ContactFormSection = () => {
 
     if (isSubmitting) return;
 
-    const cleanPhone = formData.phone.replace(/[^0-9]/g, "");
-    const locationParts = formData.location.split(" ");
-    const province = locationParts[0] || "미지정";
-    const city = locationParts.slice(1).join(" ") || "전체";
-    const businessType = formData.status.includes("운영") ? "업종변경" : "창업";
-
+    // 💡 백엔드 Inquiry.java 엔티티의 필드명과 100% 일치시켜야 합니다.
     const submitData = {
       name: formData.name,
       phone: formData.phone.replace(/[^0-9]/g, ""),
       location: formData.location || "미지정",
-      storeStatus: formData.status || "미지정",
-      preferredTime: formData.time || "미지정",
+      storeStatus: formData.status || "미지정", // 'status' 대신 'storeStatus'
+      preferredTime: formData.time || "미지정", // 'time' 대신 'preferredTime'
       agreed: formData.agreed,
     };
 
@@ -90,6 +85,8 @@ const ContactFormSection = () => {
           agreed: false,
         });
       } else {
+        // 💡 400 에러 발생 시 어떤 필드가 문제인지 콘솔에 상세히 출력합니다.
+        console.error("검증 실패 상세:", result.errors);
         alert(result.message || "입력 정보를 다시 확인해주세요.");
       }
     } catch (error) {

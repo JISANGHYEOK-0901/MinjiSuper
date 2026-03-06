@@ -274,7 +274,8 @@ const BusinessSystemSection = () => {
             </h2>
             {/* 극과 극! 빨간색 필(Pill) 디자인 적용 */}
             <p className="text-[#151515] font-bold text-[15px] pc:text-[19px]">
-              아무리 좋은 브랜드라도 운영하는 사람에 따라 매출은{" "}
+              아무리 좋은 브랜드라도 운영하는 사람에 따라
+              <br /> 매출은{" "}
               <span className="bg-[#D33535] text-white px-3 py-1 rounded-[4px] text-[14px] pc:text-[17px] font-black mx-1 shadow-sm">
                 극과 극!
               </span>
