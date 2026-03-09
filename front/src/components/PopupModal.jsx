@@ -39,7 +39,7 @@ const PopupModal = () => {
              - 모바일: inset-0 flex items-center justify-center (화면 정중앙 강제)
              - PC(pc:): items-start justify-start pc:p-5 pc:top-14 (좌측 상단으로 이동)
           */}
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none pc:items-start pc:justify-start pc:p-10 pc:top-10">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none pc:items-center pc:justify-center pc:p-10 pc:top-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
