@@ -7,7 +7,8 @@ const ExpertSection = () => {
       id: 1,
       title: "수익 구조\n재설계",
       desc: "적자매장을\n흑자매장으로 전환",
-      bgType: "solid",
+      bgType: "image",
+      bgSrc: "/images/feature-bg-04.jpg",
     },
     {
       id: 2,
@@ -34,7 +35,8 @@ const ExpertSection = () => {
       id: 5,
       title: "매장 특성에 맞는\n최적 업종 선택",
       desc: "특성화 전략까지\n최적화 업종 선택",
-      bgType: "solid",
+      bgType: "image",
+      bgSrc: "/images/feature-bg-05.jpg",
     },
   ];
 
