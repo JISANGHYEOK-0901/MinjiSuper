@@ -39,3 +39,94 @@
     scrollbar-width: none;
   }
 }
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("./assets/fonts/pretendard/Pretendard-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("./assets/fonts/pretendard/Pretendard-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KerisBaeum";
+  src: url("./assets/fonts/keris/KERISBAEUM_L.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KerisBaeum";
+  src: url("./assets/fonts/keris/KERISBAEUM_R.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KerisBaeum";
+  src: url("./assets/fonts/keris/KERISBAEUM_B.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KerisBaeum";
+  src: url("/fonts/keris/KERISBAEUM_EB.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family:
+    "Pretendard",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  color: #333333;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title-font {
+  font-family: "KerisBaeum", "Pretendard", sans-serif;
+  word-break: keep-all;
+  letter-spacing: -0.05em;
+}
+
+.font-light {
+  font-weight: 300;
+}
+.font-regular {
+  font-weight: 400;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-extrabold {
+  font-weight: 900;
+}
