@@ -10,7 +10,8 @@ import FinalSummarySection from "./components/FinalSummarySection";
 import ReceiptSection from "./components/ReceiptSection";
 import CostAnalysisSection from "./components/CostAnalysisSection";
 import ContactFormSection from "./components/ContactFormSection";
-import AdminDashboard from "./components/AdminDashboard"; // 신규 추가
+import AdminDashboard from "./components/AdminDashboard";
+import PopupModal from "./components/PopupModal";
 
 function LandingPage() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -25,6 +26,7 @@ function LandingPage() {
 
   return (
     <div className="w-full overflow-hidden relative">
+      <PopupModal />
       <HeroSection />
       <ExpertSection />
       <StructureSection />
