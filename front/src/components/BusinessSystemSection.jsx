@@ -1,6 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+// 💡 [가디언 설정] 이미지 네이밍 최적화 및 데이터 구조화
+const educationData = [
+  {
+    title: "운영 교육",
+    items: [
+      { t: "직원 매뉴얼", icon: "/images/icons/icon-manual.png" },
+      { t: "인건비 관리", icon: "/images/icons/icon-labor.png" },
+      { t: "회전율 설계", icon: "/images/icons/icon-turnover.png" },
+      { t: "동선 최적화", icon: "/images/icons/icon-path.png" },
+    ],
+  },
+  {
+    title: "마케팅 교육",
+    items: [
+      { t: "플레이스 세팅", icon: "/images/icons/icon-place.png" },
+      { t: "리뷰 구조화", icon: "/images/icons/icon-review.png" },
+      { t: "SNS·릴스 제작", icon: "/images/icons/icon-reels.png" },
+      { t: "지역광고 세팅", icon: "/images/icons/icon-ad.png" },
+    ],
+  },
+];
+
 const BusinessSystemSection = () => {
   // 💡 [가디언 설정] 애니메이션 세트
   const blurRevealVariants = {
@@ -137,7 +159,7 @@ const BusinessSystemSection = () => {
         </motion.div>
 
         {/* ==========================================
-            [모바일 전용 UI] 픽셀퍼펙트 영역
+            [모바일 전용 UI]
         ========================================== */}
         <motion.div
           variants={staggerContainer}
@@ -167,7 +189,6 @@ const BusinessSystemSection = () => {
 
           {/* 리스트 영역 */}
           <div className="w-full flex flex-col gap-14">
-            {/* 그룹 1 */}
             <div className="relative w-full min-h-[160px] flex flex-col justify-center">
               <motion.div
                 variants={scalePopVariants}
@@ -236,7 +257,6 @@ const BusinessSystemSection = () => {
               </div>
             </div>
 
-            {/* 그룹 2 */}
             <div className="relative w-full min-h-[140px] flex flex-col justify-center">
               <motion.div
                 variants={scalePopVariants}
@@ -288,7 +308,6 @@ const BusinessSystemSection = () => {
             </div>
           </div>
 
-          {/* 하단 텍스트 및 3번째 이미지 그룹 */}
           <div className="w-full mt-20 relative flex flex-col justify-end min-h-[160px]">
             <motion.div
               variants={blurRevealVariants}
@@ -316,7 +335,7 @@ const BusinessSystemSection = () => {
         </motion.div>
       </section>
 
-      {/* --- Section 2: AutoStructureSection (Red-White Cards) --- */}
+      {/* --- Section 2: AutoStructureSection --- */}
       <section className="relative w-full py-[100px] pc:py-[150px] px-5 overflow-hidden bg-white">
         <div className="absolute inset-0 z-0 opacity-[0.8]">
           <img
@@ -377,7 +396,7 @@ const BusinessSystemSection = () => {
         </motion.div>
       </section>
 
-      {/* --- Section 3: EducationSection & SpeakerSection --- */}
+      {/* --- Section 3: Education & Speaker Section (아이콘 반영 영역) --- */}
       <section className="w-full bg-[#F5F5F5] pt-[100px] pb-0 pc:pb-[140px] pc:pt-[140px] overflow-hidden">
         <motion.div
           className="section-container flex flex-col items-center"
@@ -386,7 +405,6 @@ const BusinessSystemSection = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {/* 상단 타이틀 영역 (공통) */}
           <motion.div
             variants={blurRevealVariants}
             className="text-center mb-16 pc:mb-24"
@@ -405,30 +423,10 @@ const BusinessSystemSection = () => {
             </p>
           </motion.div>
 
-          {/* PC 전용 로드맵 & 강사 소개 */}
+          {/* PC 전용 로드맵 */}
           <div className="hidden pc:flex flex-col w-full items-center">
-            {/* 교육 로드맵 (Stagger) */}
             <div className="w-full max-w-[1050px] mb-24 flex flex-col gap-10">
-              {[
-                {
-                  title: "운영 교육",
-                  items: [
-                    "직원 매뉴얼",
-                    "인건비 관리",
-                    "회전율 설계",
-                    "동선 최적화",
-                  ],
-                },
-                {
-                  title: "마케팅 교육",
-                  items: [
-                    "플레이스 세팅",
-                    "리뷰 구조화",
-                    "SNS·릴스 제작",
-                    "지역광고 세팅",
-                  ],
-                },
-              ].map((box, bIdx) => (
+              {educationData.map((box, bIdx) => (
                 <motion.div
                   variants={scalePopVariants}
                   key={bIdx}
@@ -438,11 +436,21 @@ const BusinessSystemSection = () => {
                     {box.title}
                   </span>
                   <div className="grid grid-cols-4 gap-10">
-                    {box.items.map((t, i) => (
-                      <div key={i} className="flex flex-col items-center gap-4">
-                        <div className="w-20 h-20 bg-[#999] rounded-full shadow-inner hover:bg-point-yellow transition-colors duration-300"></div>
-                        <span className="text-[16px] font-bold text-[#333] border-b-2 border-gray-300 pb-1.5 tracking-tight">
-                          {t}
+                    {box.items.map((item, i) => (
+                      <div
+                        key={i}
+                        className="flex flex-col items-center gap-4 group"
+                      >
+                        {/* 💡 [개선] 회색 원 대신 흰색 배경 + 아이콘 삽입 */}
+                        <div className="w-20 h-20 bg-white rounded-full shadow-[inset_0_2px_10px_rgba(0,0,0,0.05),0_5px_15px_rgba(0,0,0,0.1)] flex items-center justify-center p-5 group-hover:scale-110 group-hover:shadow-point-yellow/20 transition-all duration-300">
+                          <img
+                            src={item.icon}
+                            alt={item.t}
+                            className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                          />
+                        </div>
+                        <span className="text-[16px] font-bold text-[#333] border-b-2 border-gray-200 pb-1.5 tracking-tight group-hover:border-point-yellow transition-colors">
+                          {item.t}
                         </span>
                       </div>
                     ))}
@@ -500,9 +508,7 @@ const BusinessSystemSection = () => {
           </div>
         </motion.div>
 
-        {/* ==========================================
-            [모바일 전용 UI] 화면 꽉 채우기
-        ========================================== */}
+        {/* 모바일 전용 로드맵 */}
         <motion.div
           className="flex pc:hidden flex-col w-full"
           variants={staggerContainer}
@@ -510,7 +516,6 @@ const BusinessSystemSection = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {/* 1. 모바일 로드맵 영역 */}
           <div className="relative w-full py-12 flex justify-center px-5 overflow-hidden">
             <div className="absolute inset-0 z-0">
               <img
@@ -521,48 +526,35 @@ const BusinessSystemSection = () => {
               <div className="absolute inset-0 bg-black/20"></div>
             </div>
             <div className="relative z-10 flex gap-4 w-full max-w-[360px]">
-              {[
-                {
-                  title: "운영 교육",
-                  items: [
-                    "직원 매뉴얼",
-                    "인건비 관리",
-                    "회전율 설계",
-                    "동선 최적화",
-                  ],
-                },
-                {
-                  title: "마케팅 교육",
-                  items: [
-                    "플레이스 세팅",
-                    "리뷰 구조화",
-                    "SNS·릴스 제작",
-                    "지역광고 세팅",
-                  ],
-                },
-              ].map((box, bIdx) => (
+              {educationData.map((box, bIdx) => (
                 <motion.div
                   variants={scalePopVariants}
                   key={bIdx}
-                  className="flex-1 bg-white/95 backdrop-blur-md rounded-[12px] pt-8 pb-6 shadow-[0_10px_20px_rgba(0,0,0,0.15)] flex flex-col items-center gap-3 relative border border-white/40"
+                  className="flex-1 bg-white/95 backdrop-blur-md rounded-[12px] pt-10 pb-8 shadow-[0_10px_20px_rgba(0,0,0,0.15)] flex flex-col items-center gap-5 relative border border-white/40"
                 >
                   <div className="absolute -top-3.5 bg-point-yellow text-[#151515] font-black px-4 py-1.5 rounded-[4px] shadow-sm text-[13px] tracking-tight">
                     {box.title}
                   </div>
-                  {box.items.map((t, i) => (
-                    <span
-                      key={i}
-                      className="text-[13px] font-bold text-[#151515] tracking-tight break-keep"
-                    >
-                      {t}
-                    </span>
+                  {box.items.map((item, i) => (
+                    <div key={i} className="flex flex-col items-center gap-2">
+                      {/* 💡 모바일 아이콘 추가 */}
+                      <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center p-2.5 shadow-inner">
+                        <img
+                          src={item.icon}
+                          alt={item.t}
+                          className="w-full h-full object-contain opacity-70"
+                        />
+                      </div>
+                      <span className="text-[12px] font-bold text-[#151515] tracking-tight break-keep">
+                        {item.t}
+                      </span>
+                    </div>
                   ))}
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* 2. 모바일 강사 소개 영역 */}
           <div className="w-full bg-[#EAEAEA] pt-12 pb-14 px-5 flex flex-col items-center justify-center gap-8">
             <motion.div
               variants={blurRevealVariants}
@@ -594,7 +586,6 @@ const BusinessSystemSection = () => {
                 </span>
               </div>
             </motion.div>
-
             <motion.div
               variants={scalePopVariants}
               className="w-[160px] shrink-0"
@@ -605,7 +596,6 @@ const BusinessSystemSection = () => {
                 className="w-full h-auto shadow-lg rounded-[8px]"
               />
             </motion.div>
-
             <motion.div
               variants={blurRevealVariants}
               className="flex flex-col items-center text-center w-full break-keep"

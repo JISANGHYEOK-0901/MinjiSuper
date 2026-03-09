@@ -5,7 +5,9 @@ import "./index.css";
 import App from "./App.jsx";
 import "./index.css";
 
-inject();
+if (import.meta.env.PROD) {
+  inject();
+}
 
 // 프로덕션 환경에서 콘솔 로그 필터링
 if (import.meta.env.PROD) {
