@@ -1,7 +1,8 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const ExpertSection = () => {
-  // 카드 데이터 배열 (양끝은 solid, 가운데 3개는 image)
+  // 카드 데이터 배열 (기존과 동일하게 유지)
   const cards = [
     {
       id: 1,
@@ -40,30 +41,68 @@ const ExpertSection = () => {
     },
   ];
 
-  return (
-    <section className="w-full flex flex-col">
-      {/* 1. 상단 밝은 영역 (타이틀 + 카드 리스트를 모두 포함하도록 bg 확장) */}
-      <div className="w-full bg-[#F5F5F5] pt-[80px] pb-[80px] pc:pt-[120px] pc:pb-[100px] text-center px-5 flex flex-col items-center">
-        <h2 className="text-[28px] pc:text-[46px] font-extrabold text-[#151515] tracking-tight mb-4">
-          <span className="text-point-red">업변 전문가</span>는 다릅니다.
-        </h2>
-        <p className="text-[15px] pc:text-[18px] font-bold text-[#444444] mb-12 pc:mb-16">
-          <span className="text-point-red font-bold ">11년 동안</span> 저는 '
-          <span className="text-point-red font-bold underline decoration-point-red underline-offset-4 decoration-2">
-            살리는 법
-          </span>
-          ' 만 <span className="text-point-red font-bold ">연구</span>
-          했습니다.
-        </p>
+  // 💡 [가디언 설정] 안전한 애니메이션 옵션 정의
+  const fadeUpVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
-        {/* 2. 카드 리스트 영역 (밝은 회색 영역 안으로 완전히 편입) */}
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15, // 카드들이 0.15초 간격으로 우측으로 차례대로 켜짐
+      },
+    },
+  };
+
+  return (
+    // 💡 overflow-hidden을 추가하여 x축 애니메이션 충돌 시 가로 스크롤 떨림을 원천 차단
+    <section className="w-full flex flex-col overflow-hidden">
+      {/* 1. 상단 밝은 영역 */}
+      <div className="w-full bg-[#F5F5F5] pt-[80px] pb-[80px] pc:pt-[120px] pc:pb-[100px] text-center px-5 flex flex-col items-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeUpVariants}
+          className="flex flex-col items-center w-full"
+        >
+          {/* 💡 [가독성 방어] break-keep 추가 */}
+          <h2 className="text-[28px] pc:text-[46px] font-extrabold text-[#151515] tracking-tight mb-4 break-keep">
+            <span className="text-point-red">업변 전문가</span>는 다릅니다.
+          </h2>
+          {/* 💡 [가독성 방어] 모바일에서 "저는 '살리는 법'만"이 예쁘게 떨어지도록 <br className="block pc:hidden" /> 삽입 */}
+          <p className="text-[15px] pc:text-[18px] font-bold text-[#444444] mb-12 pc:mb-16 leading-[1.6] pc:leading-relaxed break-keep">
+            <span className="text-point-red font-bold">11년 동안</span> 저는
+            <br className="block pc:hidden" /> '
+            <span className="text-point-red font-bold underline decoration-point-red underline-offset-4 decoration-2">
+              살리는 법
+            </span>
+            ' 만 <span className="text-point-red font-bold">연구</span>했습니다.
+          </p>
+        </motion.div>
+
+        {/* 2. 카드 리스트 영역 */}
         <div className="section-container w-full">
-          {/* 모바일은 가로 스크롤, PC는 5열 그리드 */}
-          <div className="flex overflow-x-auto pc:grid pc:grid-cols-5 gap-4 pc:gap-5 pb-6 pc:pb-0 snap-x snap-mandatory hide-scrollbar">
+          {/* 💡 staggerContainer를 감싸 카드가 차례대로 등장하도록 설정 (가로 스크롤 클래스 유지) */}
+          <motion.div
+            className="flex overflow-x-auto pc:grid pc:grid-cols-5 gap-4 pc:gap-5 pb-6 pc:pb-0 snap-x snap-mandatory hide-scrollbar"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             {cards.map((card) => (
-              <div
+              <motion.div
                 key={card.id}
-                className="relative flex-shrink-0 w-[240px] pc:w-full aspect-[4/5] pc:aspect-[3/4] rounded-[24px] overflow-hidden snap-center flex flex-col justify-center items-center text-center p-4 pc:p-5 shadow-xl transition-transform hover:-translate-y-2 duration-300"
+                variants={fadeUpVariants}
+                className="relative flex-shrink-0 w-[240px] pc:w-full aspect-[4/5] pc:aspect-[3/4] rounded-[24px] overflow-hidden snap-center flex flex-col justify-center items-center text-center p-4 pc:p-5 shadow-xl hover:-translate-y-2 transition-transform duration-300"
               >
                 {/* 배경 처리 로직 */}
                 {card.bgType === "image" ? (
@@ -73,17 +112,14 @@ const ExpertSection = () => {
                       alt={card.title.replace("\n", " ")}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
-                    {/* 이미지 위에 까는 어두운 반투명 막(Dim) */}
                     <div className="absolute inset-0 bg-black/65"></div>
                   </>
                 ) : (
-                  /* 이미지가 없는 양끝 카드 - 뒷 배경이 은은하게 비치도록 반투명(Opacity) 및 블러 처리 */
                   <div className="absolute inset-0 bg-[#222222]/90 backdrop-blur-sm"></div>
                 )}
 
-                {/* 텍스트 내용 (z-10을 줘서 배경보다 위로 올라오게 함) */}
+                {/* 텍스트 내용 */}
                 <div className="relative z-10 flex flex-col items-center gap-3 pc:gap-4 w-full">
-                  {/* 간격 축소 및 break-keep 적용으로 5번째 카드 단어 끊김 방지 */}
                   <h3 className="text-white font-bold text-[20px] pc:text-[22px] leading-snug whitespace-pre-line break-keep drop-shadow-md w-full px-1">
                     {card.title}
                   </h3>
@@ -91,24 +127,32 @@ const ExpertSection = () => {
                     {card.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* 3. 하단 다크 영역 (마무리 문구) */}
-      <div className="w-full bg-primary-dark pt-[60px] pb-[80px] pc:pt-[100px] pc:pb-[120px] text-center px-5 flex flex-col items-center">
-        <p className="text-[20px] pc:text-[32px] font-bold text-font-light leading-relaxed">
-          “사장님··· 힘든 거 너무 잘 압니다.
+      <motion.div
+        className="w-full bg-primary-dark pt-[60px] pb-[80px] pc:pt-[100px] pc:pb-[120px] text-center px-5 flex flex-col items-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={fadeUpVariants}
+      >
+        {/* 💡 [가독성 방어] 모바일에서 호흡이 길어지지 않도록 중간 <br className="block pc:hidden" /> 삽입 */}
+        <p className="text-[20px] pc:text-[32px] font-bold text-font-light leading-[1.6] pc:leading-relaxed break-keep">
+          “사장님··· <br className="block pc:hidden" />
+          힘든 거 너무 잘 압니다.
           <br />
-          그래서 저는 '
-          <span className="text-point-yellow text-[26px] pc:text-[42px] font-extrabold">
+          그래서 저는 <br className="block pc:hidden" />'
+          <span className="text-point-yellow text-[26px] pc:text-[42px] font-extrabold mx-1">
             살아남는 구조
           </span>
           ' 만 만들어왔습니다.”
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 };
