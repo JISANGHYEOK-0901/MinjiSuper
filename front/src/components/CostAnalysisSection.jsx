@@ -187,7 +187,7 @@ const CostAnalysisSection = () => {
 
             <motion.div variants={blurRevealVariants} className="mb-12">
               <h3 className="text-[24px] pc:text-[36px] font-black leading-tight break-keep">
-                “그 <span className="text-point-yellow">순간</span> 때문에
+                “그 <span className="text-point-yellow">순간</span> 때문에{" "}
                 <br className="block pc:hidden" />
                 저는 이 일을 11년째 하고 있습니다.”
               </h3>

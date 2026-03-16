@@ -6,6 +6,17 @@ const AdminDashboard = () => {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+    const hh = String(date.getHours()).padStart(2, "0");
+    const min = String(date.getMinutes()).padStart(2, "0");
+    return `${yyyy}년 ${mm}월 ${dd}일 ${hh}시 ${min}분`;
+  };
+
   const API_BASE_URL = window.location.hostname.includes("localhost")
     ? "http://localhost:8080"
     : "https://be-production-32e8.up.railway.app";
@@ -153,15 +164,17 @@ const AdminDashboard = () => {
         </div>
 
         <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[1000px]">
+          <table className="w-full text-left border-collapse min-w-[1200px]">
             <thead className="bg-gray-100 text-[#151515] font-bold text-[14px]">
               <tr>
                 <th className="p-4 border-b">NO</th>
                 <th className="p-4 border-b">성함</th>
                 <th className="p-4 border-b">연락처</th>
                 <th className="p-4 border-b">지역</th>
-                <th className="p-4 border-b">운영여부</th>
+                <th className="p-4 border-b">창업유형</th>
+                <th className="p-4 border-b">투자금액</th>
                 <th className="p-4 border-b">상담시간</th>
+                <th className="p-4 border-b">접수시간</th>
                 <th className="p-4 border-b">상태</th>
                 <th className="p-4 border-b">관리</th>
               </tr>
@@ -172,21 +185,31 @@ const AdminDashboard = () => {
                   key={item.id}
                   className="hover:bg-gray-50 transition-colors"
                 >
-                  {/* 💡 1. NO: 리스트 순번으로 표시 (전체 개수 - 인덱스) */}
                   <td className="p-4 border-b font-medium text-gray-500">
                     {inquiries.length - index}
                   </td>
-                  {/* 💡 2. 폰트 색상 강화: text-gray-800 적용 */}
                   <td className="p-4 border-b font-bold text-gray-900">
                     {item.name}
                   </td>
                   <td className="p-4 border-b font-medium">{item.phone}</td>
-                  {/* 💡 3. 데이터 폴백: 새 필드 없으면 기존 필드(province+city) 노출 */}
                   <td className="p-4 border-b">
                     {item.location ||
                       (item.province ? `${item.province} ${item.city}` : "-")}
                   </td>
-                  {/* 💡 4. 데이터 폴백: storeStatus 없으면 businessType 노출 */}
+                  <td className="p-4 border-b">
+                    {item.storeStatus || item.businessType || "-"}
+                  </td>
+                  {/* 💡 투자금액 및 접수시간 추가 */}
+                  <td className="p-4 border-b">
+                    {item.investmentAmount || "-"}
+                  </td>
+                  <td className="p-4 border-b text-point-red font-bold">
+                    {item.preferredTime || "-"}
+                  </td>
+                  <td className="p-4 border-b text-gray-500 whitespace-nowrap">
+                    {formatDate(item.createdAt)}
+                  </td>
+
                   <td className="p-4 border-b">
                     {item.storeStatus || item.businessType || "-"}
                   </td>

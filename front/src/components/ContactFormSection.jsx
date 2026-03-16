@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const ContactFormSection = () => {
-  // 💡 [기존 로직] API URL 및 상태 관리
   const getApiBaseUrl = () => {
     if (typeof window !== "undefined") {
       const hostname = window.location.hostname;
@@ -22,13 +21,13 @@ const ContactFormSection = () => {
     name: "",
     phone: "",
     location: "",
-    status: "",
+    status: "", // Select 박스를 위해 초기값 빈 문자열
+    investmentAmount: "", // 💡 추가됨
     time: "",
     agreed: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 💡 [가디언 설정] 애니메이션 세트
   const blurRevealVariants = {
     hidden: { opacity: 0, filter: "blur(10px)", y: 15 },
     visible: {
@@ -53,7 +52,6 @@ const ContactFormSection = () => {
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
-  // 💡 [기존 로직] 핸들러 함수들
   const handleTextChange = (e, field) => {
     let { value } = e.target;
     if (field === "phone") value = value.replace(/[^0-9]/g, "");
@@ -69,13 +67,19 @@ const ContactFormSection = () => {
       alert("개인정보 수집 및 이용에 동의해주세요.");
       return;
     }
+    if (!formData.status) {
+      alert("창업유형(신규창업/업종변경)을 선택해주세요.");
+      return;
+    }
     if (isSubmitting) return;
 
+    // 💡 API 전송 데이터에 investmentAmount 추가
     const submitData = {
       name: formData.name,
       phone: formData.phone,
       location: formData.location || "미지정",
-      storeStatus: formData.status || "미지정",
+      storeStatus: formData.status,
+      investmentAmount: formData.investmentAmount || "미지정",
       preferredTime: formData.time || "미지정",
       agreed: formData.agreed,
     };
@@ -95,6 +99,7 @@ const ContactFormSection = () => {
           phone: "",
           location: "",
           status: "",
+          investmentAmount: "",
           time: "",
           agreed: false,
         });
@@ -108,9 +113,44 @@ const ContactFormSection = () => {
     }
   };
 
+  // 💡 입력 폼 배열 정의 (type 속성 추가)
+  const formFields = [
+    { label: "성함", placeholder: "홍길동", key: "name", type: "text" },
+    {
+      label: "전화번호",
+      placeholder: "010-1234-5678",
+      key: "phone",
+      type: "text",
+    },
+    {
+      label: "지역",
+      placeholder: "서울시 성동구 연무장 15길 11",
+      key: "location",
+      type: "text",
+    },
+    {
+      label: "창업유형 (택 1)",
+      key: "status",
+      type: "select",
+      options: ["신규창업", "업종변경"],
+    },
+    {
+      label: "예상 투자 가능 금액",
+      placeholder: "예: 5,000만원",
+      key: "investmentAmount",
+      type: "text",
+    },
+    {
+      label: "원하는 시간",
+      placeholder: "평일 오후 6시 이전",
+      key: "time",
+      type: "text",
+    },
+  ];
+
   return (
     <section className="w-full flex flex-col pc:grid pc:grid-cols-2 overflow-hidden bg-white">
-      {/* --- 1. 이미지 영역 (모바일 1번째 / PC 좌측 상단) --- */}
+      {/* 1. 이미지 영역 (기존과 동일) */}
       <div className="order-1 pc:order-1 pc:col-span-1 relative w-full h-[400px] pc:h-auto overflow-hidden">
         <motion.img
           initial={{ scale: 1.1 }}
@@ -141,7 +181,7 @@ const ContactFormSection = () => {
         </motion.div>
       </div>
 
-      {/* --- 2. 브랜드 스토리 영역 (모바일 2번째 / PC 하단 전체) --- */}
+      {/* 2. 브랜드 스토리 영역 (기존과 동일) */}
       <div className="order-2 pc:order-3 pc:col-span-2 w-full bg-[#F2F2F2] py-20 px-5">
         <motion.div
           initial="hidden"
@@ -219,8 +259,7 @@ const ContactFormSection = () => {
         </motion.div>
       </div>
 
-      {/* --- 3. 상담 폼 영역 (모바일 3번째 / PC 우측 상단) --- */}
-      {/* 💡 [반응형 해결] 모바일에서 정확히 폼이 시작되는 지점으로 스크롤되도록 id와 scroll-mt 부여 */}
+      {/* 3. 상담 폼 영역 (💡 변경됨) */}
       <div
         id="consultation-form"
         className="order-3 pc:order-2 pc:col-span-1 w-full bg-white py-16 pc:py-24 px-8 pc:px-20 scroll-mt-10 pc:scroll-mt-0"
@@ -245,25 +284,7 @@ const ContactFormSection = () => {
           className="flex flex-col gap-8"
           onSubmit={handleSubmit}
         >
-          {[
-            { label: "성함", placeholder: "홍길동", key: "name" },
-            { label: "전화번호", placeholder: "010-1234-5678", key: "phone" },
-            {
-              label: "지역",
-              placeholder: "서울시 성동구 연무장 15길 11",
-              key: "location",
-            },
-            {
-              label: "매장운영 유무",
-              placeholder: "매장 운영 중",
-              key: "status",
-            },
-            {
-              label: "원하는 시간",
-              placeholder: "평일 오후 6시 이전",
-              key: "time",
-            },
-          ].map((field) => (
+          {formFields.map((field) => (
             <motion.div
               key={field.key}
               variants={blurRevealVariants}
@@ -272,14 +293,34 @@ const ContactFormSection = () => {
               <label className="text-[#151515] text-[14.5px] font-black">
                 {field.label}
               </label>
-              <input
-                type="text"
-                required
-                value={formData[field.key]}
-                onChange={(e) => handleTextChange(e, field.key)}
-                placeholder={field.placeholder}
-                className="w-full border-b-2 border-[#F0F0F0] py-2 text-[15.5px] text-[#151515] focus:outline-none focus:border-point-yellow transition-colors placeholder:text-gray-300"
-              />
+
+              {/* 💡 Select와 Text Input을 구분하여 렌더링 */}
+              {field.type === "select" ? (
+                <select
+                  required
+                  value={formData[field.key]}
+                  onChange={(e) => handleTextChange(e, field.key)}
+                  className="w-full border-b-2 border-[#F0F0F0] py-2 text-[15.5px] text-[#151515] bg-transparent focus:outline-none focus:border-point-yellow transition-colors cursor-pointer"
+                >
+                  <option value="" disabled>
+                    선택해주세요
+                  </option>
+                  {field.options.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  required
+                  value={formData[field.key]}
+                  onChange={(e) => handleTextChange(e, field.key)}
+                  placeholder={field.placeholder}
+                  className="w-full border-b-2 border-[#F0F0F0] py-2 text-[15.5px] text-[#151515] focus:outline-none focus:border-point-yellow transition-colors placeholder:text-gray-300"
+                />
+              )}
             </motion.div>
           ))}
 
