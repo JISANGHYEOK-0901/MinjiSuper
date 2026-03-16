@@ -6,6 +6,11 @@ const AdminDashboard = () => {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const API_BASE_URL = window.location.hostname.includes("localhost")
+    ? "http://localhost:8080"
+    : "https://be-production-32e8.up.railway.app";
+
+  // 💡 날짜 포맷 함수
   const formatDate = (dateString) => {
     if (!dateString) return "-";
     const date = new Date(dateString);
@@ -16,10 +21,6 @@ const AdminDashboard = () => {
     const min = String(date.getMinutes()).padStart(2, "0");
     return `${yyyy}년 ${mm}월 ${dd}일 ${hh}시 ${min}분`;
   };
-
-  const API_BASE_URL = window.location.hostname.includes("localhost")
-    ? "http://localhost:8080"
-    : "https://be-production-32e8.up.railway.app";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -63,10 +64,8 @@ const AdminDashboard = () => {
   };
 
   const handleStatusChange = async (id, newStatus) => {
-    // 💡 [가디언 조치] 전체 리스트를 다시 불러오지 않고, 현재 상태에서 해당 항목만 즉시 변경
-    const originalInquiries = [...inquiries]; // 실패 시 복구를 위한 백업
+    const originalInquiries = [...inquiries];
 
-    // 1단계: 화면에 즉시 반영 (0초 체감)
     setInquiries((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, status: newStatus } : item,
@@ -164,19 +163,21 @@ const AdminDashboard = () => {
         </div>
 
         <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[1200px]">
+          {/* 💡 테이블 영역 시작 */}
+          <table className="w-full text-left border-collapse min-w-[1100px]">
             <thead className="bg-gray-100 text-[#151515] font-bold text-[14px]">
               <tr>
-                <th className="p-4 border-b">NO</th>
-                <th className="p-4 border-b">성함</th>
-                <th className="p-4 border-b">연락처</th>
+                {/* 정확히 10개의 헤더 */}
+                <th className="p-4 border-b whitespace-nowrap">NO</th>
+                <th className="p-4 border-b whitespace-nowrap">성함</th>
+                <th className="p-4 border-b whitespace-nowrap">연락처</th>
                 <th className="p-4 border-b">지역</th>
-                <th className="p-4 border-b">창업유형</th>
-                <th className="p-4 border-b">투자금액</th>
-                <th className="p-4 border-b">상담시간</th>
-                <th className="p-4 border-b">접수시간</th>
-                <th className="p-4 border-b">상태</th>
-                <th className="p-4 border-b">관리</th>
+                <th className="p-4 border-b whitespace-nowrap">창업유형</th>
+                <th className="p-4 border-b whitespace-nowrap">투자금액</th>
+                <th className="p-4 border-b whitespace-nowrap">상담시간</th>
+                <th className="p-4 border-b whitespace-nowrap">접수시간</th>
+                <th className="p-4 border-b whitespace-nowrap">상태</th>
+                <th className="p-4 border-b whitespace-nowrap">관리</th>
               </tr>
             </thead>
             <tbody className="text-[14px] text-gray-800">
@@ -185,22 +186,24 @@ const AdminDashboard = () => {
                   key={item.id}
                   className="hover:bg-gray-50 transition-colors"
                 >
+                  {/* 정확히 10개의 데이터 셀 */}
                   <td className="p-4 border-b font-medium text-gray-500">
                     {inquiries.length - index}
                   </td>
-                  <td className="p-4 border-b font-bold text-gray-900">
+                  <td className="p-4 border-b font-bold text-gray-900 whitespace-nowrap">
                     {item.name}
                   </td>
-                  <td className="p-4 border-b font-medium">{item.phone}</td>
+                  <td className="p-4 border-b font-medium whitespace-nowrap">
+                    {item.phone}
+                  </td>
                   <td className="p-4 border-b">
                     {item.location ||
                       (item.province ? `${item.province} ${item.city}` : "-")}
                   </td>
-                  <td className="p-4 border-b">
+                  <td className="p-4 border-b whitespace-nowrap">
                     {item.storeStatus || item.businessType || "-"}
                   </td>
-                  {/* 💡 투자금액 및 접수시간 추가 */}
-                  <td className="p-4 border-b">
+                  <td className="p-4 border-b whitespace-nowrap">
                     {item.investmentAmount || "-"}
                   </td>
                   <td className="p-4 border-b text-point-red font-bold">
@@ -208,13 +211,6 @@ const AdminDashboard = () => {
                   </td>
                   <td className="p-4 border-b text-gray-500 whitespace-nowrap">
                     {formatDate(item.createdAt)}
-                  </td>
-
-                  <td className="p-4 border-b">
-                    {item.storeStatus || item.businessType || "-"}
-                  </td>
-                  <td className="p-4 border-b text-point-red font-bold">
-                    {item.preferredTime || "-"}
                   </td>
                   <td className="p-4 border-b">
                     <select
@@ -247,6 +243,8 @@ const AdminDashboard = () => {
               ))}
             </tbody>
           </table>
+          {/* 💡 테이블 영역 끝 */}
+
           {inquiries.length === 0 && !loading && (
             <div className="p-20 text-center text-gray-400 font-bold">
               접수된 문의 내역이 없습니다.
