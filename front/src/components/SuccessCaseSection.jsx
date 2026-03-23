@@ -8,10 +8,10 @@ const SuccessCaseSection = () => {
       id: 1,
       branch: "건대점",
       imgText1: "투자금 1,000만 원",
-      imgText2: "업변 → 월매출 2,000 ~ 5,900만 원",
+      imgText2: "업변 → 월매출 2,000~5,900만 원",
       prob: "경쟁 심한 상권, 평범한 술집",
       point: "메뉴 단순화\n가격 재설정\n2차 술집 구조",
-      result: "최고 5,900만원\n월 매출 달성",
+      result: "최고 5,900만 원\n월 매출 달성",
     },
     {
       id: 2,
@@ -275,7 +275,7 @@ const SuccessCaseSection = () => {
             variants={slideFromLeftVariants}
             className="flex-1 bg-[#D33535] text-white text-center py-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
-            "죽은 상권이 아니라, 업종이 안맞는겁니다."
+            "죽은 상권이 아니라, 업종이 안 맞는 겁니다."
           </motion.div>
         </motion.div>
       </div>

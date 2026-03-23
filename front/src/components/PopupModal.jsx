@@ -45,7 +45,7 @@ const PopupModal = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               // 💡 실제 클릭은 가능하게 설정
-              className="pointer-events-auto w-[90%] max-w-[360px] pc:max-w-[400px] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+              className="pointer-events-auto w-[90%] max-w-[360px] max-h-[92vh] pc:max-w-[400px] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
             >
               {/* 이미지 영역: image_2df6be.jpg 반영 */}
               <div className="relative w-full aspect-[2/3] bg-gray-100">
@@ -57,16 +57,16 @@ const PopupModal = () => {
               </div>
 
               {/* 하단 컨트롤 바 */}
-              <div className="bg-[#151515] flex justify-between items-center px-5 py-4 text-white">
+              <div className="bg-[#151515] flex flex-col gap-2 min-[360px]:flex-row min-[360px]:justify-between min-[360px]:items-center px-5 py-4 text-white">
                 <button
                   onClick={closeFor24Hours}
-                  className="text-[11px] pc:text-[13px] font-bold opacity-80 hover:text-point-yellow transition-all break-keep"
+                  className="text-[12px] pc:text-[13px] font-bold opacity-80 hover:text-point-yellow transition-all break-keep"
                 >
                   24시간 동안 보지 않기
                 </button>
                 <button
                   onClick={closePopup}
-                  className="text-[11px] pc:text-[13px] font-black hover:scale-110 transition-transform px-2"
+                  className="text-[12px] pc:text-[13px] font-black hover:scale-110 transition-transform px-2"
                 >
                   닫기
                 </button>

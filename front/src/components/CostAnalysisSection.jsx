@@ -126,7 +126,7 @@ const CostAnalysisSection = () => {
             className="bg-point-red px-10 py-5 rounded-full shadow-2xl mb-6"
           >
             <p className="text-white font-black text-[22px] pc:text-[32px] tracking-tight">
-              총 5,500만대{" "}
+              총 5,500만 원대{" "}
               <span className="text-[14px] pc:text-[18px] font-medium opacity-90">
                 (옵션별 변동)
               </span>

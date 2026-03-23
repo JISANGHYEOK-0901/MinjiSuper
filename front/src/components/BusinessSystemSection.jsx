@@ -178,7 +178,7 @@ const BusinessSystemSection = () => {
             </p>
             <div className="bg-point-yellow px-5 py-2.5 mb-4 w-fit mx-auto shadow-lg rounded-[2px]">
               <h2 className="text-[#151515] font-black text-[22px] tracking-tight break-keep">
-                '지금시대 <span className="text-point-red">최적화</span> 브랜드'
+                '지금 시대 <span className="text-point-red">최적화</span> 브랜드'
               </h2>
             </div>
             <p className="text-white font-bold text-[14px] tracking-tight break-keep">
@@ -192,7 +192,7 @@ const BusinessSystemSection = () => {
             <div className="relative w-full min-h-[160px] flex flex-col justify-center">
               <motion.div
                 variants={scalePopVariants}
-                className="absolute -right-8 top-1/2 -translate-y-1/2 w-[160px] h-[160px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-2xl z-20"
+                className="absolute -right-4 top-1/2 -translate-y-1/2 w-[132px] h-[132px] min-[381px]:-right-8 min-[381px]:w-[160px] min-[381px]:h-[160px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-2xl z-20"
               >
                 <img
                   src="/images/step-circle-02.jpg"
@@ -203,8 +203,8 @@ const BusinessSystemSection = () => {
               <div className="flex flex-col gap-3 relative z-25">
                 {[
                   {
-                    w: "88%",
-                    pr: "pr-14",
+                    w: "80%",
+                    pr: "pr-10 min-[381px]:pr-14",
                     text: (
                       <>
                         젊은 세대는{" "}
@@ -219,8 +219,8 @@ const BusinessSystemSection = () => {
                     ),
                   },
                   {
-                    w: "78%",
-                    pr: "pr-12",
+                    w: "72%",
+                    pr: "pr-8 min-[381px]:pr-12",
                     text: (
                       <>
                         <span className="bg-[#FFD03B] text-[#151515] px-1 rounded-sm">
@@ -231,8 +231,8 @@ const BusinessSystemSection = () => {
                     ),
                   },
                   {
-                    w: "88%",
-                    pr: "pr-12",
+                    w: "80%",
+                    pr: "pr-8 min-[381px]:pr-12",
                     text: (
                       <>
                         <span className="bg-[#FFD03B] text-[#151515] px-1 rounded-sm">
@@ -260,7 +260,7 @@ const BusinessSystemSection = () => {
             <div className="relative w-full min-h-[140px] flex flex-col justify-center">
               <motion.div
                 variants={scalePopVariants}
-                className="absolute -right-10 top-1/2 -translate-y-1/2 w-[180px] h-[180px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-2xl z-20"
+                className="absolute -right-6 top-1/2 -translate-y-1/2 w-[142px] h-[142px] min-[381px]:-right-10 min-[381px]:w-[180px] min-[381px]:h-[180px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-2xl z-20"
               >
                 <img
                   src="/images/step-circle-01.jpg"
@@ -271,7 +271,7 @@ const BusinessSystemSection = () => {
               <div className="flex flex-col gap-3 relative z-10">
                 {[
                   {
-                    w: "72%",
+                    w: "68%",
                     text: (
                       <>
                         <span className="text-point-yellow">
@@ -282,7 +282,7 @@ const BusinessSystemSection = () => {
                     ),
                   },
                   {
-                    w: "84%",
+                    w: "78%",
                     text: (
                       <>
                         홀/배달/포장{" "}
@@ -323,7 +323,7 @@ const BusinessSystemSection = () => {
             </motion.div>
             <motion.div
               variants={scalePopVariants}
-              className="absolute -left-[15%] -bottom-[-10%] w-[190px] h-[190px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.6)] z-10 pointer-events-none"
+              className="absolute -left-[8%] -bottom-[-8%] w-[138px] h-[138px] min-[381px]:-left-[15%] min-[381px]:-bottom-[-10%] min-[381px]:w-[190px] min-[381px]:h-[190px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.6)] z-10 pointer-events-none"
             >
               <img
                 src="/images/step-circle-03.jpg"
@@ -525,7 +525,7 @@ const BusinessSystemSection = () => {
               />
               <div className="absolute inset-0 bg-black/20"></div>
             </div>
-            <div className="relative z-10 flex gap-4 w-full max-w-[360px]">
+            <div className="relative z-10 grid grid-cols-1 min-[360px]:grid-cols-2 gap-4 w-full max-w-[420px]">
               {educationData.map((box, bIdx) => (
                 <motion.div
                   variants={scalePopVariants}

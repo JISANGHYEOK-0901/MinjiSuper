@@ -136,7 +136,7 @@ const ContactFormSection = () => {
     },
     {
       label: "예상 투자 가능 금액",
-      placeholder: "예: 5,000만원",
+      placeholder: "예: 5,000만 원",
       key: "investmentAmount",
       type: "text",
     },
@@ -262,7 +262,7 @@ const ContactFormSection = () => {
       {/* 3. 상담 폼 영역 (💡 변경됨) */}
       <div
         id="consultation-form"
-        className="order-3 pc:order-2 pc:col-span-1 w-full bg-white py-16 pc:py-24 px-8 pc:px-20 scroll-mt-10 pc:scroll-mt-0"
+        className="order-3 pc:order-2 pc:col-span-1 w-full bg-white py-16 pc:py-24 px-5 pc:px-20 scroll-mt-10 pc:scroll-mt-0"
       >
         <motion.h3
           initial="hidden"
@@ -271,7 +271,7 @@ const ContactFormSection = () => {
           variants={blurRevealVariants}
           className="text-[#151515] text-[21px] pc:text-[26px] font-black mb-10 tracking-tight break-keep"
         >
-          “현재상황에 대한 상담만 받아도,
+          “현재 상황에 대한 상담만 받아도,
           <br />
           제대로 된 길이 보일 겁니다.”
         </motion.h3>

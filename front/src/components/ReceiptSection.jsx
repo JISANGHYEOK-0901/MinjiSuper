@@ -54,7 +54,7 @@ const ReceiptSection = () => {
           // 💡 [가독성 방어] break-keep과 반응형 줄바꿈 적용
           className="text-[22px] pc:text-[32px] font-extrabold text-[#151515] leading-[1.6] pc:leading-snug tracking-tight break-keep"
         >
-          <span className="text-point-red">매출</span>이 중요한게 아니라···
+          <span className="text-point-red">매출</span>이 중요한 게 아니라···
           <br className="block pc:hidden" />
           <span className="relative inline-block pb-2 pc:ml-2">
             <span className="relative z-10 text-point-red">
@@ -117,16 +117,16 @@ const ReceiptSection = () => {
 
           <div className="flex flex-col gap-4 px-2 mb-6 text-[16px] pc:text-[18px] font-bold">
             <div className="flex justify-between items-center">
-              <span>4,500만원</span>
-              <span className="text-point-red">1,155만원</span>
+              <span>4,500만 원</span>
+              <span className="text-point-red">1,155만 원</span>
             </div>
             <div className="flex justify-between items-center">
-              <span>6,000만원</span>
-              <span className="text-point-red">1,620만원</span>
+              <span>6,000만 원</span>
+              <span className="text-point-red">1,620만 원</span>
             </div>
             <div className="flex justify-between items-center">
-              <span>8,000만원</span>
-              <span className="text-point-red">2,240만원</span>
+              <span>8,000만 원</span>
+              <span className="text-point-red">2,240만 원</span>
             </div>
           </div>
 

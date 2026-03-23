@@ -46,7 +46,7 @@ const HeroSection = () => {
           살아남으려다 보니
           <br className="block pc:hidden" /> 어느새
           <br className="hidden pc:block" />
-          <span className="text-point-yellow ml-1 pc:ml-0">업변 11년차</span>가
+          <span className="text-point-yellow ml-1 pc:ml-0">업변 11년 차</span>가
           되었습니다.
         </motion.h2>
 
@@ -126,7 +126,7 @@ const HeroSection = () => {
               여사장님을 위해 술집 자리 드렸습니다
             </h3>
             <p className="text-[#666666] text-[12px] pc:text-[13px] font-medium">
-              조회수: 3.2만회 · 2024.02.17
+              조회수: 3.2만 회 · 2024.02.17
             </p>
           </div>
 
@@ -164,7 +164,7 @@ const HeroSection = () => {
               술집 다 개폭망하는데, 이 집은 왜 멀쩡할까?
             </h3>
             <p className="text-[#666666] text-[12px] pc:text-[13px] font-medium">
-              조회수: 4.9천회 · 2024.02.20
+              조회수: 4.9천 회 · 2024.02.20
             </p>
           </div>
         </motion.div>
