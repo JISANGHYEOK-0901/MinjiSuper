@@ -50,7 +50,11 @@ const FinalSummarySection = () => {
           >
             업종을 바꾸는 게 아니라,
             <br />
-            장사가 되는 <span className="text-point-yellow">'구조'</span>로
+            장사가 되는{" "}
+            <span className="text-point-yellow text-[28px] pc:text-[46px]">
+              구조
+            </span>
+            로
             <br className="block pc:hidden" /> 바꾸는 것.
             <br />
             <span className="text-point-yellow mt-2 pc:mt-1 inline-block">

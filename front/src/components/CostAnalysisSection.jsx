@@ -136,7 +136,7 @@ const CostAnalysisSection = () => {
             variants={blurRevealVariants}
             className="text-[#151515] font-bold text-[16px] pc:text-[21px] tracking-tight mt-4 break-keep"
           >
-            “1원도 숨기지 않는 투명한 비용 공개 정책.”
+            1원도 숨기지 않는 투명한 비용 공개 정책.
           </motion.p>
         </motion.div>
       </section>
@@ -171,8 +171,8 @@ const CostAnalysisSection = () => {
               variants={blurRevealVariants}
               className="text-white font-bold text-[18px] pc:text-[24px] mb-8 leading-relaxed break-keep"
             >
-              사장님이 다시{" "}
-              <span className="text-point-yellow">살아나는 순간...</span>
+              사장님의 매장이 다시{" "}
+              <span className="text-point-yellow">살아나는 순간,</span>
               <br />
               저는 그 순간을 가장 사랑합니다.
             </motion.p>
@@ -180,16 +180,16 @@ const CostAnalysisSection = () => {
               variants={blurRevealVariants}
               className="flex flex-col gap-1 mb-12 text-white/90 font-bold text-[16px] pc:text-[20px] leading-relaxed break-keep"
             >
-              <p>무너진 사장님들이 다시 웃는 장면</p>
-              <p>가족이 다시 편안해지는 순간</p>
-              <p>가게에 온기가 돌아오는 순간</p>
+              <p>무너진 사장님들이 다시 웃음을 찾고</p>
+              <p>가족들의 마음이 편안해지고</p>
+              <p>가게에 다시금 온기가 도는 그 순간,</p>
             </motion.div>
 
             <motion.div variants={blurRevealVariants} className="mb-12">
               <h3 className="text-[24px] pc:text-[36px] font-black leading-tight break-keep">
-                “그 <span className="text-point-yellow">순간</span> 때문에{" "}
+                그 <span className="text-point-yellow">순간</span> 때문에{" "}
                 <br className="block pc:hidden" />
-                저는 이 일을 11년째 하고 있습니다.”
+                저는 이 일을 11년째 하고 있습니다.
               </h3>
             </motion.div>
 
@@ -197,7 +197,7 @@ const CostAnalysisSection = () => {
               variants={blurRevealVariants}
               className="text-[20px] pc:text-[28px] font-bold break-keep"
             >
-              사장님... 혼자 버티지 마세요.
+              사장님, 이제 혼자 버티지 마세요.
               <br />
               <span className="relative inline-block mt-2">
                 <span className="relative z-10 text-point-yellow">

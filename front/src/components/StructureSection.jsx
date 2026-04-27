@@ -48,7 +48,7 @@ const StructureSection = () => {
   };
 
   const painPoints = [
-    "'노동형 장사의 한계' 체감",
+    "노동형 장사의 한계 체감",
     "체력 소진",
     "매출 하락",
     "시스템 없는 가게",

@@ -234,15 +234,23 @@ const SuccessCaseSection = () => {
         >
           <motion.div
             variants={slideFromLeftVariants}
-            className="flex-1 bg-[#D33535] text-white text-center py-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
+            className="flex-1 bg-[#D33535] text-white text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
-            "돈을 많이 쓴 게 아니라, 쓸 데를 정확히 골랐습니다."
+            투자할 곳을 정확히 골라{" "}
+            <span className="text-point-yellow text-[17px] pc:text-[18px] font-extrabold">
+              예산 낭비
+            </span>
+            를 막았습니다.
           </motion.div>
           <motion.div
             variants={slideFromRightVariants}
-            className="flex-1 bg-[#FFD03B] text-[#151515] text-center py-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
+            className="flex-1 bg-[#FFD03B] text-[#151515] text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
-            "오직 '수익'에만 초점을 맞춘 재설계."
+            오직{" "}
+            <span className="text-point-red text-[17px] pc:text-[18px] font-extrabold">
+              수익
+            </span>
+            에만 초점을 맞춰 설계하였습니다.
           </motion.div>
         </motion.div>
 
@@ -267,15 +275,23 @@ const SuccessCaseSection = () => {
         >
           <motion.div
             variants={slideFromRightVariants}
-            className="flex-1 bg-[#FFD03B] text-[#151515] text-center py-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
+            className="flex-1 bg-[#FFD03B] text-[#151515] text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
-            "큰 매장이 아니라, 맞는 구조가 필요합니다."
+            단순한 매장 크기보다{" "}
+            <span className="text-point-red text-[17px] pc:text-[18px] font-extrabold">
+              효율적인 동선
+            </span>
+            이 중요합니다.
           </motion.div>
           <motion.div
             variants={slideFromLeftVariants}
-            className="flex-1 bg-[#D33535] text-white text-center py-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
+            className="flex-1 bg-[#D33535] text-white text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
-            "죽은 상권이 아니라, 업종이 안 맞는 겁니다."
+            죽은 상권도{" "}
+            <span className="text-point-yellow text-[17px] pc:text-[18px] font-extrabold">
+              업종
+            </span>
+            만 맞으면 살릴 수 있습니다.
           </motion.div>
         </motion.div>
       </div>
