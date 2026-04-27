@@ -92,7 +92,7 @@ const BusinessSystemSection = () => {
               {
                 id: 1,
                 src: "/images/step-circle-03.jpg",
-                text: "젊은 세대는 트렌드\n+ 높은 연령대는 추억감성 '레트로'",
+                text: "젊은 세대는 트렌드\n+ 높은 연령대는 추억감성 레트로",
               },
               {
                 id: 2,
@@ -152,9 +152,9 @@ const BusinessSystemSection = () => {
             variants={blurRevealVariants}
             className="text-point-red font-bold text-[15px] pc:text-[21px] tracking-tight break-keep"
           >
-            "지금 시대는 <span className="text-white">원금회수 속도</span>가
-            전부입니다. <span className="text-white">민지슈퍼</span>는 여기에
-            목숨 겁니다."
+            요즘은 <span className="text-white">원금 회수 속도</span>가
+            중요합니다. <span className="text-white">민지슈퍼</span>는 여기에
+            목숨을 겁니다.
           </motion.p>
         </motion.div>
 
@@ -178,7 +178,7 @@ const BusinessSystemSection = () => {
             </p>
             <div className="bg-point-yellow px-5 py-2.5 mb-4 w-fit mx-auto shadow-lg rounded-[2px]">
               <h2 className="text-[#151515] font-black text-[22px] tracking-tight break-keep">
-                '지금 시대 <span className="text-point-red">최적화</span> 브랜드'
+                지금 시대 <span className="text-point-red">최적화</span> 브랜드
               </h2>
             </div>
             <p className="text-white font-bold text-[14px] tracking-tight break-keep">
@@ -314,11 +314,11 @@ const BusinessSystemSection = () => {
               className="text-right px-5 relative z-20 w-full"
             >
               <p className="text-white font-bold text-[15px] leading-[1.8] tracking-tight break-keep text-center">
-                "지금 시대는 <span className="text-point-yellow">원금회수</span>{" "}
-                속도가 전부입니다.
+                요즘은 <span className="text-point-yellow">원금 회수 속도</span>
+                가 중요합니다.
                 <br />
                 민지슈퍼는 여기에{" "}
-                <span className="text-point-yellow">목숨</span> 겁니다."
+                <span className="text-point-yellow">목숨</span>을 겁니다.
               </p>
             </motion.div>
             <motion.div
@@ -410,9 +410,9 @@ const BusinessSystemSection = () => {
             className="text-center mb-16 pc:mb-24"
           >
             <h2 className="text-[28px] pc:text-[44px] font-extrabold text-[#151515] leading-tight mb-6 tracking-tight break-keep">
-              민지는 ‘매장’보다
+              민지슈퍼는 매장보다
               <br />
-              <span className="text-point-red">‘사장’이 더 중요합니다</span>
+              <span className="text-point-red">사장이 더 중요합니다</span>
             </h2>
             <p className="text-[#151515] font-bold text-[15px] pc:text-[19px] break-keep">
               아무리 좋은 브랜드라도 운영하는 사람에 따라
@@ -486,12 +486,12 @@ const BusinessSystemSection = () => {
                   </p>
                 </div>
                 <h3 className="text-[38px] font-black text-[#151515] leading-[1.4] tracking-tighter break-keep">
-                  “사장님을
+                  사장님을
                   <br />
                   <span className="bg-black text-point-yellow px-5 py-2 inline-block my-2 shadow-lg">
                     운영 전문가 + 마케팅 전문가
                   </span>
-                  <br />로 만들어드립니다.”
+                  <br />로 만들어드립니다.
                 </h3>
               </motion.div>
               <motion.div
@@ -601,7 +601,7 @@ const BusinessSystemSection = () => {
               className="flex flex-col items-center text-center w-full break-keep"
             >
               <p className="font-black text-[15px] text-[#151515] leading-[1.8] tracking-tight">
-                “사장님을
+                사장님을
                 <br />
                 <span className="bg-point-yellow px-1.5 py-0.5 inline-block my-1">
                   운영 전문가
@@ -610,7 +610,7 @@ const BusinessSystemSection = () => {
                 <span className="bg-point-yellow px-1.5 py-0.5 inline-block mb-1">
                   마케팅 전문가
                 </span>
-                <br />로 만들어드립니다.”
+                <br />로 만들어드립니다.
               </p>
             </motion.div>
           </div>

@@ -77,14 +77,14 @@ const ExpertSection = () => {
           <h2 className="text-[28px] pc:text-[46px] font-extrabold text-[#151515] tracking-tight mb-4 break-keep">
             <span className="text-point-red">업변 전문가</span>는 다릅니다.
           </h2>
-          {/* 💡 [가독성 방어] 모바일에서 "저는 '살리는 법'만"이 예쁘게 떨어지도록 <br className="block pc:hidden" /> 삽입 */}
+          {/* 💡 [가독성 방어] 모바일에서 강조 문구가 예쁘게 떨어지도록 <br className="block pc:hidden" /> 삽입 */}
           <p className="text-[15px] pc:text-[18px] font-bold text-[#444444] mb-12 pc:mb-16 leading-[1.6] pc:leading-relaxed break-keep">
             <span className="text-point-red font-bold">11년 동안</span> 저는
-            <br className="block pc:hidden" /> '
+            <br className="block pc:hidden" />{" "}
             <span className="text-point-red font-bold underline decoration-point-red underline-offset-4 decoration-2">
               살리는 법
             </span>
-            ' 만 <span className="text-point-red font-bold">연구</span>했습니다.
+            만 <span className="text-point-red font-bold">연구</span>했습니다.
           </p>
         </motion.div>
 
@@ -143,14 +143,14 @@ const ExpertSection = () => {
       >
         {/* 💡 [가독성 방어] 모바일에서 호흡이 길어지지 않도록 중간 <br className="block pc:hidden" /> 삽입 */}
         <p className="text-[20px] pc:text-[32px] font-bold text-font-light leading-[1.6] pc:leading-relaxed break-keep">
-          “사장님··· <br className="block pc:hidden" />
-          힘든 거 너무 잘 압니다.
+          사장님의 고충을 <br className="block pc:hidden" />
+          충분히 알고 있습니다.
           <br />
-          그래서 저는 <br className="block pc:hidden" />'
+          그래서 저는 <br className="block pc:hidden" />
           <span className="text-point-yellow text-[26px] pc:text-[42px] font-extrabold mx-1">
-            살아남는 구조
+            살아남을 수 있는 구조
           </span>
-          ' 만 만들어왔습니다.”
+          를 만들었습니다.
         </p>
       </motion.div>
     </section>

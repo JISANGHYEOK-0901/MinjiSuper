@@ -271,9 +271,9 @@ const ContactFormSection = () => {
           variants={blurRevealVariants}
           className="text-[#151515] text-[21px] pc:text-[26px] font-black mb-10 tracking-tight break-keep"
         >
-          “현재 상황에 대한 상담만 받아도,
+          현재 상황에 대한 상담만 받아도,
           <br />
-          제대로 된 길이 보일 겁니다.”
+          제대로 된 길이 보일 겁니다.
         </motion.h3>
 
         <motion.form

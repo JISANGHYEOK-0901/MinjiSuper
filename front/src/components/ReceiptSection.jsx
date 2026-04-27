@@ -54,11 +54,11 @@ const ReceiptSection = () => {
           // 💡 [가독성 방어] break-keep과 반응형 줄바꿈 적용
           className="text-[22px] pc:text-[32px] font-extrabold text-[#151515] leading-[1.6] pc:leading-snug tracking-tight break-keep"
         >
-          <span className="text-point-red">매출</span>이 중요한 게 아니라···
+          단순 매출보다도
           <br className="block pc:hidden" />
           <span className="relative inline-block pb-2 pc:ml-2">
             <span className="relative z-10 text-point-red">
-              진짜 얼마가 남느냐
+              얼마를 남기느냐
             </span>
 
             {/* 💡 [트렌드 적용] 모션 SVG 밑줄 드로잉 효과 */}
@@ -79,7 +79,7 @@ const ReceiptSection = () => {
               </svg>
             </div>
           </span>
-          가 중요합니다.
+          가 더욱 중요합니다.
         </motion.h2>
       </motion.div>
 
@@ -165,17 +165,17 @@ const ReceiptSection = () => {
             variants={blurRevealVariants}
             className="text-[16px] pc:text-[20px] font-medium mb-2 break-keep"
           >
-            “허황된 매출이 아니라,
+            허황된 매출이 아닌
           </motion.p>
           <motion.p
             variants={blurRevealVariants}
             className="text-[18px] pc:text-[24px] font-bold break-keep"
           >
             <span className="relative inline-block px-1">
-              실제 남는 구조
+              실제로 남길 수 있는 구조
               <span className="absolute bottom-1 left-0 w-full h-[12px] bg-point-yellow/60 -z-10 rounded-sm"></span>
             </span>
-            만 공개합니다.”
+            만 공개합니다.
           </motion.p>
         </motion.div>
       </div>

@@ -70,7 +70,10 @@ const HeroSection = () => {
           수많은 가게가 무너지는 걸 보며,
           <br />
           저는{" "}
-          <span className="text-point-yellow font-bold">'살려내는 법'만</span>
+          <span className="text-point-yellow font-bold text-[17px] pc:text-[20px]">
+            살려내는 법
+          </span>
+          만
           <br className="block pc:hidden" />
           <span className="text-point-yellow font-bold pc:ml-1">
             11년 동안 연구
