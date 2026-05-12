@@ -145,8 +145,8 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 pc:p-10">
-      <div className="max-w-[1200px] mx-auto">
+    <div className="min-h-screen bg-gray-50 p-4 pc:p-8">
+      <div className="max-w-[1440px] mx-auto">
         <div className="flex justify-between items-center mb-10">
           <h1 className="text-2xl pc:text-3xl font-black text-[#151515]">
             문의 관리 대시보드
@@ -162,63 +162,82 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           {/* 💡 테이블 영역 시작 */}
-          <table className="w-full text-left border-collapse min-w-[1100px]">
-            <thead className="bg-gray-100 text-[#151515] font-bold text-[14px]">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[1320px]">
+            <thead className="bg-gray-100 text-[#151515] font-bold text-[13px] pc:text-[14px]">
               <tr>
                 {/* 정확히 10개의 헤더 */}
-                <th className="p-4 border-b whitespace-nowrap">NO</th>
-                <th className="p-4 border-b whitespace-nowrap">성함</th>
-                <th className="p-4 border-b whitespace-nowrap">연락처</th>
-                <th className="p-4 border-b">지역</th>
-                <th className="p-4 border-b whitespace-nowrap">창업유형</th>
-                <th className="p-4 border-b whitespace-nowrap">투자금액</th>
-                <th className="p-4 border-b whitespace-nowrap">상담시간</th>
-                <th className="p-4 border-b whitespace-nowrap">접수시간</th>
-                <th className="p-4 border-b whitespace-nowrap">상태</th>
-                <th className="p-4 border-b whitespace-nowrap">관리</th>
+                <th className="w-[58px] px-4 py-4 border-b whitespace-nowrap">
+                  NO
+                </th>
+                <th className="w-[86px] px-4 py-4 border-b whitespace-nowrap">
+                  성함
+                </th>
+                <th className="w-[128px] px-4 py-4 border-b whitespace-nowrap">
+                  연락처
+                </th>
+                <th className="w-[150px] px-4 py-4 border-b">지역</th>
+                <th className="w-[110px] px-4 py-4 border-b whitespace-nowrap">
+                  창업유형
+                </th>
+                <th className="w-[300px] px-4 py-4 border-b whitespace-nowrap">
+                  투자금액
+                </th>
+                <th className="w-[130px] px-4 py-4 border-b whitespace-nowrap">
+                  상담시간
+                </th>
+                <th className="w-[200px] px-4 py-4 border-b whitespace-nowrap">
+                  접수시간
+                </th>
+                <th className="w-[110px] px-4 py-4 border-b whitespace-nowrap">
+                  상태
+                </th>
+                <th className="w-[86px] px-4 py-4 border-b whitespace-nowrap">
+                  관리
+                </th>
               </tr>
             </thead>
-            <tbody className="text-[14px] text-gray-800">
+            <tbody className="text-[13px] pc:text-[14px] text-gray-800">
               {inquiries.map((item, index) => (
                 <tr
                   key={item.id}
                   className="hover:bg-gray-50 transition-colors"
                 >
                   {/* 정확히 10개의 데이터 셀 */}
-                  <td className="p-4 border-b font-medium text-gray-500">
+                  <td className="px-4 py-5 border-b font-medium text-gray-500 whitespace-nowrap align-middle">
                     {inquiries.length - index}
                   </td>
-                  <td className="p-4 border-b font-bold text-gray-900 whitespace-nowrap">
+                  <td className="px-4 py-5 border-b font-bold text-gray-900 whitespace-nowrap align-middle">
                     {item.name}
                   </td>
-                  <td className="p-4 border-b font-medium whitespace-nowrap">
+                  <td className="px-4 py-5 border-b font-medium whitespace-nowrap align-middle">
                     {item.phone}
                   </td>
-                  <td className="p-4 border-b">
+                  <td className="px-4 py-5 border-b break-keep leading-relaxed align-middle">
                     {item.location ||
                       (item.province ? `${item.province} ${item.city}` : "-")}
                   </td>
-                  <td className="p-4 border-b whitespace-nowrap">
+                  <td className="px-4 py-5 border-b whitespace-nowrap align-middle">
                     {item.storeStatus || item.businessType || "-"}
                   </td>
-                  <td className="p-4 border-b whitespace-nowrap">
+                  <td className="px-4 py-5 border-b break-keep break-words leading-relaxed align-middle">
                     {item.investmentAmount || "-"}
                   </td>
-                  <td className="p-4 border-b text-point-red font-bold">
+                  <td className="px-4 py-5 border-b text-point-red font-bold break-keep leading-relaxed align-middle">
                     {item.preferredTime || "-"}
                   </td>
-                  <td className="p-4 border-b text-gray-500 whitespace-nowrap">
+                  <td className="px-4 py-5 border-b text-gray-500 whitespace-nowrap align-middle">
                     {formatDate(item.createdAt)}
                   </td>
-                  <td className="p-4 border-b">
+                  <td className="px-4 py-5 border-b align-middle">
                     <select
                       value={item.status || "대기중"}
                       onChange={(e) =>
                         handleStatusChange(item.id, e.target.value)
                       }
-                      className={`p-1.5 rounded-md font-bold text-[13px] border cursor-pointer ${
+                      className={`w-full min-w-[78px] p-1.5 rounded-md font-bold text-[13px] border cursor-pointer ${
                         item.status === "상담완료"
                           ? "bg-green-50 text-green-600 border-green-200"
                           : item.status === "부재중"
@@ -231,10 +250,10 @@ const AdminDashboard = () => {
                       <option value="상담완료">상담완료</option>
                     </select>
                   </td>
-                  <td className="p-4 border-b">
+                  <td className="px-4 py-5 border-b align-middle">
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-[12px] font-bold hover:bg-red-500 hover:text-white transition-colors"
+                      className="min-w-[48px] bg-gray-200 text-gray-700 px-3 py-1.5 rounded text-[12px] font-bold whitespace-nowrap hover:bg-red-500 hover:text-white transition-colors"
                     >
                       삭제
                     </button>
@@ -243,6 +262,7 @@ const AdminDashboard = () => {
               ))}
             </tbody>
           </table>
+          </div>
           {/* 💡 테이블 영역 끝 */}
 
           {inquiries.length === 0 && !loading && (
