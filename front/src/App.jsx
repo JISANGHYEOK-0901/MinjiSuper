@@ -12,6 +12,10 @@ import CostAnalysisSection from "./components/CostAnalysisSection";
 import ContactFormSection from "./components/ContactFormSection";
 import AdminDashboard from "./components/AdminDashboard";
 import PopupModal from "./components/PopupModal";
+import {
+  MarketingSupportSection,
+  YoutubeTestimonialSection,
+} from "./components/MediaInsertSections";
 
 function LandingPage() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -30,10 +34,12 @@ function LandingPage() {
       <HeroSection />
       <ExpertSection />
       <StructureSection />
+      <YoutubeTestimonialSection />
       <SuccessCaseSection />
       <TargetSection />
       <FinalSummarySection />
       <BusinessSystemSection />
+      <MarketingSupportSection />
       <ReceiptSection />
       <CostAnalysisSection />
       <ContactFormSection />

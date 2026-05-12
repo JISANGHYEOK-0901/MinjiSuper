@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { InstagramShowcaseSection } from "./MediaInsertSections";
 
 // 💡 [가디언 설정] 이미지 네이밍 최적화 및 데이터 구조화
 const educationData = [
@@ -334,6 +335,8 @@ const BusinessSystemSection = () => {
           </div>
         </motion.div>
       </section>
+
+      <InstagramShowcaseSection />
 
       {/* --- Section 2: AutoStructureSection --- */}
       <section className="relative w-full py-[100px] pc:py-[150px] px-5 overflow-hidden bg-white">
