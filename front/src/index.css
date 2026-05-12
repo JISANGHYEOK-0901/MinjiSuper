@@ -38,6 +38,19 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .instagram-marquee-track {
+    animation: instagram-marquee 24s linear infinite;
+  }
+}
+
+@keyframes instagram-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.75rem));
+  }
 }
 
 @font-face {
