@@ -1,10 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
+const STATUS_OPTIONS = [
+  "대기중",
+  "상담중",
+  "부재중",
+  "상담완료",
+  "계약 진행 중",
+  "계약완료",
+];
+
+const FILTER_OPTIONS = ["전체", ...STATUS_OPTIONS];
 
 const AdminDashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [credentials, setCredentials] = useState({ id: "", pw: "" });
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("전체");
+  const [memoDrafts, setMemoDrafts] = useState({});
+  const [savingMemoId, setSavingMemoId] = useState(null);
 
   const API_BASE_URL = window.location.hostname.includes("localhost")
     ? "http://localhost:8080"
@@ -22,6 +37,29 @@ const AdminDashboard = () => {
     return `${yyyy}년 ${mm}월 ${dd}일 ${hh}시 ${min}분`;
   };
 
+  const getStatusValue = (status) => status || "대기중";
+
+  const getStatusClassName = (status) => {
+    switch (getStatusValue(status)) {
+      case "상담중":
+        return "bg-amber-50 text-amber-700 border-amber-200";
+      case "부재중":
+        return "bg-red-50 text-red-600 border-red-200";
+      case "상담완료":
+        return "bg-green-50 text-green-600 border-green-200";
+      case "계약 진행 중":
+        return "bg-purple-50 text-purple-700 border-purple-200";
+      case "계약완료":
+        return "bg-slate-900 text-white border-slate-900";
+      case "대기중":
+      default:
+        return "bg-blue-50 text-blue-600 border-blue-200";
+    }
+  };
+
+  const getStatusCount = (status) =>
+    inquiries.filter((item) => getStatusValue(item.status) === status).length;
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -38,7 +76,7 @@ const AdminDashboard = () => {
       } else {
         alert(data.message);
       }
-    } catch (err) {
+    } catch {
       alert("서버 연결 실패");
     }
   };
@@ -53,6 +91,12 @@ const AdminDashboard = () => {
       if (res.ok) {
         const data = await res.json();
         setInquiries(data);
+        setMemoDrafts(
+          data.reduce((acc, item) => {
+            acc[item.id] = item.adminMemo || "";
+            return acc;
+          }, {}),
+        );
       } else {
         setIsLoggedIn(false);
       }
@@ -62,6 +106,48 @@ const AdminDashboard = () => {
       setLoading(false);
     }
   };
+
+  const handleMemoChange = (id, value) => {
+    setMemoDrafts((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleMemoSave = async (id) => {
+    const token = localStorage.getItem("adminToken");
+    const memo = memoDrafts[id] || "";
+    setSavingMemoId(id);
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/admin/inquiries/${id}/memo`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ memo }),
+      });
+
+      if (res.ok) {
+        const updated = await res.json();
+        setInquiries((prev) =>
+          prev.map((item) => (item.id === id ? updated : item)),
+        );
+        setMemoDrafts((prev) => ({ ...prev, [id]: updated.adminMemo || "" }));
+      } else {
+        alert("메모 저장에 실패했습니다. 다시 시도해 주세요.");
+      }
+    } catch {
+      alert("서버 연결 실패로 메모를 저장할 수 없습니다.");
+    } finally {
+      setSavingMemoId(null);
+    }
+  };
+
+  const visibleInquiries = inquiries.filter((item) => {
+    const status = getStatusValue(item.status);
+    if (activeTab === "contracted" && status !== "계약완료") return false;
+    if (statusFilter !== "전체" && status !== statusFilter) return false;
+    return true;
+  });
 
   const handleStatusChange = async (id, newStatus) => {
     const originalInquiries = [...inquiries];
@@ -90,7 +176,7 @@ const AdminDashboard = () => {
         setInquiries(originalInquiries);
         alert("서버 저장에 실패했습니다. 다시 시도해 주세요.");
       }
-    } catch (err) {
+    } catch {
       setInquiries(originalInquiries);
       alert("서버 연결 실패로 상태를 변경할 수 없습니다.");
     }
@@ -105,7 +191,7 @@ const AdminDashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) fetchInquiries();
-    } catch (err) {
+    } catch {
       alert("삭제 실패");
     }
   };
@@ -145,11 +231,50 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 pc:p-8">
-      <div className="max-w-[1440px] mx-auto">
-        <div className="flex justify-between items-center mb-10">
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex flex-col pc:flex-row min-h-screen">
+        <aside className="w-full pc:w-[240px] bg-[#151515] text-white p-5 pc:p-6">
+          <div className="text-xl font-black mb-6">민지슈퍼 관리자</div>
+          <nav className="flex pc:flex-col gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab("all");
+                setStatusFilter("전체");
+              }}
+              className={`text-left px-4 py-3 rounded-lg font-bold transition-colors ${
+                activeTab === "all"
+                  ? "bg-point-yellow text-[#151515]"
+                  : "bg-white/10 text-white hover:bg-white/15"
+              }`}
+            >
+              전체 문의
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab("contracted");
+                setStatusFilter("전체");
+              }}
+              className={`text-left px-4 py-3 rounded-lg font-bold transition-colors ${
+                activeTab === "contracted"
+                  ? "bg-point-yellow text-[#151515]"
+                  : "bg-white/10 text-white hover:bg-white/15"
+              }`}
+            >
+              계약완료
+              <span className="ml-2 text-sm opacity-80">
+                {getStatusCount("계약완료")}
+              </span>
+            </button>
+          </nav>
+        </aside>
+
+        <main className="flex-1 p-4 pc:p-8 overflow-hidden">
+          <div className="max-w-[1600px] mx-auto">
+        <div className="flex flex-col pc:flex-row pc:justify-between pc:items-center gap-4 mb-8">
           <h1 className="text-2xl pc:text-3xl font-black text-[#151515]">
-            문의 관리 대시보드
+            {activeTab === "contracted" ? "계약완료 리스트" : "문의 관리 대시보드"}
           </h1>
           <button
             onClick={() => {
@@ -162,13 +287,43 @@ const AdminDashboard = () => {
           </button>
         </div>
 
+        <div className="flex flex-col pc:flex-row pc:items-center gap-3 mb-5">
+          <div className="flex flex-wrap gap-2">
+            {FILTER_OPTIONS.map((status) => (
+              <button
+                key={status}
+                type="button"
+                onClick={() => setStatusFilter(status)}
+                className={`px-3 py-2 rounded-lg border text-[13px] font-bold transition-colors ${
+                  statusFilter === status
+                    ? "bg-[#151515] text-white border-[#151515]"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                }`}
+              >
+                {status}
+                {status !== "전체" && (
+                  <span className="ml-1 text-[12px] opacity-70">
+                    {getStatusCount(status)}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={fetchInquiries}
+            className="pc:ml-auto bg-white border border-gray-200 px-4 py-2 rounded-lg text-[13px] font-bold text-gray-600 hover:border-gray-400"
+          >
+            새로고침
+          </button>
+        </div>
+
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           {/* 💡 테이블 영역 시작 */}
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[1320px]">
+            <table className="w-full text-left border-collapse min-w-[1580px]">
             <thead className="bg-gray-100 text-[#151515] font-bold text-[13px] pc:text-[14px]">
               <tr>
-                {/* 정확히 10개의 헤더 */}
                 <th className="w-[58px] px-4 py-4 border-b whitespace-nowrap">
                   NO
                 </th>
@@ -194,20 +349,22 @@ const AdminDashboard = () => {
                 <th className="w-[110px] px-4 py-4 border-b whitespace-nowrap">
                   상태
                 </th>
+                <th className="w-[260px] px-4 py-4 border-b whitespace-nowrap">
+                  메모
+                </th>
                 <th className="w-[86px] px-4 py-4 border-b whitespace-nowrap">
                   관리
                 </th>
               </tr>
             </thead>
             <tbody className="text-[13px] pc:text-[14px] text-gray-800">
-              {inquiries.map((item, index) => (
+              {visibleInquiries.map((item, index) => (
                 <tr
                   key={item.id}
                   className="hover:bg-gray-50 transition-colors"
                 >
-                  {/* 정확히 10개의 데이터 셀 */}
                   <td className="px-4 py-5 border-b font-medium text-gray-500 whitespace-nowrap align-middle">
-                    {inquiries.length - index}
+                    {visibleInquiries.length - index}
                   </td>
                   <td className="px-4 py-5 border-b font-bold text-gray-900 whitespace-nowrap align-middle">
                     {item.name}
@@ -237,18 +394,37 @@ const AdminDashboard = () => {
                       onChange={(e) =>
                         handleStatusChange(item.id, e.target.value)
                       }
-                      className={`w-full min-w-[78px] p-1.5 rounded-md font-bold text-[13px] border cursor-pointer ${
-                        item.status === "상담완료"
-                          ? "bg-green-50 text-green-600 border-green-200"
-                          : item.status === "부재중"
-                            ? "bg-red-50 text-red-600 border-red-200"
-                            : "bg-blue-50 text-blue-600 border-blue-200"
-                      }`}
+                      className={`w-full min-w-[112px] p-1.5 rounded-md font-bold text-[13px] border cursor-pointer ${getStatusClassName(
+                        item.status,
+                      )}`}
                     >
-                      <option value="대기중">대기중</option>
-                      <option value="부재중">부재중</option>
-                      <option value="상담완료">상담완료</option>
+                      {STATUS_OPTIONS.map((status) => (
+                        <option key={status} value={status}>
+                          {status}
+                        </option>
+                      ))}
                     </select>
+                  </td>
+                  <td className="px-4 py-5 border-b align-middle">
+                    <div className="flex gap-2 items-start">
+                      <textarea
+                        value={memoDrafts[item.id] || ""}
+                        onChange={(e) =>
+                          handleMemoChange(item.id, e.target.value)
+                        }
+                        placeholder="관리자 메모"
+                        rows={2}
+                        className="w-full min-w-[170px] resize-none rounded-md border border-gray-200 p-2 text-[12px] leading-relaxed focus:outline-none focus:border-point-yellow"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleMemoSave(item.id)}
+                        disabled={savingMemoId === item.id}
+                        className="min-w-[48px] bg-[#151515] text-white px-3 py-2 rounded text-[12px] font-bold whitespace-nowrap disabled:bg-gray-400"
+                      >
+                        {savingMemoId === item.id ? "저장중" : "저장"}
+                      </button>
+                    </div>
                   </td>
                   <td className="px-4 py-5 border-b align-middle">
                     <button
@@ -265,12 +441,14 @@ const AdminDashboard = () => {
           </div>
           {/* 💡 테이블 영역 끝 */}
 
-          {inquiries.length === 0 && !loading && (
+          {visibleInquiries.length === 0 && !loading && (
             <div className="p-20 text-center text-gray-400 font-bold">
-              접수된 문의 내역이 없습니다.
+              표시할 문의 내역이 없습니다.
             </div>
           )}
         </div>
+      </div>
+        </main>
       </div>
     </div>
   );
