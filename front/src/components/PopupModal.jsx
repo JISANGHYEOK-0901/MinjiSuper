@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const POPUPS = [
   {
     id: "franchise-status",
-    src: "/images/popup-franchise-status.jpg",
+    src: "/images/popup-franchise-status.png",
     alt: "가맹 문의 현황",
+    imageAspectClass: "aspect-[1122/1402]",
   },
   {
     id: "franchise-status-2",
@@ -27,10 +28,7 @@ const PopupModal = () => {
     }).map((popup) => popup.id);
 
     if (visiblePopupIds.length > 0) {
-      const timer = setTimeout(
-        () => setOpenPopupIds(visiblePopupIds),
-        300,
-      );
+      const timer = setTimeout(() => setOpenPopupIds(visiblePopupIds), 300);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -97,7 +95,9 @@ const PopupModal = () => {
                           className="pointer-events-auto absolute left-0 top-[var(--mobile-popup-offset)] flex w-full origin-top flex-col overflow-hidden rounded-2xl bg-white shadow-2xl scale-[var(--mobile-popup-scale)] pc:static pc:max-w-[360px] pc:scale-100"
                         >
                           {/* 이미지 영역 */}
-                          <div className="relative w-full aspect-[2/3] bg-gray-100">
+                          <div
+                            className={`relative w-full ${popup.imageAspectClass ?? "aspect-[2/3]"} bg-gray-100`}
+                          >
                             <img
                               src={popup.src}
                               alt={popup.alt}
