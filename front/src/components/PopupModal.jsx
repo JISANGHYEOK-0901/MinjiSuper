@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
-const POPUPS = [
-  {
-    id: "franchise-status",
-    src: "/images/popup-franchise-status.png",
-    alt: "가맹 문의 현황",
-    imageAspectClass: "aspect-[1122/1402]",
-  },
-  {
-    id: "franchise-status-2",
-    src: "/images/popup-franchise-status2.png",
-    alt: "가맹 문의 현황 추가 안내",
-  },
-];
+import { API_BASE_URL, popupRequest } from "../lib/popupApi";
 
-const getPopupStorageKey = (popupId) => `hideFranchisePopup:${popupId}`;
+const getPopupStorageKey = (popup) => `hidePopup:${popup.id}:${popup.imageRevision}`;
 
 const PopupModal = () => {
   const [openPopupIds, setOpenPopupIds] = useState([]);
+  const [popups, setPopups] = useState([]);
 
   useEffect(() => {
-    const now = new Date().getTime();
-    const visiblePopupIds = POPUPS.filter((popup) => {
-      const hideUntil = localStorage.getItem(getPopupStorageKey(popup.id));
-      return !hideUntil || now > parseInt(hideUntil);
-    }).map((popup) => popup.id);
-
-    if (visiblePopupIds.length > 0) {
-      const timer = setTimeout(() => setOpenPopupIds(visiblePopupIds), 300);
-      return () => clearTimeout(timer);
-    }
+    const controller = new AbortController();
+    let timer;
+    popupRequest('popups', { signal: controller.signal }, false)
+      .then(res => res.json())
+      .then(items => {
+        if (controller.signal.aborted) return;
+        setPopups(items);
+        const visible = items.filter(popup => {
+          try {
+            const until = Number(localStorage.getItem(getPopupStorageKey(popup)));
+            return !until || Date.now() >= until;
+          } catch { return true; }
+        });
+        timer = setTimeout(() => setOpenPopupIds(visible.map(popup => popup.id)), 300);
+      }).catch(() => { /* Keep the homepage available if the popup API fails. */ });
+    return () => { controller.abort(); clearTimeout(timer); };
   }, []);
 
   const closePopup = (popupId) => {
@@ -39,20 +34,20 @@ const PopupModal = () => {
     );
   };
 
-  const closeFor24Hours = (popupId) => {
+  const closeFor24Hours = (popup) => {
     const expireDate = new Date().getTime() + 24 * 60 * 60 * 1000;
-    localStorage.setItem(getPopupStorageKey(popupId), expireDate.toString());
-    closePopup(popupId);
+    try { localStorage.setItem(getPopupStorageKey(popup), expireDate.toString()); } catch { /* Closing works without storage. */ }
+    closePopup(popup.id);
   };
 
-  const openPopups = POPUPS.filter((popup) => openPopupIds.includes(popup.id));
+  const openPopups = popups.filter((popup) => openPopupIds.includes(popup.id));
 
   return (
     <AnimatePresence>
       {openPopups.length > 0 && (
         <>
           {/* 💡 배경 오버레이: 흐림(blur) 효과 제거 및 투명도 조절 */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -65,15 +60,15 @@ const PopupModal = () => {
              - PC(pc:): 왼쪽 상단부터 슬롯을 고정해 순차 노출
           */}
           <div className="fixed inset-0 z-[9999] pointer-events-none overflow-y-auto px-4 py-5 pc:p-10">
-            <div className="relative mx-auto h-[min(86vh,560px)] w-full max-w-[340px] pc:mx-0 pc:flex pc:h-auto pc:max-w-none pc:items-start pc:gap-5">
-              {POPUPS.map((popup) => {
+            <div className="relative mx-auto h-[min(86vh,560px)] w-full max-w-[340px] pc:mx-0 pc:flex pc:h-auto pc:max-w-none pc:items-start pc:flex-wrap pc:gap-5">
+              {popups.map((popup) => {
                 const isOpen = openPopupIds.includes(popup.id);
                 const mobileStackIndex = openPopups.findIndex(
                   (openPopup) => openPopup.id === popup.id,
                 );
-                const mobileOffset = Math.max(mobileStackIndex, 0) * 18;
-                const mobileScale = 1 - Math.max(mobileStackIndex, 0) * 0.04;
-                const mobileZIndex = 20 - Math.max(mobileStackIndex, 0);
+                const mobileOffset = Math.min(Math.max(mobileStackIndex, 0), 3) * 18;
+                const mobileScale = 1 - Math.min(Math.max(mobileStackIndex, 0), 3) * 0.04;
+                const mobileZIndex = 20 - Math.min(Math.max(mobileStackIndex, 0), 3);
 
                 return (
                   <div
@@ -82,7 +77,7 @@ const PopupModal = () => {
                   >
                     <AnimatePresence>
                       {isOpen && (
-                        <motion.div
+                        <Motion.div
                           initial={{ opacity: 0, scale: 0.9, y: 20 }}
                           animate={{ opacity: 1, scale: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -95,20 +90,18 @@ const PopupModal = () => {
                           className="pointer-events-auto absolute left-0 top-[var(--mobile-popup-offset)] flex w-full origin-top flex-col overflow-hidden rounded-2xl bg-white shadow-2xl scale-[var(--mobile-popup-scale)] pc:static pc:max-w-[360px] pc:scale-100"
                         >
                           {/* 이미지 영역 */}
-                          <div
-                            className={`relative w-full ${popup.imageAspectClass ?? "aspect-[2/3]"} bg-gray-100`}
-                          >
+                          <div className="relative w-full bg-gray-100">
                             <img
-                              src={popup.src}
-                              alt={popup.alt}
-                              className="w-full h-full object-cover"
+                              src={`${API_BASE_URL}/api/popups/${popup.id}/image?v=${popup.imageRevision}`}
+                              alt={popup.title}
+                              className="block w-full h-auto"
                             />
                           </div>
 
                           {/* 하단 컨트롤 바 */}
                           <div className="bg-[#151515] flex flex-col gap-2 min-[360px]:flex-row min-[360px]:justify-between min-[360px]:items-center px-5 py-4 text-white">
                             <button
-                              onClick={() => closeFor24Hours(popup.id)}
+                              onClick={() => closeFor24Hours(popup)}
                               className="text-[12px] pc:text-[13px] font-bold opacity-80 hover:text-point-yellow transition-all break-keep"
                             >
                               24시간 동안 보지 않기
@@ -120,7 +113,7 @@ const PopupModal = () => {
                               닫기
                             </button>
                           </div>
-                        </motion.div>
+                        </Motion.div>
                       )}
                     </AnimatePresence>
                   </div>

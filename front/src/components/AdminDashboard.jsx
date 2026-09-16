@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+
+import PopupManager from "./PopupManager";
+import { API_BASE_URL } from "../lib/popupApi";
 
 const STATUS_OPTIONS = [
   "대기중",
@@ -21,9 +24,10 @@ const AdminDashboard = () => {
   const [memoDrafts, setMemoDrafts] = useState({});
   const [savingMemoId, setSavingMemoId] = useState(null);
 
-  const API_BASE_URL = window.location.hostname.includes("localhost")
-    ? "http://localhost:8080"
-    : "https://be-production-32e8.up.railway.app";
+  const handleExpired = useCallback(() => {
+    localStorage.removeItem("adminToken");
+    setIsLoggedIn(false);
+  }, []);
 
   // 💡 날짜 포맷 함수
   const formatDate = (dateString) => {
@@ -231,11 +235,11 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={`min-h-screen bg-gray-50 ${activeTab === "popups" ? "popup-admin-shell" : ""}`}>
       <div className="flex flex-col pc:flex-row min-h-screen">
         <aside className="w-full pc:w-[240px] bg-[#151515] text-white p-5 pc:p-6">
           <div className="text-xl font-black mb-6">민지슈퍼 관리자</div>
-          <nav className="flex pc:flex-col gap-2">
+          <nav className="flex flex-wrap pc:flex-col gap-2">
             <button
               type="button"
               onClick={() => {
@@ -267,6 +271,10 @@ const AdminDashboard = () => {
                 {getStatusCount("계약완료")}
               </span>
             </button>
+            <button type="button" onClick={() => setActiveTab("popups")}
+              className={`text-left px-4 py-3 rounded-lg font-bold ${activeTab === "popups" ? "bg-[#0785ff] text-white" : "bg-white/10 text-white"}`}>
+              팝업 관리
+            </button>
           </nav>
         </aside>
 
@@ -274,10 +282,11 @@ const AdminDashboard = () => {
           <div className="max-w-[1600px] mx-auto">
         <div className="flex flex-col pc:flex-row pc:justify-between pc:items-center gap-4 mb-8">
           <h1 className="text-2xl pc:text-3xl font-black text-[#151515]">
-            {activeTab === "contracted" ? "계약완료 리스트" : "문의 관리 대시보드"}
+            {activeTab === "popups" ? "팝업 관리" : activeTab === "contracted" ? "계약완료 리스트" : "문의 관리 대시보드"}
           </h1>
           <button
-            onClick={() => {
+            onClick={async () => {
+              try { await fetch(`${API_BASE_URL}/api/admin/logout`, { method: "POST", headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` } }); } catch { /* Clear local login even if offline. */ }
               localStorage.removeItem("adminToken");
               setIsLoggedIn(false);
             }}
@@ -287,6 +296,7 @@ const AdminDashboard = () => {
           </button>
         </div>
 
+        {activeTab === "popups" ? <PopupManager onExpired={handleExpired} /> : <>
         <div className="flex flex-col pc:flex-row pc:items-center gap-3 mb-5">
           <div className="flex flex-wrap gap-2">
             {FILTER_OPTIONS.map((status) => (
@@ -447,6 +457,7 @@ const AdminDashboard = () => {
             </div>
           )}
         </div>
+        </>}
       </div>
         </main>
       </div>
