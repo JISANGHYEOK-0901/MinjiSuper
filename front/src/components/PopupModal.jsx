@@ -4,6 +4,18 @@ import { motion as Motion, AnimatePresence } from "framer-motion";
 import { API_BASE_URL, popupRequest } from "../lib/popupApi";
 
 const getPopupStorageKey = (popup) => `hidePopup:${popup.id}:${popup.imageRevision}`;
+const getPopupImageUrl = (popup) => `${API_BASE_URL}/api/popups/${popup.id}/image?v=${popup.imageRevision}`;
+
+// 이미지를 먼저 받아 디코딩까지 끝낸 뒤 팝업을 연다.
+// 빈 상자를 먼저 띄우면 이미지가 도착할 때 상자가 늘어나며 레이아웃 이동(CLS)이 생긴다.
+// 받은 이미지는 브라우저 캐시에 남아(?v= 주소는 서버가 캐시 허용) 실제 <img> 가 다시 받지 않는다.
+const preloadPopupImage = (popup) => new Promise((resolve) => {
+  const img = new Image();
+  img.fetchPriority = "high";
+  img.onload = () => Promise.resolve(img.decode?.()).catch(() => {}).then(() => resolve(true));
+  img.onerror = () => resolve(false);
+  img.src = getPopupImageUrl(popup);
+});
 
 const PopupModal = () => {
   const [openPopupIds, setOpenPopupIds] = useState([]);
@@ -23,7 +35,12 @@ const PopupModal = () => {
             return !until || Date.now() >= until;
           } catch { return true; }
         });
-        timer = setTimeout(() => setOpenPopupIds(visible.map(popup => popup.id)), 300);
+        // 이미지를 못 받은 팝업은 빈 상자로 띄우지 않는다. 기존처럼 최소 300ms 뒤에 연다.
+        const minimumDelay = new Promise((resolve) => { timer = setTimeout(resolve, 300); });
+        Promise.all([Promise.all(visible.map(preloadPopupImage)), minimumDelay]).then(([loaded]) => {
+          if (controller.signal.aborted) return;
+          setOpenPopupIds(visible.filter((_, index) => loaded[index]).map(popup => popup.id));
+        });
       }).catch(() => { /* Keep the homepage available if the popup API fails. */ });
     return () => { controller.abort(); clearTimeout(timer); };
   }, []);
@@ -92,7 +109,7 @@ const PopupModal = () => {
                           {/* 이미지 영역 */}
                           <div className="relative w-full bg-gray-100">
                             <img
-                              src={`${API_BASE_URL}/api/popups/${popup.id}/image?v=${popup.imageRevision}`}
+                              src={getPopupImageUrl(popup)}
                               alt={popup.title}
                               className="block w-full h-auto"
                             />
