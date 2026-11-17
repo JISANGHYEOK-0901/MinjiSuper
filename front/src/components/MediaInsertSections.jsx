@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion as Motion } from "framer-motion";
 import { FaInstagram } from "react-icons/fa";
+import ResponsiveImage from "./ResponsiveImage";
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -202,7 +203,7 @@ export const InstagramShowcaseSection = () => {
                           className="group absolute inset-0 w-full h-full text-left"
                           aria-label={`인스타그램 영상 ${item.id} 재생`}
                         >
-                          <img
+                          <ResponsiveImage
                             src={item.thumb}
                             alt={`민지슈퍼 인스타그램 영상 ${item.id} 썸네일`}
                             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -269,7 +270,7 @@ export const MarketingSupportSection = () => {
               className="group bg-white rounded-[16px] overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.1)]"
             >
               <div className="relative w-full aspect-[4/3] overflow-hidden">
-                <img
+                <ResponsiveImage
                   src={card.image}
                   alt={card.title}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

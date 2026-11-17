@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const ContactFormSection = () => {
   const getApiBaseUrl = () => {
@@ -152,7 +153,8 @@ const ContactFormSection = () => {
     <section className="w-full flex flex-col pc:grid pc:grid-cols-2 overflow-hidden bg-white">
       {/* 1. 이미지 영역 (기존과 동일) */}
       <div className="order-1 pc:order-1 pc:col-span-1 relative w-full h-[400px] pc:h-auto overflow-hidden">
-        <Motion.img
+        <ResponsiveImage
+          as={Motion.img}
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 1.5 }}
@@ -250,7 +252,7 @@ const ContactFormSection = () => {
             variants={scalePopVariants}
             className="absolute bottom-6 right-8 pc:right-10 max-[400px]:right-auto max-[400px]:left-1/2 max-[400px]:-translate-x-1/2"
           >
-            <img
+            <ResponsiveImage
               src="/images/receipt-logo-colorful.png"
               alt="MJSP"
               className="h-[50px] pc:h-[85px] object-contain opacity-80"

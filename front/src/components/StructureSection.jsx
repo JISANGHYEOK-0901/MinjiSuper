@@ -1,5 +1,6 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const StructureSection = () => {
   // 💡 [가디언 적용] 트렌드 1: 초점이 맞춰지며 등장하는 세련된 텍스트 효과 (Apple 스타일)
@@ -139,7 +140,8 @@ const StructureSection = () => {
 
       {/* 2. 브랜드 탄생 스토리 (Dark with Image - Background Zoom) */}
       <div className="relative w-full h-[300px] pc:h-[400px] flex items-center justify-center overflow-hidden">
-        <Motion.img
+        <ResponsiveImage
+          as={Motion.img}
           variants={bgZoomVariants}
           initial="hidden"
           whileInView="visible"

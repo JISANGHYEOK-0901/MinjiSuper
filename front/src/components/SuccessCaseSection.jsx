@@ -1,5 +1,6 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const SuccessCaseSection = () => {
   // 시안에 맞춘 상세 데이터 배열 (기존 유지)
@@ -109,7 +110,7 @@ const SuccessCaseSection = () => {
       </div>
 
       <div className="relative w-full h-[100px] pc:h-[120px] rounded-t-[16px] overflow-hidden">
-        <img
+        <ResponsiveImage
           src="/images/case-thumb.jpg"
           alt={data.branch}
           className="absolute inset-0 w-full h-full object-cover"

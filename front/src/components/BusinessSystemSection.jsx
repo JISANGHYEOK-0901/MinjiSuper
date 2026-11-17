@@ -1,6 +1,7 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import { InstagramShowcaseSection } from "./MediaInsertSections";
+import ResponsiveImage from "./ResponsiveImage";
 
 // 💡 [가디언 설정] 이미지 네이밍 최적화 및 데이터 구조화
 const educationData = [
@@ -69,7 +70,7 @@ const BusinessSystemSection = () => {
       <section className="relative w-full py-[60px] pc:py-[150px] overflow-hidden">
         {/* 배경 이미지 (공통) */}
         <div className="absolute inset-0 z-0">
-          <img
+          <ResponsiveImage
             src="/images/system-bg.jpg"
             alt="시스템 배경"
             className="w-full h-full object-cover"
@@ -112,7 +113,7 @@ const BusinessSystemSection = () => {
                 className="flex flex-col items-center text-center w-[120px] pc:w-[280px]"
               >
                 <div className="relative w-[100px] h-[100px] pc:w-[220px] pc:h-[220px] rounded-full overflow-hidden border-[4px] border-white/50 mb-6 shadow-2xl">
-                  <img
+                  <ResponsiveImage
                     src={item.src}
                     alt={`Step ${item.id}`}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
@@ -195,7 +196,7 @@ const BusinessSystemSection = () => {
                 variants={scalePopVariants}
                 className="absolute -right-4 top-1/2 -translate-y-1/2 w-[132px] h-[132px] min-[381px]:-right-8 min-[381px]:w-[160px] min-[381px]:h-[160px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-2xl z-20"
               >
-                <img
+                <ResponsiveImage
                   src="/images/step-circle-02.jpg"
                   alt="트렌디 레트로"
                   className="w-full h-full object-cover"
@@ -263,7 +264,7 @@ const BusinessSystemSection = () => {
                 variants={scalePopVariants}
                 className="absolute -right-6 top-1/2 -translate-y-1/2 w-[142px] h-[142px] min-[381px]:-right-10 min-[381px]:w-[180px] min-[381px]:h-[180px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-2xl z-20"
               >
-                <img
+                <ResponsiveImage
                   src="/images/step-circle-01.jpg"
                   alt="시스템 결합"
                   className="w-full h-full object-cover"
@@ -326,7 +327,7 @@ const BusinessSystemSection = () => {
               variants={scalePopVariants}
               className="absolute -left-[8%] -bottom-[-8%] w-[138px] h-[138px] min-[381px]:-left-[15%] min-[381px]:-bottom-[-10%] min-[381px]:w-[190px] min-[381px]:h-[190px] rounded-full overflow-hidden border-[2px] border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.6)] z-10 pointer-events-none"
             >
-              <img
+              <ResponsiveImage
                 src="/images/step-circle-03.jpg"
                 alt="원금회수"
                 className="w-full h-full object-cover"
@@ -341,7 +342,7 @@ const BusinessSystemSection = () => {
       {/* --- Section 2: AutoStructureSection --- */}
       <section className="relative w-full py-[100px] pc:py-[150px] px-5 overflow-hidden bg-white">
         <div className="absolute inset-0 z-0 opacity-[0.8]">
-          <img
+          <ResponsiveImage
             src="/images/mjsp-bg.png"
             alt="MJSP"
             className="w-full h-full object-contain pc:scale-125"
@@ -446,7 +447,7 @@ const BusinessSystemSection = () => {
                       >
                         {/* 💡 [개선] 회색 원 대신 흰색 배경 + 아이콘 삽입 */}
                         <div className="w-20 h-20 bg-white rounded-full shadow-[inset_0_2px_10px_rgba(0,0,0,0.05),0_5px_15px_rgba(0,0,0,0.1)] flex items-center justify-center p-5 group-hover:scale-110 group-hover:shadow-point-yellow/20 transition-all duration-300">
-                          <img
+                          <ResponsiveImage
                             src={item.icon}
                             alt={item.t}
                             className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
@@ -501,7 +502,7 @@ const BusinessSystemSection = () => {
                 variants={scalePopVariants}
                 className="flex-1 w-full max-w-[500px]"
               >
-                <img
+                <ResponsiveImage
                   src="/images/step-photo-lecture.jpg"
                   alt="김경문 강사"
                   className="w-full h-auto rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.18)]"
@@ -521,7 +522,7 @@ const BusinessSystemSection = () => {
         >
           <div className="relative w-full py-12 flex justify-center px-5 overflow-hidden">
             <div className="absolute inset-0 z-0">
-              <img
+              <ResponsiveImage
                 src="/images/feature-bg-02.jpg"
                 alt="매장 배경"
                 className="w-full h-full object-cover object-center"
@@ -542,7 +543,7 @@ const BusinessSystemSection = () => {
                     <div key={i} className="flex flex-col items-center gap-2">
                       {/* 💡 모바일 아이콘 추가 */}
                       <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center p-2.5 shadow-inner">
-                        <img
+                        <ResponsiveImage
                           src={item.icon}
                           alt={item.t}
                           className="w-full h-full object-contain opacity-70"
@@ -593,7 +594,7 @@ const BusinessSystemSection = () => {
               variants={scalePopVariants}
               className="w-[160px] shrink-0"
             >
-              <img
+              <ResponsiveImage
                 src="/images/step-photo-lecture-02.jpg"
                 alt="김경문 강사"
                 className="w-full h-auto shadow-lg rounded-[8px]"

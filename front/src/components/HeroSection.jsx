@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const HeroSection = () => {
   // 영상 재생 상태를 관리하는 State
@@ -55,10 +56,11 @@ const HeroSection = () => {
           variants={itemVariants}
           className="w-full max-w-[650px] mb-10 pc:mb-12"
         >
-          <img
+          <ResponsiveImage
             src="/images/hero-portrait-main.png"
             alt="김창훈 대표"
             className="w-full h-auto object-cover rounded-[20px] shadow-2xl"
+            priority
           />
         </Motion.div>
 
@@ -111,7 +113,7 @@ const HeroSection = () => {
                   className="w-full h-full cursor-pointer relative"
                   onClick={() => setPlayVideo1(true)}
                 >
-                  <img
+                  <ResponsiveImage
                     src="/images/hero-thumb-video-01.jpg"
                     alt="유튜브 썸네일 1"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
@@ -150,7 +152,7 @@ const HeroSection = () => {
                   className="w-full h-full cursor-pointer relative"
                   onClick={() => setPlayVideo2(true)}
                 >
-                  <img
+                  <ResponsiveImage
                     src="/images/hero-thumb-video-02.jpg"
                     alt="유튜브 썸네일 2"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"

@@ -20,6 +20,22 @@
     /* 명세서 기준 기본 폰트는 샌스세리프(Pretendard)로 두고, 필요시 Cafe24 폰트를 클래스로 사용하는 것을 권장합니다 */
     @apply bg-primary-dark font-sans text-font-light antialiased;
   }
+
+  /*
+   * img 의 width/height 속성은 종횡비를 알려 레이아웃 시프트(CLS)를 막는 용도로만 쓴다.
+   * 실제 크기는 항상 CSS 가 정한다.
+   *
+   * Tailwind preflight 는 img 에 height:auto 만 주고 width:auto 는 주지 않는다.
+   * 그래서 높이만 지정한 이미지(예: h-[50px])에서 width 속성이 presentational hint 로
+   * 살아나 박스 폭이 원본 픽셀 폭까지 늘어난다.
+   *
+   * :where() 로 특이도를 0 으로 만들어, Tailwind 의 w-full 같은 클래스는 그대로 이기면서
+   * 속성 힌트만 무력화한다. 브라우저가 속성에서 계산하는 aspect-ratio 는 그대로 남아
+   * CLS 방어 효과는 유지된다.
+   */
+  :where(img[width][height]) {
+    width: auto;
+  }
 }
 
 /* 기본 컨테이너 중앙 정렬 유틸리티 클래스 */

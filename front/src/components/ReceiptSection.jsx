@@ -1,5 +1,6 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const ReceiptSection = () => {
   // 💡 [가디언 설정] 텍스트 스며들기 (Blur Reveal)
@@ -87,7 +88,7 @@ const ReceiptSection = () => {
       <div className="relative w-full py-[80px] pc:py-[120px] px-5 flex flex-col justify-center items-center overflow-hidden">
         {/* 블러 처리된 배경 */}
         <div className="absolute inset-0 z-0">
-          <img
+          <ResponsiveImage
             src="/images/receipt-bg-blur.jpg"
             alt="영수증 배경"
             className="w-full h-full object-cover"
@@ -145,7 +146,7 @@ const ReceiptSection = () => {
                 ),
               )}
             </div>
-            <img
+            <ResponsiveImage
               src="/images/receipt-logo-colorful.png"
               alt="MJSP Logo"
               className="h-[28px] pc:h-[32px] object-contain"

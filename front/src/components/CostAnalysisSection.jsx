@@ -1,5 +1,6 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const CostAnalysisSection = () => {
   // 💡 [가디언 설정] 애니메이션 세트
@@ -151,7 +152,7 @@ const CostAnalysisSection = () => {
           viewport={{ once: true }}
           variants={bgZoomVariants}
         >
-          <img
+          <ResponsiveImage
             src="/images/hero-portrait-main.png"
             alt="김창훈 대표"
             className="w-full h-full object-cover object-center"
@@ -271,7 +272,7 @@ const CostAnalysisSection = () => {
             variants={blurRevealVariants}
             className="flex justify-center"
           >
-            <img
+            <ResponsiveImage
               src="/images/receipt-logo-colorful.png"
               alt="MJSP Logo"
               className="h-[80px] pc:h-[105px] object-contain opacity-80"

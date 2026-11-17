@@ -1,5 +1,6 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const ExpertSection = () => {
   // 카드 데이터 배열 (기존과 동일하게 유지)
@@ -107,7 +108,7 @@ const ExpertSection = () => {
                 {/* 배경 처리 로직 */}
                 {card.bgType === "image" ? (
                   <>
-                    <img
+                    <ResponsiveImage
                       src={card.bgSrc}
                       alt={card.title.replace("\n", " ")}
                       className="absolute inset-0 w-full h-full object-cover"
