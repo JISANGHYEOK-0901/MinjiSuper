@@ -102,8 +102,13 @@ const CLASS = {
   ],
 };
 
+/*
+ * graphic 의 WebP 를 무손실로 두면 팝업 기준 1.2~1.4MB 로 원본과 별 차이가 없어진다.
+ * WebP 는 AVIF 미지원 브라우저용 폴백이므로, q95(SSIM 0.991~0.999)로 낮춰
+ * 용량을 약 80% 줄인다. 주 경로인 AVIF 는 q80 그대로다.
+ */
 const QUALITY = {
-  graphic: { avif: 80, webp: 95, webpLossless: true },
+  graphic: { avif: 80, webp: 95 },
   textPhoto: { avif: 70, webp: 90 },
   photo: { avif: 60, webp: 85 },
   overlay: { avif: 50, webp: 80 },
@@ -204,7 +209,7 @@ for (const file of files) {
         ext === "avif"
           ? await pipe.avif({ quality: q.avif }).toBuffer()
           : await pipe
-              .webp(q.webpLossless ? { lossless: true } : { quality: q.webp })
+              .webp({ quality: q.webp })
               .toBuffer();
       await writeFile(dest, buf);
       generated++;
