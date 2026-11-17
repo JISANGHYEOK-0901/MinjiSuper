@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import PopupManager from "./PopupManager";
 import { API_BASE_URL } from "../lib/popupApi";
@@ -15,10 +15,12 @@ const STATUS_OPTIONS = [
 const FILTER_OPTIONS = ["전체", ...STATUS_OPTIONS];
 
 const AdminDashboard = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // 저장된 토큰이 있으면 로그인 상태로 시작하고, 아래 useEffect에서 서버에 유효성을 확인한다.
+  const hasStoredToken = () => Boolean(localStorage.getItem("adminToken"));
+  const [isLoggedIn, setIsLoggedIn] = useState(hasStoredToken);
   const [credentials, setCredentials] = useState({ id: "", pw: "" });
   const [inquiries, setInquiries] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(hasStoredToken);
   const [activeTab, setActiveTab] = useState("all");
   const [statusFilter, setStatusFilter] = useState("전체");
   const [memoDrafts, setMemoDrafts] = useState({});
@@ -89,7 +91,7 @@ const AdminDashboard = () => {
     }
   };
 
-  const fetchInquiries = async () => {
+  const fetchInquiries = useCallback(async () => {
     setLoading(true);
     const token = localStorage.getItem("adminToken");
     try {
@@ -115,7 +117,13 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [handleExpired]);
+
+  // 새로고침해도 저장된 토큰이 유효하면(발급 후 12시간 이내·로그아웃 전) 로그인을 유지한다.
+  // 만료됐거나 무효면 서버가 401을 주고 handleExpired가 로그인 화면에 만료 안내를 띄운다.
+  useEffect(() => {
+    if (localStorage.getItem("adminToken")) fetchInquiries();
+  }, [fetchInquiries]);
 
   const handleMemoChange = (id, value) => {
     setMemoDrafts((prev) => ({ ...prev, [id]: value }));
