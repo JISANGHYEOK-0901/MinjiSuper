@@ -68,7 +68,7 @@
   src: url("/fonts/keris/KERISBAEUM_L.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -76,7 +76,7 @@
   src: url("/fonts/keris/KERISBAEUM_R.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -84,7 +84,7 @@
   src: url("/fonts/keris/KERISBAEUM_B.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -92,7 +92,7 @@
   src: url("/fonts/keris/KERISBAEUM_EB.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 body {
@@ -120,7 +120,7 @@ h4,
 h5,
 h6,
 .title-font {
-  font-family: "KerisBaeum", "Pretendard", sans-serif;
+  font-family: "KerisBaeum", sans-serif;
   word-break: keep-all;
   letter-spacing: -0.05em;
 }

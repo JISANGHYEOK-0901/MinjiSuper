@@ -5,6 +5,30 @@
     <link rel="icon" type="image/png" href="/images/optimized/main-logo.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!--
+      제목용 KerisBaeum 을 미리 받는다.
+      늦게 도착하면 폴백으로 그려진 제목이 줄바꿈 지점이 달라 한 줄 늘었다가
+      폰트 교체 시점에 줄어들면서 레이아웃이 밀린다(375px 폭에서 CLS 0.126 관측).
+      실제 쓰는 굵기는 700(B)과 900(EB) 둘뿐이다.
+      폰트 요청은 CORS 모드라 같은 오리진이라도 crossorigin 이 필요하다.
+    -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/keris/KERISBAEUM_B.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/keris/KERISBAEUM_EB.woff2"
+      crossorigin
+    />
+    <!-- Pretendard 서브셋은 jsDelivr 에서 온다. 연결 수립을 미리 끝내 둔다. -->
+    <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin />
+
     <meta name="description" content="민지슈퍼" />
     <meta
       name="keywords"
