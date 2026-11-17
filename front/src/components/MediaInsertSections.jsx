@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { FaInstagram } from "react-icons/fa";
+import ResponsiveImage from "./ResponsiveImage";
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -35,12 +36,12 @@ const instagramVideos = [
   {
     id: 4,
     thumb: "/images/instagram/franchise-4-thumb.png",
-    video: "/videos/franchise-4.mp4",
+    video: "/videos/franchise-4-h264.mp4",
   },
   {
     id: 5,
     thumb: "/images/instagram/franchise-5-thumb.png",
-    video: "/videos/franchise-5.mp4",
+    video: "/videos/franchise-5-h264.mp4",
   },
 ];
 
@@ -75,20 +76,20 @@ export const YoutubeTestimonialSection = () => {
 
   return (
     <section className="w-full bg-white pt-[70px] pb-[80px] pc:pt-[90px] pc:pb-[100px] px-5 overflow-hidden">
-      <motion.div
+      <Motion.div
         className="section-container flex flex-col items-center text-center"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        <motion.p
+        <Motion.p
           variants={fadeUpVariants}
           className="text-[18px] pc:text-[22px] font-extrabold text-point-red mb-3 break-keep"
         >
           직접 들어보세요
-        </motion.p>
-        <motion.h2
+        </Motion.p>
+        <Motion.h2
           variants={fadeUpVariants}
           className="text-[25px] pc:text-[40px] font-extrabold text-[#151515] leading-tight mb-10 pc:mb-14 break-keep"
         >
@@ -97,14 +98,14 @@ export const YoutubeTestimonialSection = () => {
           <br />
           <span className="text-point-red">운영 철학</span>과{" "}
           <span className="text-point-red">성공 비결</span>
-        </motion.h2>
+        </Motion.h2>
 
-        <motion.div
+        <Motion.div
           variants={staggerContainer}
           className="grid grid-cols-1 pc:grid-cols-2 gap-5 pc:gap-8 w-full max-w-[980px]"
         >
           {videos.map((video) => (
-            <motion.div
+            <Motion.div
               key={video.id}
               variants={fadeUpVariants}
               className="w-full overflow-hidden rounded-[16px] bg-[#151515] shadow-[0_18px_50px_rgba(0,0,0,0.16)]"
@@ -117,10 +118,10 @@ export const YoutubeTestimonialSection = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
-            </motion.div>
+            </Motion.div>
           ))}
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   );
 };
@@ -137,14 +138,14 @@ export const InstagramShowcaseSection = () => {
       className="w-full bg-white py-[70px] pc:py-[100px] px-5 overflow-hidden"
       onClick={() => setActiveVideoKey(null)}
     >
-      <motion.div
+      <Motion.div
         className="section-container flex flex-col items-center"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        <motion.div
+        <Motion.div
           variants={fadeUpVariants}
           className="flex flex-col items-center text-center mb-10 pc:mb-14"
         >
@@ -165,11 +166,11 @@ export const InstagramShowcaseSection = () => {
           >
             @minjisuper_official
           </a>
-        </motion.div>
+        </Motion.div>
 
-        <motion.div variants={fadeUpVariants} className="relative w-full">
+        <Motion.div variants={fadeUpVariants} className="relative w-full">
           <div className="w-full max-w-[1060px] mx-auto overflow-hidden">
-            <motion.div
+            <Motion.div
               className="instagram-marquee-track flex w-max gap-4 pc:gap-6 pb-2"
               style={{
                 animationPlayState: activeVideoKey ? "paused" : "running",
@@ -202,7 +203,7 @@ export const InstagramShowcaseSection = () => {
                           className="group absolute inset-0 w-full h-full text-left"
                           aria-label={`인스타그램 영상 ${item.id} 재생`}
                         >
-                          <img
+                          <ResponsiveImage
                             src={item.thumb}
                             alt={`민지슈퍼 인스타그램 영상 ${item.id} 썸네일`}
                             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -219,10 +220,10 @@ export const InstagramShowcaseSection = () => {
                   </div>
                 );
               })}
-            </motion.div>
+            </Motion.div>
           </div>
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   );
 };
@@ -230,14 +231,14 @@ export const InstagramShowcaseSection = () => {
 export const MarketingSupportSection = () => {
   return (
     <section className="w-full bg-[#F4F4F4] py-[80px] pc:py-[120px] px-5 overflow-hidden">
-      <motion.div
+      <Motion.div
         className="section-container flex flex-col items-center text-center"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        <motion.h2
+        <Motion.h2
           variants={fadeUpVariants}
           className="text-[28px] pc:text-[46px] font-extrabold text-[#151515] leading-tight mb-5 break-keep"
         >
@@ -248,28 +249,28 @@ export const MarketingSupportSection = () => {
             전문 마케팅팀
           </span>
           이 직접 관리합니다.
-        </motion.h2>
-        <motion.p
+        </Motion.h2>
+        <Motion.p
           variants={fadeUpVariants}
           className="text-[22px] pc:text-[34px] font-black text-[#151515] leading-tight mb-10 pc:mb-14 break-keep"
         >
           가맹점 하나하나
           <br />
           <span className="text-point-red">직접 챙깁니다.</span>
-        </motion.p>
+        </Motion.p>
 
-        <motion.div
+        <Motion.div
           variants={staggerContainer}
           className="grid grid-cols-1 pc:grid-cols-3 gap-5 pc:gap-7 w-full max-w-[1060px]"
         >
           {marketingCards.map((card) => (
-            <motion.div
+            <Motion.div
               key={card.title}
               variants={fadeUpVariants}
               className="group bg-white rounded-[16px] overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.1)]"
             >
               <div className="relative w-full aspect-[4/3] overflow-hidden">
-                <img
+                <ResponsiveImage
                   src={card.image}
                   alt={card.title}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -280,10 +281,10 @@ export const MarketingSupportSection = () => {
                   {card.title}
                 </h3>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   );
 };

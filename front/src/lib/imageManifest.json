@@ -1,0 +1,507 @@
+{
+  "/images/case-thumb.jpg": {
+    "base": "/images/optimized/case-thumb",
+    "widths": [
+      640,
+      885
+    ],
+    "sourceHash": "7e1668c028ee653d",
+    "width": 4608,
+    "height": 3072,
+    "mobileWidth": 295,
+    "desktopWidth": 430,
+    "class": "photo"
+  },
+  "/images/feature-bg-01.jpg": {
+    "base": "/images/optimized/feature-bg-01",
+    "widths": [
+      640,
+      669
+    ],
+    "sourceHash": "35f3a889faa9493d",
+    "width": 669,
+    "height": 552,
+    "mobileWidth": 364,
+    "desktopWidth": 305,
+    "class": "overlay"
+  },
+  "/images/feature-bg-02.jpg": {
+    "base": "/images/optimized/feature-bg-02",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      2385
+    ],
+    "sourceHash": "e8ccf6e4b393e358",
+    "width": 4608,
+    "height": 3072,
+    "mobileWidth": 795,
+    "desktopWidth": 378,
+    "class": "overlay"
+  },
+  "/images/feature-bg-03.jpg": {
+    "base": "/images/optimized/feature-bg-03",
+    "widths": [
+      640,
+      960,
+      1280,
+      1350
+    ],
+    "sourceHash": "eef5a6f30cde4513",
+    "width": 4608,
+    "height": 3072,
+    "mobileWidth": 450,
+    "desktopWidth": 378,
+    "class": "overlay"
+  },
+  "/images/feature-bg-04.jpg": {
+    "base": "/images/optimized/feature-bg-04",
+    "widths": [
+      640,
+      720
+    ],
+    "sourceHash": "d1faad539bcf9ee3",
+    "width": 1728,
+    "height": 2468,
+    "mobileWidth": 240,
+    "desktopWidth": 189,
+    "class": "overlay"
+  },
+  "/images/feature-bg-05.jpg": {
+    "base": "/images/optimized/feature-bg-05",
+    "widths": [
+      640,
+      720
+    ],
+    "sourceHash": "0dd6b4f11aa8787b",
+    "width": 832,
+    "height": 1184,
+    "mobileWidth": 240,
+    "desktopWidth": 189,
+    "class": "overlay"
+  },
+  "/images/footer-logo-partners.jpg": {
+    "base": "/images/optimized/footer-logo-partners",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      2560,
+      3324
+    ],
+    "sourceHash": "4ecba946f002ba04",
+    "width": 4608,
+    "height": 3072,
+    "mobileWidth": 600,
+    "desktopWidth": 1662,
+    "class": "textPhoto"
+  },
+  "/images/hero-portrait-main.png": {
+    "base": "/images/optimized/hero-portrait-main",
+    "widths": [
+      640,
+      946
+    ],
+    "sourceHash": "02535482364430d1",
+    "width": 946,
+    "height": 884,
+    "mobileWidth": 722,
+    "desktopWidth": 1920,
+    "class": "photo"
+  },
+  "/images/hero-thumb-video-01.jpg": {
+    "base": "/images/optimized/hero-thumb-video-01",
+    "widths": [
+      640,
+      960,
+      1005
+    ],
+    "sourceHash": "aa43a955d703dafa",
+    "width": 1280,
+    "height": 720,
+    "mobileWidth": 335,
+    "desktopWidth": 456,
+    "class": "textPhoto"
+  },
+  "/images/hero-thumb-video-02.jpg": {
+    "base": "/images/optimized/hero-thumb-video-02",
+    "widths": [
+      640,
+      960,
+      1005
+    ],
+    "sourceHash": "354fea9028bd6297",
+    "width": 1280,
+    "height": 720,
+    "mobileWidth": 335,
+    "desktopWidth": 456,
+    "class": "textPhoto"
+  },
+  "/images/icons/icon-ad.png": {
+    "base": "/images/optimized/icons/icon-ad",
+    "widths": [
+      84
+    ],
+    "sourceHash": "dfaaea66fcf8dfd9",
+    "width": 512,
+    "height": 512,
+    "mobileWidth": 28,
+    "desktopWidth": 40,
+    "class": "graphic"
+  },
+  "/images/icons/icon-labor.png": {
+    "base": "/images/optimized/icons/icon-labor",
+    "widths": [
+      78
+    ],
+    "sourceHash": "529c2d72d30b1819",
+    "width": 512,
+    "height": 561,
+    "mobileWidth": 26,
+    "desktopWidth": 37,
+    "class": "graphic"
+  },
+  "/images/icons/icon-manual.png": {
+    "base": "/images/optimized/icons/icon-manual",
+    "widths": [
+      84
+    ],
+    "sourceHash": "d5b3e2e57a865a3a",
+    "width": 512,
+    "height": 512,
+    "mobileWidth": 28,
+    "desktopWidth": 40,
+    "class": "graphic"
+  },
+  "/images/icons/icon-path.png": {
+    "base": "/images/optimized/icons/icon-path",
+    "widths": [
+      84
+    ],
+    "sourceHash": "594c549605e11bc0",
+    "width": 512,
+    "height": 512,
+    "mobileWidth": 28,
+    "desktopWidth": 40,
+    "class": "graphic"
+  },
+  "/images/icons/icon-place.png": {
+    "base": "/images/optimized/icons/icon-place",
+    "widths": [
+      84
+    ],
+    "sourceHash": "2beb14636ba5e82b",
+    "width": 512,
+    "height": 512,
+    "mobileWidth": 28,
+    "desktopWidth": 40,
+    "class": "graphic"
+  },
+  "/images/icons/icon-reels.png": {
+    "base": "/images/optimized/icons/icon-reels",
+    "widths": [
+      84
+    ],
+    "sourceHash": "c2864f794a754e8e",
+    "width": 512,
+    "height": 512,
+    "mobileWidth": 28,
+    "desktopWidth": 40,
+    "class": "graphic"
+  },
+  "/images/icons/icon-review.png": {
+    "base": "/images/optimized/icons/icon-review",
+    "widths": [
+      84
+    ],
+    "sourceHash": "3d32a91ef4824468",
+    "width": 512,
+    "height": 512,
+    "mobileWidth": 28,
+    "desktopWidth": 40,
+    "class": "graphic"
+  },
+  "/images/icons/icon-turnover.png": {
+    "base": "/images/optimized/icons/icon-turnover",
+    "widths": [
+      84
+    ],
+    "sourceHash": "25017cb85087cd8c",
+    "width": 512,
+    "height": 512,
+    "mobileWidth": 28,
+    "desktopWidth": 40,
+    "class": "graphic"
+  },
+  "/images/instagram/franchise-1-thumb.png": {
+    "base": "/images/optimized/instagram/franchise-1-thumb",
+    "widths": [
+      640,
+      810
+    ],
+    "sourceHash": "b4bde651b6e7d214",
+    "width": 1080,
+    "height": 1920,
+    "mobileWidth": 270,
+    "desktopWidth": 337,
+    "class": "photo"
+  },
+  "/images/instagram/franchise-2-thumb.png": {
+    "base": "/images/optimized/instagram/franchise-2-thumb",
+    "widths": [
+      640,
+      810
+    ],
+    "sourceHash": "1d28032901ff3149",
+    "width": 1080,
+    "height": 1920,
+    "mobileWidth": 270,
+    "desktopWidth": 337,
+    "class": "photo"
+  },
+  "/images/instagram/franchise-3-thumb.png": {
+    "base": "/images/optimized/instagram/franchise-3-thumb",
+    "widths": [
+      640,
+      810
+    ],
+    "sourceHash": "99cd0bb68d3dd991",
+    "width": 1080,
+    "height": 1920,
+    "mobileWidth": 270,
+    "desktopWidth": 337,
+    "class": "photo"
+  },
+  "/images/instagram/franchise-4-thumb.png": {
+    "base": "/images/optimized/instagram/franchise-4-thumb",
+    "widths": [
+      640,
+      810
+    ],
+    "sourceHash": "9e7c604fa9e7663f",
+    "width": 1080,
+    "height": 1920,
+    "mobileWidth": 270,
+    "desktopWidth": 337,
+    "class": "photo"
+  },
+  "/images/instagram/franchise-5-thumb.png": {
+    "base": "/images/optimized/instagram/franchise-5-thumb",
+    "widths": [
+      640,
+      810
+    ],
+    "sourceHash": "b83d510656fc945a",
+    "width": 1080,
+    "height": 1920,
+    "mobileWidth": 270,
+    "desktopWidth": 337,
+    "class": "photo"
+  },
+  "/images/marketing/ad-operation.png": {
+    "base": "/images/optimized/marketing/ad-operation",
+    "widths": [
+      640,
+      733
+    ],
+    "sourceHash": "f32ca71c73dafb3c",
+    "width": 733,
+    "height": 555,
+    "mobileWidth": 295,
+    "desktopWidth": 323,
+    "class": "graphic"
+  },
+  "/images/marketing/market-analysis.png": {
+    "base": "/images/optimized/marketing/market-analysis",
+    "widths": [
+      640,
+      952
+    ],
+    "sourceHash": "e0ea42fff5f901e5",
+    "width": 952,
+    "height": 577,
+    "mobileWidth": 365,
+    "desktopWidth": 399,
+    "class": "graphic"
+  },
+  "/images/marketing/place-management.png": {
+    "base": "/images/optimized/marketing/place-management",
+    "widths": [
+      640,
+      885
+    ],
+    "sourceHash": "a6342a75188e4308",
+    "width": 897,
+    "height": 831,
+    "mobileWidth": 295,
+    "desktopWidth": 323,
+    "class": "graphic"
+  },
+  "/images/mjsp-bg.png": {
+    "base": "/images/optimized/mjsp-bg",
+    "widths": [
+      640,
+      960,
+      1125
+    ],
+    "sourceHash": "4e5c6f688bd9c000",
+    "width": 2886,
+    "height": 1440,
+    "mobileWidth": 375,
+    "desktopWidth": 375,
+    "class": "overlay"
+  },
+  "/images/popup-franchise-status.png": {
+    "base": "/images/optimized/popup-franchise-status",
+    "widths": [
+      640,
+      960,
+      1020
+    ],
+    "sourceHash": "34a8100a40836943",
+    "width": 1122,
+    "height": 1402,
+    "mobileWidth": 340,
+    "desktopWidth": 360,
+    "class": "graphic"
+  },
+  "/images/popup-franchise-status2.png": {
+    "base": "/images/optimized/popup-franchise-status2",
+    "widths": [
+      640,
+      941
+    ],
+    "sourceHash": "23a7caa2056bf84e",
+    "width": 941,
+    "height": 1672,
+    "mobileWidth": 340,
+    "desktopWidth": 360,
+    "class": "graphic"
+  },
+  "/images/receipt-bg-blur.jpg": {
+    "base": "/images/optimized/receipt-bg-blur",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      2560,
+      3840
+    ],
+    "sourceHash": "bf085f36e0bc9d0f",
+    "width": 4302,
+    "height": 2868,
+    "mobileWidth": 1079,
+    "desktopWidth": 1920,
+    "class": "overlay"
+  },
+  "/images/receipt-logo-colorful.png": {
+    "base": "/images/optimized/receipt-logo-colorful",
+    "widths": [
+      492
+    ],
+    "sourceHash": "b8ca3428a4f64dd2",
+    "width": 521,
+    "height": 254,
+    "mobileWidth": 164,
+    "desktopWidth": 215,
+    "class": "graphic"
+  },
+  "/images/step-circle-01.jpg": {
+    "base": "/images/optimized/step-circle-01",
+    "widths": [
+      514
+    ],
+    "sourceHash": "c2ab78692931e416",
+    "width": 669,
+    "height": 552,
+    "mobileWidth": 167,
+    "desktopWidth": 257,
+    "class": "photo"
+  },
+  "/images/step-circle-02.jpg": {
+    "base": "/images/optimized/step-circle-02",
+    "widths": [
+      424
+    ],
+    "sourceHash": "e63315bae7df8cdb",
+    "width": 3072,
+    "height": 4608,
+    "mobileWidth": 128,
+    "desktopWidth": 212,
+    "class": "photo"
+  },
+  "/images/step-circle-03.jpg": {
+    "base": "/images/optimized/step-circle-03",
+    "widths": [
+      636
+    ],
+    "sourceHash": "330c67616faf7d19",
+    "width": 4608,
+    "height": 3072,
+    "mobileWidth": 201,
+    "desktopWidth": 318,
+    "class": "photo"
+  },
+  "/images/step-photo-lecture-02.jpg": {
+    "base": "/images/optimized/step-photo-lecture-02",
+    "widths": [
+      480
+    ],
+    "sourceHash": "aa89ad4a9e905044",
+    "width": 2667,
+    "height": 4000,
+    "mobileWidth": 160,
+    "desktopWidth": 160,
+    "class": "photo"
+  },
+  "/images/step-photo-lecture.jpg": {
+    "base": "/images/optimized/step-photo-lecture",
+    "widths": [
+      640,
+      960,
+      1280,
+      1392
+    ],
+    "sourceHash": "507bb0c943b49c5c",
+    "width": 4000,
+    "height": 2668,
+    "mobileWidth": 464,
+    "desktopWidth": 464,
+    "class": "photo"
+  },
+  "/images/story-bg-food.jpg": {
+    "base": "/images/optimized/story-bg-food",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      2560,
+      3840
+    ],
+    "sourceHash": "d27c061875d99581",
+    "width": 4608,
+    "height": 3072,
+    "mobileWidth": 450,
+    "desktopWidth": 1920,
+    "class": "overlay"
+  },
+  "/images/system-bg.jpg": {
+    "base": "/images/optimized/system-bg",
+    "widths": [
+      640,
+      960,
+      1080
+    ],
+    "sourceHash": "337b0294164abe99",
+    "width": 1080,
+    "height": 722,
+    "mobileWidth": 1920,
+    "desktopWidth": 1920,
+    "class": "overlay"
+  }
+}

@@ -2,8 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/optimized/main-logo.webp" />
+    <!--
+      파비콘 자산이 아직 없다. 이전에는 존재하지 않는 /images/optimized/main-logo.webp 를
+      가리켜 매 요청마다 404 였다. 로고 파일이 준비되면 여기에 다시 연결한다.
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      제목용 KerisBaeum 은 preload 하지 않는다. 느린 회선에서 폰트 두 개(약 284KB)가
+      첫 화면에 필요한 JS 와 대역폭을 나눠 써서 FCP 가 약 1초 늦어졌다(1.6Mbps 측정).
+    -->
+    <!-- Pretendard 서브셋은 jsDelivr 에서 온다. 연결 수립을 미리 끝내 둔다. -->
+    <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin />
 
     <meta name="description" content="민지슈퍼" />
     <meta

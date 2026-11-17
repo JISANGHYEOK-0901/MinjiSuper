@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "prebuild": "node scripts/optimize-images.mjs --check",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

@@ -11,6 +11,13 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
+## 이미지 최적화
+
+홈페이지 이미지는 `ResponsiveImage`가 `src/lib/imageManifest.json`을 보고 `public/images/optimized/`의 AVIF/WebP 변형을 골라 쓴다. 원본(`public/images/**`)은 수정하지 않고 그대로 둔다.
+
+- 기존 이미지 파일을 교체하면 `npm run optimize:images`를 실행해 산출물과 매니페스트를 함께 커밋한다. 하지 않으면 `npm run build`의 prebuild 검사(`--check`)가 실패해 배포가 진행되지 않는다(운영은 이전 버전 유지).
+- 새 이미지를 추가하면 `scripts/optimize-images.mjs`의 표시 폭 표(`DISPLAY_WIDTH`)에 넣고 같은 명령을 실행한다. 표에 없는 이미지는 최적화 없이 원본 그대로 표시된다.
+
 ## 팝업 관리
 
 `/Minji_Admin` 로그인 → 팝업 관리 → 팝업 추가 → 제목·이미지 선택 → 등록 → 활성화.

@@ -1,5 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const SuccessCaseSection = () => {
   // 시안에 맞춘 상세 데이터 배열 (기존 유지)
@@ -99,7 +100,7 @@ const SuccessCaseSection = () => {
 
   // 카드 렌더링 함수 (motion.div 로 감싸기)
   const renderCard = (data) => (
-    <motion.div
+    <Motion.div
       variants={cardElevateVariants}
       key={data.id}
       className="relative w-full rounded-[16px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] bg-white flex flex-col mt-4 pc:mt-0 hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300"
@@ -109,7 +110,7 @@ const SuccessCaseSection = () => {
       </div>
 
       <div className="relative w-full h-[100px] pc:h-[120px] rounded-t-[16px] overflow-hidden">
-        <img
+        <ResponsiveImage
           src="/images/case-thumb.jpg"
           alt={data.branch}
           className="absolute inset-0 w-full h-full object-cover"
@@ -151,70 +152,70 @@ const SuccessCaseSection = () => {
           </p>
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 
   return (
     <section className="w-full bg-[#FFFFFF] pt-[80px] pb-[80px] pc:pt-[120px] pc:pb-[120px] px-5 overflow-hidden">
       <div className="section-container max-w-[900px]">
         {/* 상단 타이틀 영역 */}
-        <motion.div
+        <Motion.div
           className="text-center mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          <motion.h2
+          <Motion.h2
             variants={blurRevealVariants}
             className="text-[28px] pc:text-[40px] font-bold text-[#151515] leading-tight mb-3 flex justify-center items-center gap-2 break-keep"
           >
             실제 업변
-            <motion.span
+            <Motion.span
               variants={dotStaggerContainer}
               className="text-point-red flex font-extrabold"
             >
               <span className="relative">
                 성
-                <motion.span
+                <Motion.span
                   variants={dotPopVariants}
                   className="absolute -top-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-point-red rounded-full"
-                ></motion.span>
+                ></Motion.span>
               </span>
               <span className="relative">
                 공
-                <motion.span
+                <Motion.span
                   variants={dotPopVariants}
                   className="absolute -top-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-point-red rounded-full"
-                ></motion.span>
+                ></Motion.span>
               </span>
               <span className="relative">
                 사
-                <motion.span
+                <Motion.span
                   variants={dotPopVariants}
                   className="absolute -top-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-point-red rounded-full"
-                ></motion.span>
+                ></Motion.span>
               </span>
               <span className="relative">
                 례
-                <motion.span
+                <Motion.span
                   variants={dotPopVariants}
                   className="absolute -top-3 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-point-red rounded-full"
-                ></motion.span>
+                ></Motion.span>
               </span>
-            </motion.span>
-          </motion.h2>
-          <motion.p
+            </Motion.span>
+          </Motion.h2>
+          <Motion.p
             variants={blurRevealVariants}
             className="text-[#151515] font-bold text-[15px] pc:text-[18px] break-keep"
           >
             실제로 <span className="text-point-red">살아난 가게들</span>,
             <br className="block pc:hidden" /> 실제로{" "}
             <span className="text-point-red">바뀐 사장님들.</span>
-          </motion.p>
-        </motion.div>
+          </Motion.p>
+        </Motion.div>
 
         {/* 첫 번째 행 (건대점, 상봉점) */}
-        <motion.div
+        <Motion.div
           className="grid grid-cols-1 pc:grid-cols-2 gap-8 pc:gap-10 mb-8 pc:mb-10"
           initial="hidden"
           whileInView="visible"
@@ -223,16 +224,16 @@ const SuccessCaseSection = () => {
         >
           {renderCard(cases[0])}
           {renderCard(cases[1])}
-        </motion.div>
+        </Motion.div>
 
         {/* 중간 배너 1 (크로스 슬라이드 등장) */}
-        <motion.div
+        <Motion.div
           className="flex flex-col pc:flex-row gap-4 mb-10 pc:mb-12 overflow-hidden"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          <motion.div
+          <Motion.div
             variants={slideFromLeftVariants}
             className="flex-1 bg-[#D33535] text-white text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
@@ -241,8 +242,8 @@ const SuccessCaseSection = () => {
               예산 낭비
             </span>
             를 막았습니다.
-          </motion.div>
-          <motion.div
+          </Motion.div>
+          <Motion.div
             variants={slideFromRightVariants}
             className="flex-1 bg-[#FFD03B] text-[#151515] text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
@@ -251,11 +252,11 @@ const SuccessCaseSection = () => {
               수익
             </span>
             에만 초점을 맞춰 설계하였습니다.
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
 
         {/* 두 번째 행 (김포점, 사가정점) */}
-        <motion.div
+        <Motion.div
           className="grid grid-cols-1 pc:grid-cols-2 gap-8 pc:gap-10 mb-8 pc:mb-10"
           initial="hidden"
           whileInView="visible"
@@ -264,16 +265,16 @@ const SuccessCaseSection = () => {
         >
           {renderCard(cases[2])}
           {renderCard(cases[3])}
-        </motion.div>
+        </Motion.div>
 
         {/* 중간 배너 2 (크로스 슬라이드 등장 반대 방향) */}
-        <motion.div
+        <Motion.div
           className="flex flex-col pc:flex-row gap-4 overflow-hidden"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          <motion.div
+          <Motion.div
             variants={slideFromRightVariants}
             className="flex-1 bg-[#FFD03B] text-[#151515] text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
@@ -282,8 +283,8 @@ const SuccessCaseSection = () => {
               효율적인 동선
             </span>
             이 중요합니다.
-          </motion.div>
-          <motion.div
+          </Motion.div>
+          <Motion.div
             variants={slideFromLeftVariants}
             className="flex-1 bg-[#D33535] text-white text-center py-4 px-4 rounded-[8px] font-bold shadow-md text-[15px] pc:text-[16px] tracking-tight break-keep"
           >
@@ -292,8 +293,8 @@ const SuccessCaseSection = () => {
               업종
             </span>
             만 맞으면 살릴 수 있습니다.
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
       </div>
     </section>
   );

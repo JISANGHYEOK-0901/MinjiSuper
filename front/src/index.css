@@ -1,15 +1,9 @@
 /* src/index.css 파일에 아래 내용을 모두 덮어씌워 주세요 */
 
-/* 웹폰트 Import (Pretendard & Cafe24Ssurround) */
-@import url("https://fastly.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
-@font-face {
-  font-family: "Cafe24Ssurround";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
+/* 웹폰트 Import
+ * Pretendard 는 dynamic-subset 을 쓴다. unicode-range 로 나뉘어 있어
+ * 브라우저가 실제로 쓰는 글자 범위만 내려받는다. 전체 판(웨이트당 약 770KB) 대비 대폭 작다. */
+@import url("https://fastly.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 /* Tailwind 지시어 */
 @tailwind base;
 @tailwind components;
@@ -17,8 +11,24 @@
 
 @layer base {
   body {
-    /* 명세서 기준 기본 폰트는 샌스세리프(Pretendard)로 두고, 필요시 Cafe24 폰트를 클래스로 사용하는 것을 권장합니다 */
+    /* 기본 폰트는 Pretendard, 제목은 KerisBaeum(index.css 하단 @font-face) */
     @apply bg-primary-dark font-sans text-font-light antialiased;
+  }
+
+  /*
+   * img 의 width/height 속성은 종횡비를 알려 레이아웃 시프트(CLS)를 막는 용도로만 쓴다.
+   * 실제 크기는 항상 CSS 가 정한다.
+   *
+   * Tailwind preflight 는 img 에 height:auto 만 주고 width:auto 는 주지 않는다.
+   * 그래서 높이만 지정한 이미지(예: h-[50px])에서 width 속성이 presentational hint 로
+   * 살아나 박스 폭이 원본 픽셀 폭까지 늘어난다.
+   *
+   * :where() 로 특이도를 0 으로 만들어, Tailwind 의 w-full 같은 클래스는 그대로 이기면서
+   * 속성 힌트만 무력화한다. 브라우저가 속성에서 계산하는 aspect-ratio 는 그대로 남아
+   * CLS 방어 효과는 유지된다.
+   */
+  :where(img[width][height]) {
+    width: auto;
   }
 }
 
@@ -53,25 +63,16 @@
   }
 }
 
-@font-face {
-  font-family: "Pretendard";
-  src: url("/fonts/Pretendard/Pretendard-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Pretendard";
-  src: url("/fonts/Pretendard/Pretendard-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
+/*
+ * 제목 폰트 KerisBaeum.
+ * swap 으로 둔다. optional 은 첫 렌더 시점에 폰트가 없으면 그 페이지 내내 시스템 폰트로 그려서,
+ * 측정해 보니 9Mbps 회선의 첫 방문에서도 제목이 브랜드 폰트로 나오지 않았다.
+ * WOFF2(약 145KB)로 줄었고 제목 폰트 체인이 KerisBaeum -> sans-serif 한 단계라
+ * swap 이어도 375px 폭에서 CLS 는 0.0004 수준이다(수정 전 TTF 기준 0.126).
+ */
 @font-face {
   font-family: "KerisBaeum";
-  src: url("/fonts/keris/KERISBAEUM_L.ttf") format("truetype");
+  src: url("/fonts/keris/KERISBAEUM_L.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -79,7 +80,7 @@
 
 @font-face {
   font-family: "KerisBaeum";
-  src: url("/fonts/keris/KERISBAEUM_R.ttf") format("truetype");
+  src: url("/fonts/keris/KERISBAEUM_R.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -87,7 +88,7 @@
 
 @font-face {
   font-family: "KerisBaeum";
-  src: url("/fonts/keris/KERISBAEUM_B.ttf") format("truetype");
+  src: url("/fonts/keris/KERISBAEUM_B.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -95,7 +96,7 @@
 
 @font-face {
   font-family: "KerisBaeum";
-  src: url("/fonts/keris/KERISBAEUM_EB.ttf") format("truetype");
+  src: url("/fonts/keris/KERISBAEUM_EB.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -126,7 +127,7 @@ h4,
 h5,
 h6,
 .title-font {
-  font-family: "KerisBaeum", "Pretendard", sans-serif;
+  font-family: "KerisBaeum", sans-serif;
   word-break: keep-all;
   letter-spacing: -0.05em;
 }

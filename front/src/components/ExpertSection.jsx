@@ -1,5 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
+import ResponsiveImage from "./ResponsiveImage";
 
 const ExpertSection = () => {
   // 카드 데이터 배열 (기존과 동일하게 유지)
@@ -66,7 +67,7 @@ const ExpertSection = () => {
     <section className="w-full flex flex-col overflow-hidden">
       {/* 1. 상단 밝은 영역 */}
       <div className="w-full bg-[#F5F5F5] pt-[80px] pb-[80px] pc:pt-[120px] pc:pb-[100px] text-center px-5 flex flex-col items-center">
-        <motion.div
+        <Motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -86,12 +87,12 @@ const ExpertSection = () => {
             </span>
             만 <span className="text-point-red font-bold">연구</span>했습니다.
           </p>
-        </motion.div>
+        </Motion.div>
 
         {/* 2. 카드 리스트 영역 */}
         <div className="section-container w-full">
           {/* 💡 staggerContainer를 감싸 카드가 차례대로 등장하도록 설정 (가로 스크롤 클래스 유지) */}
-          <motion.div
+          <Motion.div
             className="flex overflow-x-auto pc:grid pc:grid-cols-5 gap-4 pc:gap-5 pb-6 pc:pb-0 snap-x snap-mandatory hide-scrollbar"
             variants={staggerContainer}
             initial="hidden"
@@ -99,7 +100,7 @@ const ExpertSection = () => {
             viewport={{ once: true, margin: "-50px" }}
           >
             {cards.map((card) => (
-              <motion.div
+              <Motion.div
                 key={card.id}
                 variants={fadeUpVariants}
                 className="relative flex-shrink-0 w-[240px] pc:w-full aspect-[4/5] pc:aspect-[3/4] rounded-[24px] overflow-hidden snap-center flex flex-col justify-center items-center text-center p-4 pc:p-5 shadow-xl hover:-translate-y-2 transition-transform duration-300"
@@ -107,7 +108,7 @@ const ExpertSection = () => {
                 {/* 배경 처리 로직 */}
                 {card.bgType === "image" ? (
                   <>
-                    <img
+                    <ResponsiveImage
                       src={card.bgSrc}
                       alt={card.title.replace("\n", " ")}
                       className="absolute inset-0 w-full h-full object-cover"
@@ -127,14 +128,14 @@ const ExpertSection = () => {
                     {card.desc}
                   </p>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
 
       {/* 3. 하단 다크 영역 (마무리 문구) */}
-      <motion.div
+      <Motion.div
         className="w-full bg-primary-dark pt-[60px] pb-[80px] pc:pt-[100px] pc:pb-[120px] text-center px-5 flex flex-col items-center"
         initial="hidden"
         whileInView="visible"
@@ -152,7 +153,7 @@ const ExpertSection = () => {
           </span>
           를 만들었습니다.
         </p>
-      </motion.div>
+      </Motion.div>
     </section>
   );
 };
