@@ -23,9 +23,12 @@ const AdminDashboard = () => {
   const [statusFilter, setStatusFilter] = useState("전체");
   const [memoDrafts, setMemoDrafts] = useState({});
   const [savingMemoId, setSavingMemoId] = useState(null);
+  const [sessionExpired, setSessionExpired] = useState(false);
 
+  // 서버가 401을 주면(토큰 만료·계정 변경 등) 로그인 화면으로 돌리고 만료 안내를 띄운다.
   const handleExpired = useCallback(() => {
     localStorage.removeItem("adminToken");
+    setSessionExpired(true);
     setIsLoggedIn(false);
   }, []);
 
@@ -75,6 +78,7 @@ const AdminDashboard = () => {
       const data = await res.json();
       if (res.ok) {
         localStorage.setItem("adminToken", data.token);
+        setSessionExpired(false);
         setIsLoggedIn(true);
         fetchInquiries();
       } else {
@@ -101,6 +105,8 @@ const AdminDashboard = () => {
             return acc;
           }, {}),
         );
+      } else if (res.status === 401) {
+        handleExpired();
       } else {
         setIsLoggedIn(false);
       }
@@ -136,6 +142,8 @@ const AdminDashboard = () => {
           prev.map((item) => (item.id === id ? updated : item)),
         );
         setMemoDrafts((prev) => ({ ...prev, [id]: updated.adminMemo || "" }));
+      } else if (res.status === 401) {
+        handleExpired();
       } else {
         alert("메모 저장에 실패했습니다. 다시 시도해 주세요.");
       }
@@ -178,7 +186,8 @@ const AdminDashboard = () => {
 
       if (!res.ok) {
         setInquiries(originalInquiries);
-        alert("서버 저장에 실패했습니다. 다시 시도해 주세요.");
+        if (res.status === 401) handleExpired();
+        else alert("서버 저장에 실패했습니다. 다시 시도해 주세요.");
       }
     } catch {
       setInquiries(originalInquiries);
@@ -195,6 +204,8 @@ const AdminDashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) fetchInquiries();
+      else if (res.status === 401) handleExpired();
+      else alert("삭제에 실패했습니다. 다시 시도해 주세요.");
     } catch {
       alert("삭제 실패");
     }
@@ -210,6 +221,11 @@ const AdminDashboard = () => {
           <h2 className="text-2xl font-black mb-6 text-center text-[#151515]">
             민지슈퍼 관리자 로그인
           </h2>
+          {sessionExpired && (
+            <p role="alert" className="mb-4 rounded-lg bg-red-50 p-3 text-sm font-bold text-red-600">
+              로그인이 만료되었습니다. 다시 로그인해 주세요.
+            </p>
+          )}
           <input
             type="text"
             placeholder="아이디"
