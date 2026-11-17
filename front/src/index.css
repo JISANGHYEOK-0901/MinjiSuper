@@ -63,12 +63,19 @@
   }
 }
 
+/*
+ * 제목 폰트 KerisBaeum.
+ * swap 으로 둔다. optional 은 첫 렌더 시점에 폰트가 없으면 그 페이지 내내 시스템 폰트로 그려서,
+ * 측정해 보니 9Mbps 회선의 첫 방문에서도 제목이 브랜드 폰트로 나오지 않았다.
+ * WOFF2(약 145KB)로 줄었고 제목 폰트 체인이 KerisBaeum -> sans-serif 한 단계라
+ * swap 이어도 375px 폭에서 CLS 는 0.0004 수준이다(수정 전 TTF 기준 0.126).
+ */
 @font-face {
   font-family: "KerisBaeum";
   src: url("/fonts/keris/KERISBAEUM_L.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -76,7 +83,7 @@
   src: url("/fonts/keris/KERISBAEUM_R.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -84,7 +91,7 @@
   src: url("/fonts/keris/KERISBAEUM_B.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -92,7 +99,7 @@
   src: url("/fonts/keris/KERISBAEUM_EB.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 body {
