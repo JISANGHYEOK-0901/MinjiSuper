@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 const StructureSection = () => {
   // 💡 [가디언 적용] 트렌드 1: 초점이 맞춰지며 등장하는 세련된 텍스트 효과 (Apple 스타일)
@@ -59,7 +59,7 @@ const StructureSection = () => {
       {/* 1. 무너져본 경험 / 사장님 마음 영역 (Light) */}
       <div className="w-full bg-[#F9F9F9] pt-[80px] pb-[80px] pc:pt-[120px] pc:pb-[100px] text-center px-5 flex flex-col items-center">
         {/* 타이틀 (Blur Reveal) */}
-        <motion.h2
+        <Motion.h2
           variants={blurRevealVariants}
           initial="hidden"
           whileInView="visible"
@@ -73,10 +73,10 @@ const StructureSection = () => {
           <span className="text-point-red pc:ml-1">
             사장님 마음을 잘 압니다
           </span>
-        </motion.h2>
+        </Motion.h2>
 
         {/* 중앙 흰색 박스 (Scale Pop + Stagger) */}
-        <motion.div
+        <Motion.div
           variants={scalePopVariants}
           initial="hidden"
           whileInView="visible"
@@ -87,7 +87,7 @@ const StructureSection = () => {
             과거 <span className="text-[#151515]">김창훈 주막 시절</span>
           </span>
 
-          <motion.div
+          <Motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -95,19 +95,19 @@ const StructureSection = () => {
             className="flex flex-col gap-3 pc:gap-4"
           >
             {painPoints.map((text, idx) => (
-              <motion.div
+              <Motion.div
                 key={idx}
                 variants={blurRevealVariants}
                 className="bg-[#FFF9EA] text-[#151515] font-bold py-4 rounded-[8px] text-[15px] pc:text-[16px] tracking-tight break-keep"
               >
                 {text}
-              </motion.div>
+              </Motion.div>
             ))}
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
 
         {/* 빨간색 화살표 포인트 (Bounce) */}
-        <motion.div
+        <Motion.div
           variants={bounceVariants}
           animate="animate"
           className="flex justify-center mb-8"
@@ -118,10 +118,10 @@ const StructureSection = () => {
               fill="#D33535"
             />
           </svg>
-        </motion.div>
+        </Motion.div>
 
         {/* 하단 검은색 박스 (Scale Pop) */}
-        <motion.div
+        <Motion.div
           variants={scalePopVariants}
           initial="hidden"
           whileInView="visible"
@@ -134,12 +134,12 @@ const StructureSection = () => {
             감성, 경험, 동선을 결합한 <br className="block pc:hidden" />
             <span className="text-point-red">새로운 구조 기획</span>
           </p>
-        </motion.div>
+        </Motion.div>
       </div>
 
       {/* 2. 브랜드 탄생 스토리 (Dark with Image - Background Zoom) */}
       <div className="relative w-full h-[300px] pc:h-[400px] flex items-center justify-center overflow-hidden">
-        <motion.img
+        <Motion.img
           variants={bgZoomVariants}
           initial="hidden"
           whileInView="visible"
@@ -150,7 +150,7 @@ const StructureSection = () => {
         />
         <div className="absolute inset-0 bg-black/65 z-0"></div>
 
-        <motion.h2
+        <Motion.h2
           variants={scalePopVariants}
           initial="hidden"
           whileInView="visible"
@@ -162,25 +162,25 @@ const StructureSection = () => {
             민지슈퍼
           </span>
           <span className="text-[#D33535]">탄생</span>
-        </motion.h2>
+        </Motion.h2>
       </div>
 
       {/* 3. 생존 매장 수 하이라이트 (Blur Reveal) */}
-      <motion.div
+      <Motion.div
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
         className="w-full bg-[#151515] py-[80px] pc:py-[100px] text-center px-5"
       >
-        <motion.p
+        <Motion.p
           variants={blurRevealVariants}
           className="text-[24px] pc:text-[38px] font-extrabold text-white mb-6 tracking-tight break-keep"
         >
           이미 <span className="text-point-yellow">200개 이상</span>의 가게가
           <br className="block pc:hidden" /> 살아났습니다
-        </motion.p>
-        <motion.p
+        </Motion.p>
+        <Motion.p
           variants={blurRevealVariants}
           className="text-[#D0D0D0] font-medium text-[15px] pc:text-[18px] tracking-tight leading-[1.6] break-keep"
         >
@@ -191,8 +191,8 @@ const StructureSection = () => {
             장사가 되는 구조
           </span>
           로 바꾸는 것
-        </motion.p>
-      </motion.div>
+        </Motion.p>
+      </Motion.div>
     </section>
   );
 };

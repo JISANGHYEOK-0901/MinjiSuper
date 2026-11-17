@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 const HeroSection = () => {
   // 영상 재생 상태를 관리하는 State
@@ -29,7 +29,7 @@ const HeroSection = () => {
   return (
     /* 💡 [안전 조치] overflow-hidden을 추가하여 애니메이션 작동 중 모바일 가로 쏠림 현상 원천 차단 */
     <section className="w-full bg-primary-dark pt-[60px] pb-[80px] pc:pt-[100px] pc:pb-[120px] overflow-hidden">
-      <motion.div
+      <Motion.div
         className="section-container flex flex-col items-center text-center px-5 pc:px-0"
         variants={containerVariants}
         initial="hidden"
@@ -37,7 +37,7 @@ const HeroSection = () => {
         viewport={{ once: true, margin: "-50px" }} // 스크롤 시 한 번만 실행, 50px 미리 등장
       >
         {/* 메인 카피 */}
-        <motion.h2
+        <Motion.h2
           variants={itemVariants}
           // 💡 [가독성 방어] break-keep 추가로 단어 찢어짐 방지 / 반응형 leading 조절
           className="text-[26px] pc:text-[42px] font-extrabold text-font-light leading-[1.4] pc:leading-snug tracking-tight mb-8 break-keep"
@@ -48,10 +48,10 @@ const HeroSection = () => {
           <br className="hidden pc:block" />
           <span className="text-point-yellow ml-1 pc:ml-0">업변 11년 차</span>가
           되었습니다.
-        </motion.h2>
+        </Motion.h2>
 
         {/* 인물 이미지 */}
-        <motion.div
+        <Motion.div
           variants={itemVariants}
           className="w-full max-w-[650px] mb-10 pc:mb-12"
         >
@@ -60,10 +60,10 @@ const HeroSection = () => {
             alt="김창훈 대표"
             className="w-full h-auto object-cover rounded-[20px] shadow-2xl"
           />
-        </motion.div>
+        </Motion.div>
 
         {/* 서브 텍스트 */}
-        <motion.p
+        <Motion.p
           variants={itemVariants}
           className="text-[15px] pc:text-[18px] text-font-light font-medium leading-[1.7] pc:leading-relaxed mb-16 break-keep"
         >
@@ -87,10 +87,10 @@ const HeroSection = () => {
           <br className="hidden pc:block" />
           <span className="text-point-yellow font-bold ml-1">브랜드</span>가
           탄생했습니다.
-        </motion.p>
+        </Motion.p>
 
         {/* 🎬 유튜브 영상 영역 */}
-        <motion.div
+        <Motion.div
           variants={itemVariants}
           className="flex flex-col pc:flex-row gap-8 pc:gap-8 w-full max-w-[900px] mb-16 text-left"
         >
@@ -170,10 +170,10 @@ const HeroSection = () => {
               조회수: 4.9천 회 · 2024.02.20
             </p>
           </div>
-        </motion.div>
+        </Motion.div>
 
         {/* 하단 버튼 (애니메이션 적용 및 호버 이펙트 강화) */}
-        <motion.div
+        <Motion.div
           variants={itemVariants}
           className="flex flex-col gap-4 w-full pc:w-auto"
         >
@@ -203,8 +203,8 @@ const HeroSection = () => {
               &gt;
             </span>
           </button>
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   );
 };

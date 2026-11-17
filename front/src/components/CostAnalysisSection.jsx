@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 const CostAnalysisSection = () => {
   // 💡 [가디언 설정] 애니메이션 세트
@@ -47,25 +47,25 @@ const CostAnalysisSection = () => {
     <div className="w-full flex flex-col overflow-hidden">
       {/* --- Section 1: 비용 분석 섹션 --- */}
       <section className="w-full bg-[#F2F2F2] pt-[80px] pb-[80px] pc:pt-[120px] pc:pb-[120px] px-5">
-        <motion.div
+        <Motion.div
           className="section-container flex flex-col items-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
         >
-          <motion.h2
+          <Motion.h2
             variants={blurRevealVariants}
             className="text-[26px] pc:text-[38px] font-extrabold text-[#151515] leading-tight mb-16 text-center tracking-tighter break-keep"
           >
             그래서 내 <span className="text-point-red">돈</span>은{" "}
             <br className="block pc:hidden" />
             <span className="text-point-red">얼마나 들어가나요?</span>
-          </motion.h2>
+          </Motion.h2>
 
           <div className="flex flex-col pc:flex-row gap-6 pc:gap-10 mb-12 w-full max-w-[800px]">
             {/* 업변 비용 카드 */}
-            <motion.div
+            <Motion.div
               variants={scalePopVariants}
               className="flex-1 bg-white rounded-[12px] shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300"
             >
@@ -80,10 +80,10 @@ const CostAnalysisSection = () => {
                 <li>메뉴 개편</li>
                 <li>동선/시스템 세팅</li>
               </ul>
-            </motion.div>
+            </Motion.div>
 
             {/* 창업 비용 카드 */}
-            <motion.div
+            <Motion.div
               variants={scalePopVariants}
               className="flex-1 bg-white rounded-[12px] shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300"
             >
@@ -98,11 +98,11 @@ const CostAnalysisSection = () => {
                 <li>보증금</li>
                 <li>인테리어 / 주방설비</li>
               </ul>
-            </motion.div>
+            </Motion.div>
           </div>
 
           {/* 수직 화살표 흐름 (Bounce 적용) */}
-          <motion.div
+          <Motion.div
             variants={bounceVariants}
             animate="animate"
             className="flex flex-col items-center gap-1 mb-12 opacity-20"
@@ -118,10 +118,10 @@ const CostAnalysisSection = () => {
                 <path d="M12 16L0 0H24L12 16Z" fill="#151515" />
               </svg>
             ))}
-          </motion.div>
+          </Motion.div>
 
           {/* 총비용 배너 */}
-          <motion.div
+          <Motion.div
             variants={scalePopVariants}
             className="bg-point-red px-10 py-5 rounded-full shadow-2xl mb-6"
           >
@@ -131,20 +131,20 @@ const CostAnalysisSection = () => {
                 (옵션별 변동)
               </span>
             </p>
-          </motion.div>
-          <motion.p
+          </Motion.div>
+          <Motion.p
             variants={blurRevealVariants}
             className="text-[#151515] font-bold text-[16px] pc:text-[21px] tracking-tight mt-4 break-keep"
           >
             1원도 숨기지 않는 투명한 비용 공개 정책.
-          </motion.p>
-        </motion.div>
+          </Motion.p>
+        </Motion.div>
       </section>
 
       {/* --- Section 2: 대표 메시지 섹션 --- */}
       <section className="relative w-full py-[120px] pc:py-[180px] px-5 overflow-hidden">
         {/* 💡 [트렌드] 시네마틱 줌 효과 적용 배경 */}
-        <motion.div
+        <Motion.div
           className="absolute inset-0 z-0"
           initial="hidden"
           whileInView="visible"
@@ -157,9 +157,9 @@ const CostAnalysisSection = () => {
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/75"></div>
-        </motion.div>
+        </Motion.div>
 
-        <motion.div
+        <Motion.div
           className="section-container relative z-10 text-white flex flex-col items-center pc:items-end text-center pc:text-right"
           initial="hidden"
           whileInView="visible"
@@ -167,7 +167,7 @@ const CostAnalysisSection = () => {
           variants={staggerContainer}
         >
           <div className="max-w-[800px]">
-            <motion.p
+            <Motion.p
               variants={blurRevealVariants}
               className="text-white font-bold text-[18px] pc:text-[24px] mb-8 leading-relaxed break-keep"
             >
@@ -175,25 +175,25 @@ const CostAnalysisSection = () => {
               <span className="text-point-yellow">살아나는 순간,</span>
               <br />
               저는 그 순간을 가장 사랑합니다.
-            </motion.p>
-            <motion.div
+            </Motion.p>
+            <Motion.div
               variants={blurRevealVariants}
               className="flex flex-col gap-1 mb-12 text-white/90 font-bold text-[16px] pc:text-[20px] leading-relaxed break-keep"
             >
               <p>무너진 사장님들이 다시 웃음을 찾고</p>
               <p>가족들의 마음이 편안해지고</p>
               <p>가게에 다시금 온기가 도는 그 순간,</p>
-            </motion.div>
+            </Motion.div>
 
-            <motion.div variants={blurRevealVariants} className="mb-12">
+            <Motion.div variants={blurRevealVariants} className="mb-12">
               <h3 className="text-[24px] pc:text-[36px] font-black leading-tight break-keep">
                 그 <span className="text-point-yellow">순간</span> 때문에{" "}
                 <br className="block pc:hidden" />
                 저는 이 일을 11년째 하고 있습니다.
               </h3>
-            </motion.div>
+            </Motion.div>
 
-            <motion.p
+            <Motion.p
               variants={blurRevealVariants}
               className="text-[20px] pc:text-[28px] font-bold break-keep"
             >
@@ -205,21 +205,21 @@ const CostAnalysisSection = () => {
                 </span>
                 <span className="absolute bottom-1 left-0 w-full h-[8px] pc:h-[12px] bg-point-yellow/30"></span>
               </span>
-            </motion.p>
+            </Motion.p>
           </div>
-        </motion.div>
+        </Motion.div>
       </section>
 
       {/* --- Section 3: 최종 CTA 섹션 --- */}
       <section className="w-full bg-white pt-[80px] pb-[80px] pc:pt-[100px] pc:pb-[100px] px-5 border-t border-gray-100">
-        <motion.div
+        <Motion.div
           className="section-container flex flex-col items-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
         >
-          <motion.div
+          <Motion.div
             variants={blurRevealVariants}
             className="text-center mb-12"
           >
@@ -229,9 +229,9 @@ const CostAnalysisSection = () => {
               <br />
               지금 바로 <span className="text-point-red">계산</span>해드립니다.
             </h2>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             className="flex flex-col gap-4 w-full max-w-[450px] mb-12"
             variants={staggerContainer}
           >
@@ -252,7 +252,7 @@ const CostAnalysisSection = () => {
                 textCol: "text-white",
               },
             ].map((btn, idx) => (
-              <motion.button
+              <Motion.button
                 key={idx}
                 variants={scalePopVariants}
                 className={`${btn.bg} ${btn.textCol} font-black text-[17px] pc:text-[20px] py-[18px] rounded-full shadow-lg hover:brightness-105 hover:-translate-y-1 transition-all duration-300`}
@@ -263,11 +263,11 @@ const CostAnalysisSection = () => {
                 }
               >
                 {btn.text}
-              </motion.button>
+              </Motion.button>
             ))}
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             variants={blurRevealVariants}
             className="flex justify-center"
           >
@@ -276,8 +276,8 @@ const CostAnalysisSection = () => {
               alt="MJSP Logo"
               className="h-[80px] pc:h-[105px] object-contain opacity-80"
             />
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
       </section>
     </div>
   );

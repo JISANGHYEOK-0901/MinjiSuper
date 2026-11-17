@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 const ContactFormSection = () => {
   const getApiBaseUrl = () => {
@@ -106,7 +106,7 @@ const ContactFormSection = () => {
       } else {
         alert(result.message || "입력 정보를 다시 확인해주세요.");
       }
-    } catch (error) {
+    } catch {
       alert("서버 연결에 실패했습니다.");
     } finally {
       setIsSubmitting(false);
@@ -152,7 +152,7 @@ const ContactFormSection = () => {
     <section className="w-full flex flex-col pc:grid pc:grid-cols-2 overflow-hidden bg-white">
       {/* 1. 이미지 영역 (기존과 동일) */}
       <div className="order-1 pc:order-1 pc:col-span-1 relative w-full h-[400px] pc:h-auto overflow-hidden">
-        <motion.img
+        <Motion.img
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 1.5 }}
@@ -161,7 +161,7 @@ const ContactFormSection = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50"></div>
-        <motion.div
+        <Motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -178,12 +178,12 @@ const ContactFormSection = () => {
             <span className="text-point-yellow">끝까지 살아남게</span>{" "}
             만들어드립니다.
           </p>
-        </motion.div>
+        </Motion.div>
       </div>
 
       {/* 2. 브랜드 스토리 영역 (기존과 동일) */}
       <div className="order-2 pc:order-3 pc:col-span-2 w-full bg-[#F2F2F2] py-20 px-5">
-        <motion.div
+        <Motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -236,17 +236,17 @@ const ContactFormSection = () => {
                 </span>
               </>,
             ].map((p, i) => (
-              <motion.p
+              <Motion.p
                 key={i}
                 variants={blurRevealVariants}
                 className="mb-8 last:mb-0"
               >
                 {p}
-              </motion.p>
+              </Motion.p>
             ))}
           </div>
 
-          <motion.div
+          <Motion.div
             variants={scalePopVariants}
             className="absolute bottom-6 right-8 pc:right-10 max-[400px]:right-auto max-[400px]:left-1/2 max-[400px]:-translate-x-1/2"
           >
@@ -255,8 +255,8 @@ const ContactFormSection = () => {
               alt="MJSP"
               className="h-[50px] pc:h-[85px] object-contain opacity-80"
             />
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
       </div>
 
       {/* 3. 상담 폼 영역 (💡 변경됨) */}
@@ -264,7 +264,7 @@ const ContactFormSection = () => {
         id="consultation-form"
         className="order-3 pc:order-2 pc:col-span-1 w-full bg-white py-16 pc:py-24 px-5 pc:px-20 scroll-mt-10 pc:scroll-mt-0"
       >
-        <motion.h3
+        <Motion.h3
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -274,9 +274,9 @@ const ContactFormSection = () => {
           현재 상황에 대한 상담만 받아도,
           <br />
           제대로 된 길이 보일 겁니다.
-        </motion.h3>
+        </Motion.h3>
 
-        <motion.form
+        <Motion.form
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -285,7 +285,7 @@ const ContactFormSection = () => {
           onSubmit={handleSubmit}
         >
           {formFields.map((field) => (
-            <motion.div
+            <Motion.div
               key={field.key}
               variants={blurRevealVariants}
               className="flex flex-col gap-2"
@@ -321,10 +321,10 @@ const ContactFormSection = () => {
                   className="w-full border-b-2 border-[#F0F0F0] py-2 text-[15.5px] text-[#151515] focus:outline-none focus:border-point-yellow transition-colors placeholder:text-gray-300"
                 />
               )}
-            </motion.div>
+            </Motion.div>
           ))}
 
-          <motion.div
+          <Motion.div
             variants={blurRevealVariants}
             className="flex items-start gap-3 mt-2"
           >
@@ -346,9 +346,9 @@ const ContactFormSection = () => {
                 * 상담 목적 외에는 절대 사용되지 않습니다.
               </span>
             </label>
-          </motion.div>
+          </Motion.div>
 
-          <motion.button
+          <Motion.button
             variants={scalePopVariants}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -360,8 +360,8 @@ const ContactFormSection = () => {
             <span className="text-[18px] font-normal group-hover:translate-x-1.5 transition-transform duration-300">
               &gt;
             </span>
-          </motion.button>
-        </motion.form>
+          </Motion.button>
+        </Motion.form>
       </div>
     </section>
   );

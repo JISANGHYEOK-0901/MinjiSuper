@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 const FinalSummarySection = () => {
   // 💡 [가디언 설정] 텍스트용 스며드는 애니메이션
@@ -34,7 +34,7 @@ const FinalSummarySection = () => {
 
   return (
     <section className="w-full bg-[#1A1A1A] pt-[100px] pb-[100px] pc:pt-[140px] pc:pb-[140px] px-5 overflow-hidden">
-      <motion.div
+      <Motion.div
         className="section-container flex flex-col items-center text-center"
         variants={staggerContainer}
         initial="hidden"
@@ -43,7 +43,7 @@ const FinalSummarySection = () => {
       >
         {/* 메시지 영역 */}
         <div className="mb-12 pc:mb-16">
-          <motion.h2
+          <Motion.h2
             variants={blurRevealVariants}
             // 💡 [가독성 방어] break-keep 추가 및 행간 최적화
             className="text-[24px] pc:text-[40px] font-extrabold text-white leading-[1.5] pc:leading-snug mb-5 break-keep"
@@ -60,9 +60,9 @@ const FinalSummarySection = () => {
             <span className="text-point-yellow mt-2 pc:mt-1 inline-block">
               그게 김창훈식 업변입니다.
             </span>
-          </motion.h2>
+          </Motion.h2>
 
-          <motion.p
+          <Motion.p
             variants={blurRevealVariants}
             className="text-white text-[15px] pc:text-[18px] font-medium leading-relaxed break-keep"
           >
@@ -74,15 +74,15 @@ const FinalSummarySection = () => {
               가게를 살릴 방법
             </span>
             을 찾아드립니다.
-          </motion.p>
+          </Motion.p>
         </div>
 
         {/* CTA 버튼 세트 */}
-        <motion.div
+        <Motion.div
           className="flex flex-col gap-4 w-full max-w-[450px]"
           variants={staggerContainer} // 버튼들도 시간차를 두고 나타남
         >
-          <motion.button
+          <Motion.button
             variants={buttonPopVariants}
             onClick={() =>
               document
@@ -96,9 +96,9 @@ const FinalSummarySection = () => {
             <span className="ml-2 text-[14px] pc:text-[16px] font-normal opacity-80 group-hover:translate-x-1.5 transition-transform duration-300">
               &gt;
             </span>
-          </motion.button>
+          </Motion.button>
 
-          <motion.button
+          <Motion.button
             variants={buttonPopVariants}
             onClick={() =>
               document
@@ -111,9 +111,9 @@ const FinalSummarySection = () => {
             <span className="ml-2 text-[14px] pc:text-[16px] font-normal opacity-80 group-hover:translate-x-1.5 transition-transform duration-300">
               &gt;
             </span>
-          </motion.button>
-        </motion.div>
-      </motion.div>
+          </Motion.button>
+        </Motion.div>
+      </Motion.div>
     </section>
   );
 };
