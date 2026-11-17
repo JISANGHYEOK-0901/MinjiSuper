@@ -36,12 +36,12 @@ const instagramVideos = [
   {
     id: 4,
     thumb: "/images/instagram/franchise-4-thumb.png",
-    video: "/videos/franchise-4.mp4",
+    video: "/videos/franchise-4-h264.mp4",
   },
   {
     id: 5,
     thumb: "/images/instagram/franchise-5-thumb.png",
-    video: "/videos/franchise-5.mp4",
+    video: "/videos/franchise-5-h264.mp4",
   },
 ];
 
